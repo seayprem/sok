@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DASHBOARD</title>
+
+  <!-- CSS Include -->
+
+  <link rel="stylesheet" href="../../public//css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../public//css/all.min.css">
+  <link rel="stylesheet" href="../../public//css/fontawesome.min.css">
+  <link rel="stylesheet" href="../../public//css/styles.css">
+
+  <!-- CSS Include -->
+
+</head>
+
+<body>
+
+   <!-- navbar -->
+
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+
+      <a href="index.html" class="navbar-brand text-warning">SOK Production</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- menu native -->
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link text-warning"><i class="fas fa-home"></i> หน้าหลัก</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="index.html" class="nav-link dropdown-toggle text-warning" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-user"></i> คุณ เจ้าของบริษัท
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a href="index.html" class="dropdown-item"><i class="far fa-id-card"></i> ข้อมูลส่วนตัว</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a href="index.html" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> ออกจากระบบ</a></li>
+            </ul>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- sidebar -->
+
+  <div class="container-fluid">
+		<div class="row flex-nowrap">
+			<div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+				<div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+					<a href="index.html" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+						<span class="fs-5 d-none d-sm-inline">เมนู</span>
+					</a>
+					<ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+						<!-- nav-item -->
+						<li class="nav-item">
+							<a href="index.html" class="nav-link align-middle px-0">
+								<i class="fas fa-tachometer-alt"></i> <span class="ms-1 d-none d-sm-inline">แผงควบคุม</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="company.html" class="nav-link align-middle px-0">
+							  <i class="fas fa-building"></i> <span class="ms-1 d-none d-sm-inline">บริษัทคู่ค้าการผลิต</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="import.html" class="nav-link align-middle px-0">
+								<i class="fas fa-shipping-fast"></i> <span class="ms-1 d-none d-sm-inline">รายการนำเข้าสินค้า</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="export.html" class="nav-link align-middle px-0">
+								<i class="fas fa-chalkboard-teacher"></i> <span class="ms-1 d-none d-sm-inline">รายการจำหน่ายสินค้า</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="stock.html" class="nav-link align-middle px-0">
+								<i class="fas fa-store"></i> <span class="ms-1 d-none d-sm-inline">สินค้าคงเหลือ</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+      <!-- content sidebar  -->
+      <div class="col-md-9">
+        <h3 class="mt-3"><i class="fas fa-tachometer-alt"></i> แผงควบคุม</h3>
+        <hr>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card text-dark bg-warning mb-3">
+              <div class="card-header">วันนี้</div>
+              <div class="card-body">
+                <h5 class="card-title">สินค้าคงเหลือทั้งหมด</h5>
+                <p class="card-text">20 รายการ | 3 ประเภท | ถึงจุดที่ต้องสั่งซื้อ 2 รายการ</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card text-dark bg-warning mb-3">
+              <div class="card-header">วันนี้</div>
+              <div class="card-body">
+                <h5 class="card-title">รายการนำเข้าสินค้า</h5>
+                <p class="card-text">สินค้านำเข้า 10 รายการ | ตรวจสอบแล้ว 8 รายการ</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card text-dark bg-warning mb-3">
+              <div class="card-header">วันนี้</div>
+              <div class="card-body">
+                <h5 class="card-title">รายการจำหน่ายสินค้า</h5>
+                <p class="card-text">สินค้าที่จำหน่าย 5 รายการ</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card text-dark bg-warning mb-3">
+              <div class="card-header">บริษัทคู่ค้าการผลิต</div>
+              <div class="card-body">
+                <h5 class="card-title">ชื่อบริษัทคู่ค้าการผลิต</h5>
+                <p class="card-text">มีจำนวน 3 บริษัท</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    
+  </div>
+
+  <script src="../../public/js/jquery-3.6.0.min.js"></script>
+  <script src="../../public/js/popper.min.js"></script>
+  <script src="../../public/js/bootstrap.min.js"></script>
+</body>
+
+</html>

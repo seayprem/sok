@@ -1,0 +1,56 @@
+/* Old CSS เดี๋ยวลบทีหลัง */
+.text-warning {
+  color: #fce12d !important;
+}
+
+.nav-link.text-warning:hover {
+  color: #ffc107 !important;
+}
+
+li a.dropdown-item:hover {
+  background-color: #fce12d !important;
+}
+
+ul.nav li.nav-item a.nav-link {
+  color: #fce12d;
+}
+
+ul.nav li.nav-item a.nav-link:hover {
+  color: #ffc107;
+}
+
+.bg-warning {
+  background-color: #fce12d;
+}
+
+
+/* Fonts  */
+
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300&display=swap');
+
+* {
+  font-family: 'Prompt', sans-serif;
+}
+
+/* Background  */
+
+body {
+  background-color: #F5F5F5;
+}
+
+
+/* text color  */
+
+.text-sok {
+  color: #FCD535;
+}
+
+/* Button Color  */
+
+.btn-sok {
+  background-color: #FCD535;
+}
+
+.btn-sok:hover {
+  opacity: 0.8;
+}
