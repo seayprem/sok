@@ -23,12 +23,21 @@ hr.h-color {
   border-radius: 8px;
 }
 
+.sidebar li:hover {
+  background-color: #eee;
+  border-radius: 8px;
+}
+
 .sidebar li.active a, .sidebar li.active a:hover {
   color: #000;
 }
 
 .sidebar li a {
   color: #fff;
+} 
+
+.sidebar li a:hover {
+  color: #000;
 }
 
 @media(max-width: 767px) {

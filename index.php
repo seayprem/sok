@@ -30,25 +30,26 @@
       <ul class="list-unstyled px-2">
         <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-house-chimney"></i>
             Dashboard</a></li>
-        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fal fa-list"></i> Projects</a>
+        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-boxes-stacked"></i> สินค้าคงเหลือ</a>
         </li>
-        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block d-flex justify-content-between">
+        <!-- <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block d-flex justify-content-between">
             <span><i class="fal fa-comment"></i> Messages</span>
             <span class="bg-dark rounded-pill text-white py-0 px-2">02</span>
           </a>
+        </li> -->
+        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-arrow-right-arrow-left"></i> รายการเดินสินค้า</a>
         </li>
-        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"><i
-              class="fal fa-envelope-open-text"></i> Services</a></li>
-        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fal fa-users"></i>
-            Customers</a></li>
+        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-dolly"></i> รายการเบิกจ่ายสินค้า</a></li>
+        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-building"></i>
+            บริษัทคู่ค้าการผลิต</a></li>
       </ul>
       <hr class="h-color mx-2">
 
       <ul class="list-unstyled px-2">
-        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-gear"></i> Settings</a>
+        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-user"></i> คุณ SOK</a>
         </li>
-        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-bell"></i>
-            Notifications</a></li>
+        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-right-from-bracket"></i>
+            ออกจากระบบ</a></li>
       </ul>
 
     </div>
@@ -69,7 +70,7 @@
           <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Profile</a>
+                <a class="nav-link active" aria-current="page" href="#">โปรไฟล์</a>
               </li>
             </ul>
           </div>
