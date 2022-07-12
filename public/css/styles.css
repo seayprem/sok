@@ -15,16 +15,16 @@ body {
 }
 
 hr.h-color {
-  background-color: #eee;
+  background-color: #FCD535;
 }
 
 .sidebar li.active {
-  background-color: #eee;
+  background-color: #FCD535;
   border-radius: 8px;
 }
 
 .sidebar li:hover {
-  background-color: #eee;
+  background-color: #FCD535;
   border-radius: 8px;
 }
 
