@@ -1,56 +1,46 @@
-/* Old CSS เดี๋ยวลบทีหลัง */
-/* .text-warning {
-  color: #fce12d !important;
-}
-
-.nav-link.text-warning:hover {
-  color: #ffc107 !important;
-}
-
-li a.dropdown-item:hover {
-  background-color: #fce12d !important;
-}
-
-ul.nav li.nav-item a.nav-link {
-  color: #fce12d;
-}
-
-ul.nav li.nav-item a.nav-link:hover {
-  color: #ffc107;
-}
-
-.bg-warning {
-  background-color: #fce12d;
-} */
-
-
-/* Fonts  */
-
-@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300&display=swap');
-
-* {
-  font-family: 'Prompt', sans-serif;
-}
-
-/* Background  */
-
 body {
-  background-color: #F5F5F5;
+  background-color: #eee;
 }
 
-
-/* text color  */
-
-.text-sok {
-  color: #FCD535;
+#side_nav {
+  background: #000;
+  min-width: 250px;
+  max-width: 250px;
+  transition: all 0.3s;
 }
 
-/* Button Color  */
-
-.btn-sok {
-  background-color: #FCD535;
+.content {
+  min-height: 100vh;
+  width: 100%;
 }
 
-.btn-sok:hover {
-  opacity: 0.8;
+hr.h-color {
+  background-color: #eee;
+}
+
+.sidebar li.active {
+  background-color: #eee;
+  border-radius: 8px;
+}
+
+.sidebar li.active a, .sidebar li.active a:hover {
+  color: #000;
+}
+
+.sidebar li a {
+  color: #fff;
+}
+
+@media(max-width: 767px) {
+  #side_nav {
+    margin-left: -250px;
+    position: fixed;
+    min-height: 100vh;
+    z-index: 1;
+  }
+
+  #side_nav.active {
+    margin-left: 0;
+  }
+
 }
