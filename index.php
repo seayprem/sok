@@ -187,12 +187,63 @@
             <div class="col-md-6">
               <canvas id="myChartColor" height="500"></canvas>
             </div>
-            <div class="col-md-12">
-              <canvas id="myChartTransfer" height="500"></canvas>
-            </div>
           </div>
         </div>
 
+
+        <hr>
+        <h2 class="fs-5">รายการเดินสินค้า <i class="fa-solid fa-arrow-right-arrow-left"></i></h2>
+        <!-- Table Transfer  -->
+        <div class="table-responsive">
+          <table class="table align-middle text-center">
+            <thead>
+              <tr>
+                <th>ลำดับ</th>
+                <th>รหัสสินค้า</th>
+                <th>ชื่อสินค้า</th>
+                <th>จำนวนสินค้า</th>
+                <th>ประเภททำรายการ</th>
+                <th>วันที่เวลาทำรายการ</th>
+                <th>รายละเอียด</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>P0001</td>
+                <td>พรมรถยนต์</td>
+                <td>3</td>
+                <td><h5><span class="badge bg-success"><i class="fa-solid fa-plus"></i> นำเข้า</span></h5></td>
+                <td>7-12-2565 : 15:00</td>
+                <td>
+                  <a href="#" class="btn btn-secondary"><i class="fa-solid fa-eye"></i> รายละเอียด</a>
+                </td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>P0001</td>
+                <td>พรมรถยนต์</td>
+                <td>3</td>
+                <td><h5><span class="badge bg-danger"><i class="fa-solid fa-minus"></i> เบิกจ่าย</span></h5></td>
+                <td>7-12-2565 : 15:00</td>
+                <td>
+                  <a href="#" class="btn btn-secondary"><i class="fa-solid fa-eye"></i> รายละเอียด</a>
+                </td>
+              </tr>
+            </tbody>
+            <thead>
+              <tr>
+                <th>ลำดับ</th>
+                <th>รหัสสินค้า</th>
+                <th>ชื่อสินค้า</th>
+                <th>จำนวนสินค้า</th>
+                <th>ประเภททำรายการ</th>
+                <th>วันที่เวลาทำรายการ</th>
+                <th>รายละเอียด</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
 
       </div>
     </div>
