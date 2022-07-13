@@ -1,3 +1,9 @@
+<?php 
+session_start();
+if(empty($_SESSION['emp_level'])) {
+  header("Location: login.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,12 +13,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SOK Dashboard</title>
 
-  <link rel="stylesheet" href="public/css/all.min.css">
-  <link rel="stylesheet" href="public/css/fontawesome.min.css">
+  <link rel="stylesheet" href="css/all.min.css">
+  <link rel="stylesheet" href="css/fontawesome.min.css">
 
-  <link rel="stylesheet" href="public/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
 
-  <link rel="stylesheet" href="public/css/styles.css">
+  <link rel="stylesheet" href="css/styles.css">
 
 
 </head>
@@ -21,7 +27,7 @@
 
   <div class="main-container d-flex">
     <!-- menu Navbar  -->
-    <?php include("layouts/includes/menuNavbar.inc.php"); ?>
+    <?php include("includes/menuNavbar.inc.php"); ?>
 
     <!-- Content Body  -->
     <div class="content">
@@ -41,7 +47,7 @@
           <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">โปรไฟล์</a>
+                <a class="nav-link active" aria-current="page" href="#"><?= $_SESSION['emp_fname']; ?> <?= $_SESSION['emp_lname']; ?></a>
               </li>
             </ul>
           </div>
@@ -206,7 +212,7 @@
 
       </div>
     </div>
-
+  </div>
 
 
 
@@ -221,11 +227,12 @@
     crossorigin="anonymous"></script> -->
 
 
-    <script src="public/js/jquery-3.6.0.min.js"></script>
-    <script src="public/js/popper.min.js"></script>
-    <script src="public/js/bootstrap.min.js"></script>
-    <script src="public/js/sweetalert2@11.js"></script>
-    <script src="public/js/chart.js"></script>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/sweetalert2@11.js"></script>
+    <script src="js/chart.js"></script>
+    <script src="js/logout.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
 
 
