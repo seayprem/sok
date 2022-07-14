@@ -187,10 +187,56 @@ $(document).ready(function(e) {
 
   // DELETE
   $(document).on('click', '#delete', function(e) {
+    const cateid = $(this).data('id');
+    // console.log(cateid)
+    const catenames = $(this).data('names');
     e.preventDefault();
+
+    
+
     Swal.fire({
-      icon: 'success',
-      title: 'DELETE',
+      title: 'แน่ใจใช่หรือไม่? ที่จะลบข้อมูล ' + catenames,
+      text: "เมื่อลบไม่แล้วไม่สามารถย้อนข้อมูลกลับมาได้",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'ตกลง',
+      cancelButtonText: 'ยกเลิก',
+    }).then((result) => {
+      if (result.isConfirmed) {
+       
+        $.ajax({
+          url: 'addCategoryUpdate.php',
+          method: 'POST',
+          data: {
+            del: cateid
+          },
+          success: function(data) {
+            if(data === "success") {
+              Swal.fire({
+                icon: 'success',
+                title: 'ทำการลบข้อมูลเสร็จสิ้น',
+                showConfirmButton: false,
+                timer: 1500
+              }).then((result) => {
+                load_data();
+              })
+            } else {
+              Swal.fire({
+                icon: 'error',
+                title: 'ทำการลบข้อมูลล้มเหลว กรุณาลองอีกครั้ง',
+                showConfirmButton: false,
+                timer: 1500
+              }).then((result) => {
+                load_data();
+              })
+            }
+            
+          }
+        })
+        
+      }
     })
   })
 

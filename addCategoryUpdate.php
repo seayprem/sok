@@ -30,6 +30,13 @@ if(isset($_POST['update'])) {
   }
 }
 
-
-
+if(isset($_POST['del'])) {
+  $delete_sql = "DELETE FROM `category` WHERE cate_id = '".$_POST['del']."'";
+  $delete_query = mysqli_query($conn, $delete_sql);
+  if($delete_query) {
+    echo "success";
+  } else {
+    echo "failed";
+  }
+}
 ?>

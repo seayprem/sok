@@ -21,7 +21,7 @@ if(mysqli_num_rows($result) > 0) {
       <td>'.$row['cate_name'].'</td> 
       <td>
         <a data-id="'.$row['cate_id'].'" data-bs-toggle="modal" data-bs-target="#cateModal" class="btn btn-warning edit" id="edit">แก้ไข</a>
-        <a data-id="'.$row['cate_id'].'" class="btn btn-danger delete" id="delete">ลบ</a>
+        <a data-id="'.$row['cate_id'].'" data-names="'.$row['cate_name'].'" class="btn btn-danger delete" id="delete">ลบ</a>
       </td> 
     </tr> 
     ';
