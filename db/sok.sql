@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 13, 2022 at 08:56 PM
+-- Generation Time: Jul 14, 2022 at 12:46 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -20,6 +20,31 @@ SET time_zone = "+00:00";
 --
 -- Database: `sok`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `category`
+--
+
+CREATE TABLE `category` (
+  `cate_id` int(11) NOT NULL,
+  `cate_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`cate_id`, `cate_name`) VALUES
+(4, 'ไหมพรม'),
+(5, 'พรมไหม'),
+(9, ' ทำไมถึงลบไม่ได้วะ งง'),
+(10, 'firebase'),
+(11, 'AWS'),
+(12, 'mammothz'),
+(13, 'getprobots'),
+(14, 'ninokunang');
 
 -- --------------------------------------------------------
 
@@ -46,28 +71,15 @@ INSERT INTO `employee` (`emp_id`, `emp_user`, `emp_pass`, `emp_fname`, `emp_lnam
 (1, 'prem', 'prem', 'วันชัย', 'แซ่ลิ้ม', '124 จังหวัด นครราชสีมา', '0979645941', 3),
 (2, 'sun', 'sun', 'จิรายุทธ', 'มิตรอธิพันธ์', 'บัวใหญ่มั้ง ', '1234567890', 1);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `user` varchar(255) NOT NULL,
-  `pass` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `user`, `pass`) VALUES
-(1, 'admin', 'admin');
-
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`cate_id`);
 
 --
 -- Indexes for table `employee`
@@ -76,26 +88,20 @@ ALTER TABLE `employee`
   ADD PRIMARY KEY (`emp_id`);
 
 --
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `category`
+--
+ALTER TABLE `category`
+  MODIFY `cate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
   MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
