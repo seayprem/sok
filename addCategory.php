@@ -65,7 +65,20 @@ if(empty($_SESSION['emp_level'])) {
                   <span class="input-group-text" id="basic-addon2"><i class="fa-solid fa-magnifying-glass"></i></span>
                 </div>
               </form>
-              <div id="showcate" class="text-center"></div>
+              <div class="table-responsive">
+                <table class="table align-middle">
+                  <thead class="text-center">
+                    <tr>
+                      <th>ลำดับ</th>
+                      <th>ชื่อประเภทสินค้า</th>
+                      <th colspan="2">จัดการ</th>
+                    </tr>
+                  </thead>
+                  <tbody id="showcate" class="text-center">
+                    <!-- show data -->
+                  </tbody>
+                </table>
+              </div>
             </div>
 
             <div class="col-md-4">
@@ -81,6 +94,27 @@ if(empty($_SESSION['emp_level'])) {
                   <button id="cancel" class="btn btn-danger">ยกเลิก</button>
                 </div>
               </form>
+
+              <!-- Update  -->
+              <!-- Modal -->
+              <div class="modal fade" id="cateModal" tabindex="-1" aria-labelledby="cateModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="cateModalLabel">Modal title</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div id="cate_data"></div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                      <button type="button" class="btn btn-primary" id="saved">บันทึก</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>

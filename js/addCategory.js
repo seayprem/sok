@@ -66,6 +66,8 @@ $(document).ready(function(e) {
                   title: 'บันทึกข้อมูลสำเร็จ',
                   showConfirmButton: false,
                   timer: 1500
+                }).then((result) => {
+                  load_data();
                 })
                 frm[0].reset();
                 add.hide();
@@ -119,5 +121,71 @@ $(document).ready(function(e) {
       load_data();
     }
   })
+
+  // IT WORKING DONT TOUCH IT
+  // มันไม่บัคก็อย่าไปยุ่งกับมัน
+
+  // EDIT
+  $(document).on('click', '#edit', function(e) {
+    e.preventDefault();
+    const cateid = $(this).data('id');
+    // Swal.fire({
+    //   icon: 'success',
+    //   title: btnShow,
+    // })
+
+    // GET params
+
+    $.ajax({
+      url: 'addCategoryUpdate.php',
+      method: 'POST',
+      data: {
+        cateid: cateid
+      },
+      success: function(response) {
+        const cate_data = $('#cate_data');
+        cate_data.html(response);
+      }
+    })
+  })
+
+  $("#saved").click(function(e) {
+
+    const cateid = $('#cateid').val();
+    // alert(cateid)
+    const catename = $('#catename').val();
+    // console.log(catename)
+
+
+    e.preventDefault();
+
+    $.ajax({
+      url: 'addCategoryUpdate.php',
+      method: 'POST',
+      data: {
+        update: cateid,
+        name: catename
+      },
+      success: function(data) {
+        if(data === 'success') {
+          alert("work")
+          load_data();
+        } else {
+          alert("failed")
+        }
+      }
+    })
+
+  })
+
+  // DELETE
+  $(document).on('click', '#delete', function(e) {
+    e.preventDefault();
+    Swal.fire({
+      icon: 'success',
+      title: 'DELETE',
+    })
+  })
+
 
 })

@@ -13,22 +13,15 @@ $result = mysqli_query($conn, $sql);
 if(mysqli_num_rows($result) > 0) {
   $totalfound = mysqli_num_rows($result);
   // $output .= '<h4 align="center">ผลการค้นหา</h4>';
-  // $output .= '<h3 align="center">พบ '.$totalfound.' รายการ</h3>';
-  $output .= '<div class="table-responsive">
-    <table class="table table bordered">
-      <tr>
-        <th>ลำดับ</th> 
-        <th>ชื่อประเภทสินค้า</th> 
-        <th col="2">จัดการ</th> 
-      </tr>';
+  // $output .= '<h5 align="right">มี '.$totalfound.' รายการ</h5>';
   while($row = mysqli_fetch_array($result)) {
     $output .= '
     <tr>
       <td>'.$row['cate_id'].'</td> 
       <td>'.$row['cate_name'].'</td> 
       <td>
-        <a class="btn btn-warning" id="edit">แก้ไข</a>
-        <a class="btn btn-danger" id="delete">ลบ</a>
+        <a data-id="'.$row['cate_id'].'" data-bs-toggle="modal" data-bs-target="#cateModal" class="btn btn-warning edit" id="edit">แก้ไข</a>
+        <a data-id="'.$row['cate_id'].'" class="btn btn-danger delete" id="delete">ลบ</a>
       </td> 
     </tr> 
     ';
