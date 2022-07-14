@@ -77,8 +77,31 @@ if(empty($_SESSION['emp_level'])) {
                   <tbody id="showcate" class="text-center">
                     <!-- show data -->
                   </tbody>
+                  <thead class="text-center">
+                    <tr>
+                      <th>ลำดับ</th>
+                      <th>ชื่อประเภทสินค้า</th>
+                      <th colspan="2">จัดการ</th>
+                    </tr>
+                  </thead>
                 </table>
+                  
               </div>
+
+                <ul class="pagination justify-content-center">
+                  <li class="page-item disabled" id="notyet">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">ก่อนหน้า</a>
+                  </li>
+                  <li class="page-item active" id="notyet1"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item" id="notyet2" aria-current="page">
+                    <a class="page-link" href="#">2</a>
+                  </li>
+                  <li class="page-item" id="notyet3"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item" id="notyet4">
+                    <a class="page-link" href="#">ต่อไป</a>
+                  </li>
+                </ul>
+
             </div>
 
             <div class="col-md-4">

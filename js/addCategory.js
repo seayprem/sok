@@ -241,4 +241,60 @@ $(document).ready(function(e) {
   })
 
 
+  // Pagination
+  $('#notyet').click(function(e) {
+    e.preventDefault()
+    Swal.fire({
+      icon: 'error',
+      title: 'ยังทำไม่เป็น',
+      text: 'ช่วยด้วยยย',
+      showConfirmButton: false,
+      timer: 1500
+    })
+  })
+
+  $('#notyet1').click(function(e) {
+    e.preventDefault()
+    Swal.fire({
+      icon: 'error',
+      title: 'ยังทำไม่เป็น',
+      text: 'ช่วยด้วยยย',
+      showConfirmButton: false,
+      timer: 1500
+    })
+  })
+
+  $('#notyet2').click(function(e) {
+    e.preventDefault()
+    Swal.fire({
+      icon: 'error',
+      title: 'ยังทำไม่เป็น',
+      text: 'ช่วยด้วยยย',
+      showConfirmButton: false,
+      timer: 1500
+    })
+  })
+
+  $('#notyet3').click(function(e) {
+    e.preventDefault()
+    Swal.fire({
+      icon: 'error',
+      title: 'ยังทำไม่เป็น',
+      text: 'ช่วยด้วยยย',
+      showConfirmButton: false,
+      timer: 1500
+    })
+  })
+
+  $('#notyet4').click(function(e) {
+    e.preventDefault()
+    Swal.fire({
+      icon: 'error',
+      title: 'ยังทำไม่เป็น',
+      text: 'ช่วยด้วยยย',
+      showConfirmButton: false,
+      timer: 1500
+    })
+  })
+
 })
