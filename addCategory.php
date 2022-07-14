@@ -54,55 +54,35 @@ if(empty($_SESSION['emp_level'])) {
 
       <!-- end content body  -->
       <div class="dashboard-content px-3 pt-4">
-        <h2 class="fs-5"> รายการเดินสินค้า</h2>
+        <h2 class="fs-5"> เพิ่มหมวดหมู่สินค้า</h2>
         <hr>
-        <form action="#" method="POST">
-          <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="ค้นหาข้อมูลรายการเดินสินค้า" aria-label="Recipient's username" aria-describedby="basic-addon2">
-            <span class="input-group-text" id="basic-addon2"><i class="fa-solid fa-magnifying-glass"></i></span>
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-8">
+              <form action="#" method="post">
+                <div class="input-group mb-3">
+                  <input type="text" id="search" name="search" class="form-control" placeholder="ค้นหาข้อมูลรายการเดินสินค้า" aria-label="recipient's username" aria-describedby="basic-addon2">
+                  <span class="input-group-text" id="basic-addon2"><i class="fa-solid fa-magnifying-glass"></i></span>
+                </div>
+              </form>
+              <div id="showcate" class="text-center"></div>
+            </div>
+
+            <div class="col-md-4">
+              <h2 class="fs-5 text-center"> เพิ่มหมวดหมู่สินค้า</h2>
+              <form action="#" method="post" id="frm">
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="cate_name"><i class="fa-solid fa-cart-plus"></i></span>
+                  <input type="text" class="form-control" id="cate_name_input" placeholder="กรุณาป้อนชื่อหมวดหมู่สินค้า" aria-label="Username" aria-describedby="cate_name">
+                </div>
+                <div class="d-grid gap-2">
+                  <button class="btn btn-warning" id="add_cate">เพิ่มหมวดหมู่สินค้า</button>
+                  <button id="add" class="btn btn-success">ยืนยัน</button>
+                  <button id="cancel" class="btn btn-danger">ยกเลิก</button>
+                </div>
+              </form>
+            </div>
           </div>
-        </form>
-        <div class="table-responsive">
-          <table class="table align-middle">
-            <thead>
-              <tr class="text-center">
-                <th>ลำดับรายการเดินสินค้า</th>
-                <th>ชื่อสินค้า</th>
-                <th>ชนิดสินค้า</th>
-                <th>จำนวนสินค้า</th>
-                <th>พนักงาน / บริษัท</th>
-                <th>ประเภทการทำรายการ</th>
-                <th>วัน/เดือน/ปี</th>
-                <th>รายละเอียด</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="text-center">
-                <td>1</td>
-                <td>พรมรถยนต์ดำแดง</td>
-                <td>ไหมพรม</td>
-                <td>3</td>
-                <td>ชาคริต โชติ</td>
-                <td><h5><span class="badge rounded-pill bg-success mt-2">นำเข้า</span></h5></td>
-                <td>14/7/2565 1:47</td>
-                <td>
-                  <a href="#" class="btn btn-secondary"><i class="fa-solid fa-eye"></i> รายละเอียด</a>
-                </td>
-              </tr>
-            </tbody>
-            <thead>
-              <tr class="text-center">
-                <th>ลำดับรายการเดินสินค้า</th>
-                <th>ชื่อสินค้า</th>
-                <th>ชนิดสินค้า</th>
-                <th>จำนวนสินค้า</th>
-                <th>พนักงาน / บริษัท</th>
-                <th>ประเภทการทำรายการ</th>
-                <th>วัน/เดือน/ปี</th>
-                <th>รายละเอียด</th>
-              </tr>
-            </thead>
-          </table>
         </div>
       </div>
     </div>
@@ -118,5 +98,6 @@ if(empty($_SESSION['emp_level'])) {
   <script src="js/chart.js"></script>
   <script src="js/logout.js"></script>
   <script src="js/responsive.js"></script>
+  <script src="js/addCategory.js"></script>
 </body>
 </html>

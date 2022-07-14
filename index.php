@@ -1,9 +1,10 @@
 <?php 
 session_start();
 if(empty($_SESSION['emp_level'])) {
-  header("Location: login.php");
+  echo '<script>alert("คุณไม่ได้รับอนุญาตในการเข้าถึงหน้าต่างนี้");window.location.href = "login.php"</script>';
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -233,22 +234,11 @@ if(empty($_SESSION['emp_level'])) {
     <script src="js/sweetalert2@11.js"></script>
     <script src="js/chart.js"></script>
     <script src="js/logout.js"></script>
+    <script src="js/responsive.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
 
 
     <script>
-      $(".sidebar ul li").on('click', function () {
-        $(".sidebar ul li.active").removeClass('active');
-        $(this).addClass('active');
-      });
-
-      $('.open-btn').on('click', function () {
-        $('.sidebar').addClass('active');
-      });
-
-      $('.close-btn').on('click', function () {
-        $('.sidebar').removeClass('active');
-      });
 
       const chartSize = document.getElementById('myChartSize');
       const myChartSize = new Chart(chartSize, {
@@ -296,10 +286,12 @@ if(empty($_SESSION['emp_level'])) {
         }
       });
 
-      
+      function popups() {
+        // Swal.fire('Any fool can use a computer')
+        alert("wd")
+      }
 
       
-
     </script>
 
 
