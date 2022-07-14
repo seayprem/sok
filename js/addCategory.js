@@ -168,8 +168,15 @@ $(document).ready(function(e) {
       },
       success: function(data) {
         if(data === 'success') {
-          alert("work")
-          load_data();
+          Swal.fire({
+            icon: 'success',
+            title: 'ทำการอัพเดทเสร็จสิ้น',
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            load_data();
+            $('#cateModal').modal('hide');
+          })
         } else {
           alert("failed")
         }
