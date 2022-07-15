@@ -18,7 +18,7 @@ $(document).ready(function() {
             "next":       "ต่อไป",
             "previous":   "ก่อนหน้า"
           },
-          "info": "Showing page _PAGE_ of _PAGES_ ของทั้งหมด _TOTAL_ รายการ",
+          "info": "หน้าแสดงผล _PAGE_ of _PAGES_ ของทั้งหมด _TOTAL_ รายการ",
           "emptyTable": "ไม่พบข้อมูลอยู่ในระบบ"
         }
       });
@@ -125,9 +125,8 @@ $(document).ready(function() {
 
   })
 
-  $('#save2').click(function(e) {
+  $(document).on('click', '#save2', function(e) {
     var code = $('#code2').val();
-
 
     var name = $('#name2').val();
     var type = $('#type2').val();
@@ -135,7 +134,7 @@ $(document).ready(function() {
     var color = $('#color2').val();
     var qty = $('#qty2').val();
     var min = $('#min2').val();
-    var max = $('#min2').val();
+    var max = $('#max2').val();
 
     // DEBUG TEST 
     // console.log("code " + code);
@@ -165,7 +164,24 @@ $(document).ready(function() {
         update: 'update'
       },
       success: function(response) {
-        alert(response);
+        if(response === 'success') {
+          Swal.fire({
+            icon: 'success',
+            title: 'อัปเดทรายการสินค้าสำเร็จ',
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            window.location.href = "addProduct.php";
+            // Not working not use it
+            // $('#' + id).children('td[data-target=name]').text(name);
+            // $('#editModal').modal('toggle');
+          })
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'ลบรายการสินค้าล้มเหลว โปรดติดต่อเจ้าหน้าที่'
+          })
+        }
       }
     })
 
@@ -175,7 +191,49 @@ $(document).ready(function() {
   $(document).on('click', 'a[data-role=delete]', function(e) {
     var code = $(this).data('id');
     e.preventDefault();
-    alert("worked! " + code);
+    // alert("worked! " + code);
+
+    Swal.fire({
+      title: 'คุณแน่ใจใช่หรือไม่? จะลบรายการสินค้านี้',
+      text: "ถ้าลบรายการนี้ไปแล้วจะไม่สามารถทำรายการได้อีก!!!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'ยืนยัน',
+      cancelButtonText: 'ยกเลิก'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          url: 'addProductController.php',
+          method: 'POST',
+          data: {
+            code: code,
+            delete: 'delete'
+          },
+          success: function(response) { 
+            if(response === 'success') {
+              Swal.fire({
+                icon: 'success',
+                title: 'ลบรายการสินค้าสำเร็จ',
+                showConfirmButton: false,
+                timer: 1500
+              }).then((result) => {
+                window.location.href = "addProduct.php";
+              })
+            } else {
+              Swal.fire({
+                icon: 'success',
+                title: 'ลบรายการสินค้าล้มเหลว กรุณาลองใหม่อีกครั้งค่ะ',
+              })
+            }
+          }
+        })
+      }
+    })
+
+    
+
   })
 
 })
