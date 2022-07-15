@@ -11,11 +11,17 @@ if(empty($_SESSION['emp_level'])) {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SOK Dashboard</title>
+  <title>จัดการผู้ใช้ - SOK Dashboard</title>
   <link rel="stylesheet" href="css/all.min.css">
   <link rel="stylesheet" href="css/fontawesome.min.css">
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/jquery.dataTables.min.css">
+  <style>
+    .dataTables_filter input {
+      margin-bottom: 5px;
+    }
+  </style>
 </head>
 <body>
 
@@ -71,30 +77,51 @@ if(empty($_SESSION['emp_level'])) {
             </div>
 
               <div class="table-responsive">
-                <table class="table align-middle">
-                  <thead class="text-center">
+                <table class="table align-middle table-hover" id="myTable">
+                  <thead class="table-dark">
                     <tr>
-                      <th>ไอดี</th>
-                      <th>ชื่อ</th>
-                      <th>นามสกุล</th>
-                      <th>ที่อยู่</th>
-                      <th>เบอร์โทร</th>
-                      <th>ตำแหน่ง</th>
-                      <th colspan="2">จัดการ</th>
+                      <th class="text-center">ไอดี</th>
+                      <th class="text-center">ชื่อ</th>
+                      <th class="text-center">นามสกุล</th>
+                      <th class="text-center">ที่อยู่</th>
+                      <th class="text-center">เบอร์โทร</th>
+                      <th class="text-center">ตำแหน่ง</th>
+                      <th class="text-center">จัดการ</th>
                     </tr>
                   </thead>
                   <tbody id="showemp" class="text-center">
                     <!-- show data -->
+                    <?php
+                      include_once('config/db.php');
+                      $sql = "SELECT * FROM `employee`";
+                      $query = mysqli_query($conn, $sql);
+                      while($row = mysqli_fetch_array($query)) {
+                      ?>
+                      <tr id="<?= $row['emp_id']; ?>">
+                        <td><?= $row['emp_id']; ?></td>
+                        <td style="display:none;" data-target="user"><?= $row['emp_user']; ?></td>
+                        <td style="display:none;" data-target="pass"><?= $row['emp_pass']; ?></td>
+                        <td data-target="fname"><?= $row['emp_fname']; ?></td>
+                        <td data-target="lname"><?= $row['emp_lname']; ?></td>
+                        <td data-target="address"><?= $row['emp_address']; ?></td>
+                        <td data-target="phone"><?= $row['emp_phone']; ?></td>
+                        <td data-target="level"><?= $row['emp_level']; ?></td>
+                        <td>
+                          <a href="#" data-role="edit" data-id="<?= $row['emp_id']; ?>" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> แก้ไขข้อมูล</a>
+                          <a href="#" data-role="delete" data-id="<?= $row['emp_id']; ?>" class="btn btn-danger"><i class="fa-solid fa-trash"></i> ลบข้อมูล</a>
+                        </td>
+                      </tr>
+                    <?php } ?>
                   </tbody>
-                  <thead class="text-center">
+                  <thead class="table-dark">
                   <tr>
-                      <th>ไอดี</th>
-                      <th>ชื่อ</th>
-                      <th>นามสกุล</th>
-                      <th>ที่อยู่</th>
-                      <th>เบอร์โทร</th>
-                      <th>ตำแหน่ง</th>
-                      <th colspan="2">จัดการ</th>
+                      <th class="text-center">ไอดี</th>
+                      <th class="text-center">ชื่อ</th>
+                      <th class="text-center">นามสกุล</th>
+                      <th class="text-center">ที่อยู่</th>
+                      <th class="text-center">เบอร์โทร</th>
+                      <th class="text-center">ตำแหน่ง</th>
+                      <th class="text-center">จัดการ</th>
                     </tr>
                   </thead>
                 </table>
@@ -121,7 +148,7 @@ if(empty($_SESSION['emp_level'])) {
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="addEmpModalLabel">Modal title</h5>
+                      <h5 class="modal-title" id="addEmpModalLabel">เพิ่มผู้ใช้</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -165,7 +192,12 @@ if(empty($_SESSION['emp_level'])) {
                         <div class="form-group">
                             <label class="control-label">ตำแหน่ง</label>
                             <div>
-                                <input type="text" class="form-control input-lg" id="level" name="">
+                                <select class="form-select" id="level">
+                                  <option disabled selected>เลือกตำแหน่งงาน</option>
+                                  <option value="1">พนักงานคลังสินค้า</option>
+                                  <option value="2">ผู้จัดการ</option>
+                                  <option value="3">แอดมิน</option>
+                                </select>
                             </div>
                         </div>
                       </form>
@@ -178,43 +210,79 @@ if(empty($_SESSION['emp_level'])) {
                 </div>
               </div>
 
-            <!-- </div> -->
-
-            <!-- <div class="col-md-4">
-              <h2 class="fs-5 text-center"> เพิ่มหมวดหมู่สินค้า</h2>
-              <form action="#" method="post" id="frm">
-                <div class="input-group mb-3">
-                  <span class="input-group-text" id="cate_name"><i class="fa-solid fa-cart-plus"></i></span>
-                  <input type="text" class="form-control" id="cate_name_input" placeholder="กรุณาป้อนชื่อหมวดหมู่สินค้า" aria-label="Username" aria-describedby="cate_name">
-                </div>
-                <div class="d-grid gap-2">
-                  <button class="btn btn-warning" id="add_cate">เพิ่มหมวดหมู่สินค้า</button>
-                  <button id="add" class="btn btn-success">ยืนยัน</button>
-                  <button id="cancel" class="btn btn-danger">ยกเลิก</button>
-                </div>
-              </form> -->
-
-              <!-- Update  -->
-              <!-- Modal -->
-              <!-- <div class="modal fade" id="addEmpModal" tabindex="-1" aria-labelledby="addEmpModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="addEmpModalLabel">Modal title</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      <div id="cate_data"></div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                      <button type="button" class="btn btn-primary" id="saved">บันทึก</button>
+                <!-- Edit Modal -->
+                <div class="modal fade" id="editEmpModal" tabindex="-1" aria-labelledby="addEmpModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="editEmpModalLabel">แก้ไขข้อมูล</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <form>
+                          <div class="form-group">
+                            <label class="control-label">รหัสพนักงาน</label>
+                            <div>
+                                <input type="text" class="form-control input-lg" disabled id="code2" name="" value="">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label">Username</label>
+                            <div>
+                                <input type="text" class="form-control input-lg" id="user2" name="" value="">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                              <label class="control-label">Password</label>
+                              <div>
+                                  <input type="password" class="form-control input-lg" id="pass2" name="" value="">
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label class="control-label">ชื่อจริง</label>
+                              <div>
+                                  <input type="text" class="form-control input-lg" id="fname2" name="">
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label class="control-label">นามสกุล</label>
+                              <div>
+                                  <input type="text" class="form-control input-lg" id="lname2" name="">
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label class="control-label">ที่อยู่</label>
+                              <div>
+                                  <input type="text" class="form-control input-lg" id="address2" name="">
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label class="control-label">เบอร์โทร</label>
+                              <div>
+                                  <input type="text" class="form-control input-lg" id="phone2" name="">
+                              </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label">ตำแหน่ง</label>
+                            <div>
+                                <select class="form-select" id="level2">
+                                  <option disabled selected>เลือกตำแหน่งงาน</option>
+                                  <option value="1">พนักงานคลังสินค้า</option>
+                                  <option value="2">ผู้จัดการ</option>
+                                  <option value="3">แอดมิน</option>
+                                </select>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                        <button type="button" class="btn btn-primary" id="edit_emp">บันทึก</button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-            </div> -->
           </div>
         </div>
       </div>
@@ -231,6 +299,7 @@ if(empty($_SESSION['emp_level'])) {
   <script src="js/chart.js"></script>
   <script src="js/logout.js"></script>
   <script src="js/responsive.js"></script>
+  <script src="js/jquery.dataTables.min.js"></script>
   <script src="js/employee.js"></script>
 </body>
 </html>

@@ -1,305 +1,247 @@
-$(document).ready(function(e) {
-    const add = $('#add');
-    const cancel = $('#cancel');
-    const cate_name_input = $('#cate_name_input');
-    const add_cate = $('#add_cate');
-    const frm = $('#frm');
-  
-    // const { value: add_emp_form } = await Swal.fire({
-    //   title: 'เพิ่มพนักงาน',
-    //   html:
-    //     '<input id="swal-input1" class="swal2-input">' +
-    //     '<input id="swal-input2" class="swal2-input">',
-    //   focusConfirm: false,
-    //   preConfirm: () => {
-    //     return [
-    //       document.getElementById('swal-input1').value,
-    //       document.getElementById('swal-input2').value
-    //     ]
-    //   }
-    // })
+$(document).ready(function() {
 
-    // if (add_emp_form) {
-    //   Swal.fire(JSON.stringify(add_emp_form))
-    // }
-
-    // add.hide();
-    cancel.hide();
+    // datatable 
   
-    cate_name_input.prop('disabled', true)
+    getDataTable();
   
+    function getDataTable() {
+      $(document).ready( function () {
+        $('#myTable').DataTable({
+          "order": [[0, 'desc']],
+          "language": {
+            "zeroRecords": "ไม่พบรายการที่ค้นหา",
+            "lengthMenu": "แสดงผล _MENU_ รายการ",
+            "search": "ค้นหา",
+            "paginate": {
+              "first":      "First",
+              "last":       "Last",
+              "next":       "ต่อไป",
+              "previous":   "ก่อนหน้า"
+            },
+            "info": "หน้าแสดงผล _PAGE_ of _PAGES_ ของทั้งหมด _TOTAL_ รายการ",
+            "emptyTable": "ไม่พบข้อมูลอยู่ในระบบ"
+          }
+        });
+      });
+    }
   
-    add_cate.click(function(e) {
+    // ADD DATA
+  
+    $(document).on('click', '#add', function(e) {
       e.preventDefault();
-      cate_name_input.prop('disabled', false)
+      $('#addEmpModal').modal('toggle');
   
-      add.show();
-      cancel.show();
-      add_cate.hide();
     })
   
-    cancel.click(function(e) {
-      e.preventDefault();
-      add.hide();
-      cancel.hide();
-      add_cate.show();
-      cate_name_input.prop('disabled', true)
-      frm[0].reset();
-    })
+    $('#add_emp').click(function(e) {
+      var username = $('#username').val();
+      var password = $('#password').val();
+      var fname = $('#fname').val();
+      var lname = $('#lname').val();
+      var address = $('#address').val();
+      var phone = $('#phone').val();
+      var level = $('#level').val();
   
-    add.click(function(e) {
-      e.preventDefault();
-      // check = cate_name_input.val();
-      $('#addEmpModal').modal('show');
-      
-    })
+      // DEBUG 
+      // console.log("code " + code);
+      // console.log("name " + name);
+      // console.log("type " + type);
+      // console.log("size " + size);
+      // console.log("color " + color);
+      // console.log("qty " + qty);
+      // console.log("min " + min);
+      // console.log("max " + max);
   
-    $("#add_emp").click(function(e) {
-
-      const username = $('#username').val();
-      // alert(cateid)
-      const password = $('#password').val();
-      const fname = $('#fname').val();
-      const lname = $('#lname').val();
-      const address = $('#address').val();
-      const phone = $('#phone').val();
-      const level = $('#level').val();
-      // console.log(catename)
-  
-  
-      e.preventDefault();
   
       $.ajax({
         url: 'employeeController.php',
         method: 'POST',
         data: {
-          username: username, 
-          password: password, 
-          fname: fname, 
-          lname: lname, 
-          address: address, 
-          phone: phone, 
-          level: level, 
-          add_emp: 'add_emp'
-        },
-        success: function(data) {
-          if(data === 'success') {
-            Swal.fire({
-              icon: 'success',
-              title: 'ทำการอัพเดทเสร็จสิ้น',
-              showConfirmButton: false,
-              timer: 1500
-            }).then((result) => {
-              load_data();
-              $('#cateModal').modal('hide');
-            })
-          } else {
-            alert("failed")
-          }
-        }
-      })
-  
-    })
-  
-    // GET DATA
-  
-    load_data();
-  
-    function load_data(query) {
-      $.ajax({
-        url: 'employeeFetch.php',
-        method: 'POST',
-        data: {
-          query: query
-        },
-        success: function(data) {
-          $('#showemp').html(data);
-        }
-      })
-    }
-  
-    $('#search').keyup(function() {
-      var search = $(this).val();
-      if(search != '') {
-        load_data(search);
-      } else {
-        load_data();
-      }
-    })
-  
-    // IT WORKING DONT TOUCH IT
-    // มันไม่บัคก็อย่าไปยุ่งกับมัน
-  
-    // EDIT
-    $(document).on('click', '#edit', function(e) {
-      e.preventDefault();
-      const cateid = $(this).data('id');
-      // Swal.fire({
-      //   icon: 'success',
-      //   title: btnShow,
-      // })
-  
-      // GET params
-  
-      $.ajax({
-        url: 'addCategoryUpdate.php',
-        method: 'POST',
-        data: {
-          cateid: cateid
+            username: username, 
+            password: password, 
+            fname: fname, 
+            lname: lname, 
+            address: address, 
+            phone: phone, 
+            level: level, 
+            add_emp: 'add_emp'
         },
         success: function(response) {
-          const cate_data = $('#cate_data');
-          cate_data.html(response);
-        }
-      })
-    })
-  
-    $("#saved").click(function(e) {
-  
-      const cateid = $('#cateid').val();
-      // alert(cateid)
-      const catename = $('#catename').val();
-      // console.log(catename)
-  
-  
-      e.preventDefault();
-  
-      $.ajax({
-        url: 'addCategoryUpdate.php',
-        method: 'POST',
-        data: {
-          update: cateid,
-          name: catename
-        },
-        success: function(data) {
-          if(data === 'success') {
+          if(response === 'success') {
             Swal.fire({
               icon: 'success',
-              title: 'ทำการอัพเดทเสร็จสิ้น',
+              title: 'บันทึกสำเร็จ',
               showConfirmButton: false,
               timer: 1500
             }).then((result) => {
-              load_data();
-              $('#cateModal').modal('hide');
+              window.location.href = "employee.php";
             })
           } else {
-            alert("failed")
+            Swal.fire({
+              icon: 'error',
+              title: 'บันทึกล้มเหลว',
+              timer: 1500
+            })
           }
         }
       })
   
     })
   
-    // DELETE
-    $(document).on('click', '#delete', function(e) {
-      const cateid = $(this).data('id');
-      // console.log(cateid)
-      const catenames = $(this).data('names');
+    // EDIT & UPDATE DATA
+    $(document).on('click', 'a[data-role=edit]', function(e) {
+      var id = $(this).data('id');
+      var user = $('#' + id).children('td[data-target=user]').text();
+      var pass = $('#' + id).children('td[data-target=pass]').text();
+      var fname = $('#' + id).children('td[data-target=fname]').text();
+      var lname = $('#' + id).children('td[data-target=lname]').text();
+      var address = $('#' + id).children('td[data-target=address]').text();
+      var phone = $('#' + id).children('td[data-target=phone]').text();
+      var level = $('#' + id).children('td[data-target=level]').text();
       e.preventDefault();
   
-      
+      $('#editEmpModal').modal('toggle');
+  
+      $('#code2').val(id);
+      $('#user2').val(user);
+      $('#pass2').val(pass);
+      $('#fname2').val(fname);
+      $('#lname2').val(lname);
+      $('#address2').val(address);
+      $('#phone2').val(phone);
+      $('#level2').val(level);
+
+  
+      // DEBUG TEST 
+      // console.log("code " + id);
+      // console.log("name " + name);
+      // console.log("type " + type);
+      // console.log("size " + size);
+      // console.log("color " + color);
+      // console.log("qty " + qty);
+      // console.log("min " + min);
+      // console.log("max " + max);
+  
+    })
+  
+    $(document).on('click', '#edit_emp', function(e) {
+      var code = $('#code2').val();
+  
+      var user = $('#user2').val();
+      var pass = $('#pass2').val();
+      var fname = $('#fname2').val();
+      var lname = $('#lname2').val();
+      var address = $('#address2').val();
+      var phone = $('#phone2').val();
+      var level = $('#level2').val();
+  
+      // DEBUG TEST 
+      // console.log("code " + code);
+      // console.log("name " + name);
+      // console.log("type " + type);
+      // console.log("size " + size);
+      // console.log("color " + color);
+      // console.log("qty " + qty);
+      // console.log("min " + min);
+      // console.log("max " + max);
+  
+        // console.log(code);
+        // console.log(user);
+        // console.log(pass);
+        // console.log(fname);
+        // console.log(lname);
+        // console.log(address);
+        // console.log(phone);
+        // console.log(level);
+
+      e.preventDefault();
+      // console.log("worked!" + id);
+  
+      $.ajax({
+        url: 'employeeController.php',
+        method: 'POST',
+        data: {
+          code: code,
+          user: user,
+          pass: pass,
+          fname: fname,
+          lname: lname,
+          address: address,
+          phone: phone,
+          level: level,
+          update: 'update'
+        },
+        success: function(response) {
+          if(response === 'success') {
+            Swal.fire({
+              icon: 'success',
+              title: 'อัปเดทข้อมูลพนักงานง่อยๆคนนึงสำเร็จ',
+              showConfirmButton: false,
+              timer: 1500
+            }).then((result) => {
+              window.location.href = "employee.php";
+              // Not working not use it
+              // $('#' + id).children('td[data-target=name]').text(name);
+              // $('#editModal').modal('toggle');
+            })
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'พัง โปรดท่องนะโม'
+            })
+          }
+        }
+      })
+  
+  
+    })
+  
+    $(document).on('click', 'a[data-role=delete]', function(e) {
+      var code = $(this).data('id');
+      e.preventDefault();
+      // alert("worked! " + code);
   
       Swal.fire({
-        title: 'แน่ใจใช่หรือไม่? ที่จะลบข้อมูล ' + catenames,
-        text: "เมื่อลบไม่แล้วไม่สามารถย้อนข้อมูลกลับมาได้",
+        title: 'คุณแน่ใจใช่หรือไม่? จะลบพนักงานกากๆคนนี้',
+        text: "ลบแล้วลบเลยนะฮ้าบ",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'ตกลง',
-        cancelButtonText: 'ยกเลิก',
+        confirmButtonText: 'ยืนยัน',
+        cancelButtonText: 'ยกเลิก'
       }).then((result) => {
         if (result.isConfirmed) {
-         
           $.ajax({
-            url: 'addCategoryUpdate.php',
+            url: 'employeeController.php',
             method: 'POST',
             data: {
-              del: cateid
+              code: code,
+              delete: 'delete'
             },
-            success: function(data) {
-              if(data === "success") {
+            success: function(response) { 
+              if(response === 'success') {
                 Swal.fire({
                   icon: 'success',
-                  title: 'ทำการลบข้อมูลเสร็จสิ้น',
+                  title: 'ลบข้อมูลพนักงานสำเร็จ',
                   showConfirmButton: false,
                   timer: 1500
                 }).then((result) => {
-                  load_data();
+                  window.location.href = "employee.php";
                 })
               } else {
                 Swal.fire({
                   icon: 'error',
-                  title: 'ทำการลบข้อมูลล้มเหลว กรุณาลองอีกครั้ง',
-                  showConfirmButton: false,
-                  timer: 1500
-                }).then((result) => {
-                  load_data();
+                  title: 'ลบรายการล้มเหลว กรุณาลองใหม่อีกครั้ง',
                 })
               }
-              
             }
           })
-          
         }
       })
-    })
   
+      
   
-    // Pagination
-    $('#notyet').click(function(e) {
-      e.preventDefault()
-      Swal.fire({
-        icon: 'error',
-        title: 'ยังทำไม่เป็น',
-        text: 'ช่วยด้วยยย',
-        showConfirmButton: false,
-        timer: 1500
-      })
-    })
-  
-    $('#notyet1').click(function(e) {
-      e.preventDefault()
-      Swal.fire({
-        icon: 'error',
-        title: 'ยังทำไม่เป็น',
-        text: 'ช่วยด้วยยย',
-        showConfirmButton: false,
-        timer: 1500
-      })
-    })
-  
-    $('#notyet2').click(function(e) {
-      e.preventDefault()
-      Swal.fire({
-        icon: 'error',
-        title: 'ยังทำไม่เป็น',
-        text: 'ช่วยด้วยยย',
-        showConfirmButton: false,
-        timer: 1500
-      })
-    })
-  
-    $('#notyet3').click(function(e) {
-      e.preventDefault()
-      Swal.fire({
-        icon: 'error',
-        title: 'ยังทำไม่เป็น',
-        text: 'ช่วยด้วยยย',
-        showConfirmButton: false,
-        timer: 1500
-      })
-    })
-  
-    $('#notyet4').click(function(e) {
-      e.preventDefault()
-      Swal.fire({
-        icon: 'error',
-        title: 'ยังทำไม่เป็น',
-        text: 'ช่วยด้วยยย',
-        showConfirmButton: false,
-        timer: 1500
-      })
     })
   
   })
