@@ -16,6 +16,7 @@ if(empty($_SESSION['emp_level'])) {
   <link rel="stylesheet" href="css/fontawesome.min.css">
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/jquery.dataTables.min.css">
 </head>
 <body>
 
@@ -56,14 +57,8 @@ if(empty($_SESSION['emp_level'])) {
       <div class="dashboard-content px-3 pt-4">
         <h2 class="fs-5"> รายการเดินสินค้า</h2>
         <hr>
-        <form action="#" method="POST">
-          <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="ค้นหาข้อมูลรายการเดินสินค้า" aria-label="Recipient's username" aria-describedby="basic-addon2">
-            <span class="input-group-text" id="basic-addon2"><i class="fa-solid fa-magnifying-glass"></i></span>
-          </div>
-        </form>
         <div class="table-responsive">
-          <table class="table align-middle">
+          <table class="table align-middle" id="myTable">
             <thead>
               <tr class="text-center">
                 <th>ลำดับรายการเดินสินค้า</th>
@@ -75,7 +70,7 @@ if(empty($_SESSION['emp_level'])) {
                 <th>วัน/เดือน/ปี</th>
                 <th>รายละเอียด</th>
               </tr>
-            </thead>
+            </thead>            </thead>
             <tbody>
               <tr class="text-center">
                 <td>1</td>
@@ -118,5 +113,7 @@ if(empty($_SESSION['emp_level'])) {
   <script src="js/chart.js"></script>
   <script src="js/logout.js"></script>
   <script src="js/responsive.js"></script>
+  <script src="js/jquery.dataTables.min.js"></script>
+  <script src="js/transfer.js"></script>
 </body>
 </html>
