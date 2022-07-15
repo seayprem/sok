@@ -138,14 +138,14 @@ $(document).ready(function() {
     var max = $('#min2').val();
 
     // DEBUG TEST 
-    console.log("code " + code);
-    console.log("name " + name);
-    console.log("type " + type);
-    console.log("size " + size);
-    console.log("color " + color);
-    console.log("qty " + qty);
-    console.log("min " + min);
-    console.log("max " + max);
+    // console.log("code " + code);
+    // console.log("name " + name);
+    // console.log("type " + type);
+    // console.log("size " + size);
+    // console.log("color " + color);
+    // console.log("qty " + qty);
+    // console.log("min " + min);
+    // console.log("max " + max);
 
     e.preventDefault();
     // console.log("worked!" + id);

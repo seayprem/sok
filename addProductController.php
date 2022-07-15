@@ -32,7 +32,7 @@ if(isset($_POST['update'])) {
   $min = $_POST['min'];
   $max = $_POST['max'];
 
-  $sql = "UPDATE `inventory` SET inv_id = '".$code."', inv_name = '".$name."', inv_qty = $qty, inv_min = $min, inv_max = $max, inv_size = $size, inv_color = $color, cate_id = $type WHERE inv_id = '".$code."' ";
+  $sql = "UPDATE `inventory` SET inv_name = '".$name."', inv_qty = $qty, inv_min = $min, inv_max = $max, inv_size = $size, inv_color = $color, cate_id = $type WHERE inv_id = '".$code."' ";
   $query = mysqli_query($conn, $sql);
   
   if($query) {

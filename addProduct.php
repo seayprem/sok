@@ -244,7 +244,7 @@ if(empty($_SESSION['emp_level'])) {
               <label class="form-label">รหัสสินค้า</label>
               <div class="input-group mb-3">
                 <span class="input-group-text" id="codes"><i class="fa-solid fa-key"></i></span>
-                <input type="text" class="form-control" id="code2" placeholder="กรุณาป้อนรหัสสินค้า" aria-label="Username" aria-describedby="codes">
+                <input type="text" class="form-control" disabled id="code2" placeholder="กรุณาป้อนรหัสสินค้า" aria-label="Username" aria-describedby="codes">
               </div>
 
               <label class="form-label">ชื่อสินค้า</label>
