@@ -83,8 +83,8 @@ if(empty($_SESSION['emp_level'])) {
                       <th class="text-center">ขนาดของสินค้า</th>
                       <th class="text-center">สีสินค้า</th>
                       <th class="text-center">จำนวนสินค้า</th>
-                      <th class="text-center">สินค้าคงเหลือขั้นต่ำที่ต้องสั่งซื้อ</th>
-                      <th class="text-center">สินค้าคงเหลือขั้นสูงที่ไม่ต้องสั่งซื้อ</th>
+                      <th class="text-center">จำนวนที่ต้องสั่งซื้อ</th>
+                      <th class="text-center">จำนวนที่ไม่ต้องสั่งซื้อ</th>
                       <th class="text-center">จัดการ</th>
                     </tr>
                   </thead>
@@ -122,8 +122,8 @@ if(empty($_SESSION['emp_level'])) {
                       <th class="text-center">ขนาดของสินค้า</th>
                       <th class="text-center">สีสินค้า</th>
                       <th class="text-center">จำนวนสินค้า</th>
-                      <th class="text-center">สินค้าคงเหลือขั้นต่ำที่ต้องสั่งซื้อ</th>
-                      <th class="text-center">สินค้าคงเหลือขั้นสูงที่ไม่ต้องสั่งซื้อ</th>
+                      <th class="text-center">จำนวนที่ต้องสั่งซื้อ</th>
+                      <th class="text-center">จำนวนที่ไม่ต้องสั่งซื้อ</th>
                       <th class="text-center">จัดการ</th>
                     </tr>
                   </thead>
