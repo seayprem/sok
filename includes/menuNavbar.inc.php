@@ -44,6 +44,10 @@ if($_SESSION['emp_level'] == 1) {
         </li>
         <li class=""><a href="addProduct.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-cart-plus"></i> เพิ่มรายการสินค้า</a>
         </li>
+        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-cart-plus"></i> เพิ่มรายการเดินสินค้า</a>
+        </li>
+        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-cart-plus"></i> เพิ่มบริษัทคู่ค้าการผลิต</a>
+        </li>
       </ul>
       <hr class="h-color mx-2">
       <a class="text-decoration-none px-3 py-2 d-block text-secondary"><small>บัญชี</small></a>
