@@ -16,7 +16,7 @@ if(empty($_SESSION['emp_level'])) {
   <link rel="stylesheet" href="css/fontawesome.min.css">
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="css/jquery.dataTables.min.css">
   <style>
     .dataTables_filter input {
       margin-bottom: 5px;
@@ -179,7 +179,7 @@ if(empty($_SESSION['emp_level'])) {
   <script src="js/chart.js"></script>
   <script src="js/logout.js"></script>
   <script src="js/responsive.js"></script>
-  <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+  <script src="js/jquery.dataTables.min.js"></script>
   <script src="js/addCategory.js"></script>
 
 </body>

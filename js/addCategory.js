@@ -170,7 +170,6 @@ $(document).ready(function(e) {
             Swal.fire({
               icon: 'error',
               title: 'บันทึกล้มเหลว',
-              showConfirmButton: false,
               timer: 1500
             })
           }

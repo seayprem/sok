@@ -16,7 +16,7 @@ if(empty($_SESSION['emp_level'])) {
   <link rel="stylesheet" href="css/fontawesome.min.css">
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="css/jquery.dataTables.min.css">
   <style>
     .dataTables_filter input {
       margin-bottom: 5px;
@@ -90,21 +90,21 @@ if(empty($_SESSION['emp_level'])) {
                   <tbody>
                     <?php 
                     include_once('config/db.php');
-                    $sql = "SELECT * FROM `inventory`";
+                    $sql = "SELECT * FROM inventory INNER JOIN category ON inventory.cate_id = category.cate_id";
                     $query = mysqli_query($conn, $sql);
                     while($row = mysqli_fetch_array($query)) {
 
                     
                     ?>
                     <tr class="text-center">
-                      <td>P001</td>
-                      <td>พรมรถยนต์ดำแดง</td>
-                      <td>ไหมพรม</td>
-                      <td>XXL</td>
-                      <td>แดง</td>
-                      <td>0</td>
-                      <td>ไม่ได้ระบุ</td>
-                      <td>ไม่ได้ระบุ</td>
+                      <td><?= $row['inv_id']; ?></td>
+                      <td><?= $row['inv_name']; ?></td>
+                      <td><?= $row['cate_name']; ?></td>
+                      <td><?= $row['inv_size']; ?></td>
+                      <td><?= $row['inv_color']; ?></td>
+                      <td><?= $row['inv_qty']; ?></td>
+                      <td><?= $row['inv_min']; ?></td>
+                      <td><?= $row['inv_max']; ?></td>
                       <td>
                         <a href="#" class="btn btn-warning">แก้ไข</a>
                         <a href="#" class="btn btn-danger">ลบ</a>
@@ -134,6 +134,8 @@ if(empty($_SESSION['emp_level'])) {
       </div>
       <!-- end content body  -->
 
+      
+
       <!-- Modal Add Data  -->
       <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModal" aria-hidden="true">
         <div class="modal-dialog">
@@ -143,11 +145,81 @@ if(empty($_SESSION['emp_level'])) {
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              
+              <!-- Form Input  -->
+
+              <label class="form-label">รหัสสินค้า</label>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="codes"><i class="fa-solid fa-key"></i></span>
+                <input type="text" class="form-control" id="code" placeholder="กรุณาป้อนรหัสสินค้า" aria-label="Username" aria-describedby="codes">
+              </div>
+
+              <label class="form-label">ชื่อสินค้า</label>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="names"><i class="fa-solid fa-cart-shopping"></i></span>
+                <input type="text" class="form-control" id="name" placeholder="กรุณาป้อนชื่อสินค้า" aria-label="Username" aria-describedby="names">
+              </div>
+
+              <label class="form-label">ประเภทสินค้า</label>
+              <div class="input-group mb-3">
+                <label class="input-group-text" for="type"><i class="fa-solid fa-tag"></i></label>
+                <select class="form-select" id="type">
+                  <option disabled selected>กรุณาเลือกประเภทสินค้า</option>
+                  <?php 
+                    $category_sql = "SELECT * FROM `category` ORDER BY cate_id DESC";
+                    $category_query = mysqli_query($conn, $category_sql);
+                    while($category_row = mysqli_fetch_array($category_query)) {
+                    ?>
+                  <option value="<?= $category_row['cate_id']; ?>"><?= $category_row['cate_name']; ?></option>
+                  <?php } ?>
+                </select>
+              </div>
+
+              <label class="form-label">ขนาดของสินค้า</label>
+              <div class="input-group mb-3">
+                <label class="input-group-text" for="size"><i class="fa-solid fa-arrow-up-big-small"></i></label>
+                <select class="form-select" id="size">
+                  <option disabled selected>กรุณาเลือกขนาดของสินค้า</option>
+                 
+                  <option value="1">XL</option>
+                  <option value="2">L</option>
+                  <option value="3">M</option>
+                </select>
+              </div>
+
+              <label class="form-label">สีของสินค้า</label>
+              <div class="input-group mb-3">
+                <label class="input-group-text" for="color"><i class="fa-solid fa-eye-dropper"></i></label>
+                <select class="form-select" id="color">
+                  <option disabled selected>กรุณาเลือกสีของสินค้า</option>
+                 
+                  <option value="1">แดง</option>
+                  <option value="2">ดำ</option>
+                  <option value="3">เหลือง</option>
+                </select>
+              </div>
+
+              <label class="form-label">จำนวนสินค้า</label>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="qtys"><i class="fa-solid fa-cart-plus"></i></span>
+                <input type="number" class="form-control" id="qty" min="0" value="0" aria-label="Username" aria-describedby="qtys">
+              </div>       
+
+              <label class="form-label">ขั้นต่ำที่ต้องสั่งซื้อ</label>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="mins"><i class="fa-solid fa-circle-minus"></i></span>
+                <input type="number" class="form-control" id="min" min="0" value="0" aria-label="Username" aria-describedby="mins">
+              </div> 
+
+              <label class="form-label">จำนวนสินค้าที่ไม่จำเป็นต้องสั่งเพิ่ม</label>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="maxs"><i class="fa-solid fa-basket-shopping"></i></span>
+                <input type="number" class="form-control" id="max" min="0" value="0" aria-label="Username" aria-describedby="maxs">
+              </div> 
+
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-              <button type="button" class="btn btn-primary">บันทึก</button>
+              <button type="button" id="save" class="btn btn-primary">บันทึก</button>
             </div>
           </div>
         </div>
@@ -167,7 +239,7 @@ if(empty($_SESSION['emp_level'])) {
   <script src="js/chart.js"></script>
   <script src="js/logout.js"></script>
   <script src="js/responsive.js"></script>
-  <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+  <script src="js/jquery.dataTables.min.js"></script>
   <script src="js/addProduct.js"></script>
 
 </body>

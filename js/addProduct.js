@@ -28,6 +28,64 @@ $(document).ready(function() {
   $(document).on('click', '#add', function(e) {
     e.preventDefault();
     $('#addModal').modal('toggle');
+
+  })
+
+  $('#save').click(function(e) {
+    var code = $('#code').val();
+    var name = $('#name').val();
+    var type = $('#type').val();
+    var size = $('#size').val();
+    var color = $('#color').val();
+    var qty = $('#qty').val();
+    var min = $('#min').val();
+    var max = $('#max').val();
+
+    // DEBUG 
+    // console.log("code " + code);
+    // console.log("name " + name);
+    // console.log("type " + type);
+    // console.log("size " + size);
+    // console.log("color " + color);
+    // console.log("qty " + qty);
+    // console.log("min " + min);
+    // console.log("max " + max);
+
+
+    $.ajax({
+      url: 'addProductController.php',
+      method: 'POST',
+      data: {
+        code: code,
+        name: name,
+        type: type,
+        size: size,
+        color: color,
+        qty: qty,
+        min: min,
+        max: max,
+        addproduct: 'addproduct'
+      },
+      success: function(response) {
+        if(response === 'success') {
+          Swal.fire({
+            icon: 'success',
+            title: 'บันทึกสำเร็จ',
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            window.location.href = "addProduct.php";
+          })
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'บันทึกล้มเหลว',
+            timer: 1500
+          })
+        }
+      }
+    })
+
   })
 
 })
