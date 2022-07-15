@@ -2,9 +2,27 @@ $(document).ready(function(e) {
     const add = $('#add');
     const cancel = $('#cancel');
     const cate_name_input = $('#cate_name_input');
-    const add_cate = $('#add_emp');
+    const add_cate = $('#add_cate');
     const frm = $('#frm');
   
+    // const { value: add_emp_form } = await Swal.fire({
+    //   title: 'เพิ่มพนักงาน',
+    //   html:
+    //     '<input id="swal-input1" class="swal2-input">' +
+    //     '<input id="swal-input2" class="swal2-input">',
+    //   focusConfirm: false,
+    //   preConfirm: () => {
+    //     return [
+    //       document.getElementById('swal-input1').value,
+    //       document.getElementById('swal-input2').value
+    //     ]
+    //   }
+    // })
+
+    // if (add_emp_form) {
+    //   Swal.fire(JSON.stringify(add_emp_form))
+    // }
+
     // add.hide();
     cancel.hide();
   
@@ -31,70 +49,57 @@ $(document).ready(function(e) {
   
     add.click(function(e) {
       e.preventDefault();
-      check = cate_name_input.val();
+      // check = cate_name_input.val();
+      $('#addEmpModal').modal('show');
       
-      Swal.fire({
-        title: 'คุณแน่ใจใช่แล้วหรือไม่ ที่ต้องการเพิ่มข้อมูลชุดนี้',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'ตกลง',
-        cancelButtonText: 'ยกเลิก'
-      }).then((result) => {
-        if(result.isConfirmed) {
-          if(!check) {
-            Swal.fire({
-              title: 'โปรดกรอกข้อมูลให้ครบถ้วน',
-              icon: 'error',
-              confirmButtonText: 'ตกลง',
-            })
-            add.hide();
-            cancel.hide();
-            add_cate.show();
-            cate_name_input.prop('disabled', true)
-          } else {
-            $.ajax({
-              url: 'addCategoryController.php',
-              method: 'POST',
-              data: {
-                name: cate_name_input.val(),
-                add: 'add'
-              },
-              success: function(data) {
-                if(data === 'success') {
-                  Swal.fire({
-                    icon: 'success',
-                    title: 'บันทึกข้อมูลสำเร็จ',
-                    showConfirmButton: false,
-                    timer: 1500
-                  }).then((result) => {
-                    load_data();
-                  })
-                  frm[0].reset();
-                  add.hide();
-                  cancel.hide();
-                  add_cate.show();
-                  cate_name_input.prop('disabled', true)
-                } else {
-                  Swal.fire({
-                    icon: 'error',
-                    title: 'บันทึกข้อมูลล้มเหลว',
-                    showConfirmButton: false,
-                    timer: 1500
-                  })
-                  frm[0].reset();
-                  add.hide();
-                  cancel.hide();
-                  add_cate.show();
-                  cate_name_input.prop('disabled', true)
-                }
-              }
-            })
-          }
-          
-        }
-      })
     })
   
+    $("#add_emp").click(function(e) {
+
+      const username = $('#username').val();
+      // alert(cateid)
+      const password = $('#password').val();
+      const fname = $('#fname').val();
+      const lname = $('#lname').val();
+      const address = $('#address').val();
+      const phone = $('#phone').val();
+      const level = $('#level').val();
+      // console.log(catename)
+  
+  
+      e.preventDefault();
+  
+      $.ajax({
+        url: 'employeeController.php',
+        method: 'POST',
+        data: {
+          username: username, 
+          password: password, 
+          fname: fname, 
+          lname: lname, 
+          address: address, 
+          phone: phone, 
+          level: level, 
+          add_emp: 'add_emp'
+        },
+        success: function(data) {
+          if(data === 'success') {
+            Swal.fire({
+              icon: 'success',
+              title: 'ทำการอัพเดทเสร็จสิ้น',
+              showConfirmButton: false,
+              timer: 1500
+            }).then((result) => {
+              load_data();
+              $('#cateModal').modal('hide');
+            })
+          } else {
+            alert("failed")
+          }
+        }
+      })
+  
+    })
   
     // GET DATA
   

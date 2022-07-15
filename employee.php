@@ -115,6 +115,69 @@ if(empty($_SESSION['emp_level'])) {
                   </li>
                 </ul>
 
+
+                <!-- Modal -->
+              <div class="modal fade" id="addEmpModal" tabindex="-1" aria-labelledby="addEmpModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="addEmpModalLabel">Modal title</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="form-group">
+                          <label class="control-label">Username</label>
+                          <div>
+                              <input type="text" class="form-control input-lg" id="username" name="" value="">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Password</label>
+                            <div>
+                                <input type="password" class="form-control input-lg" id="password" name="" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">ชื่อจริง</label>
+                            <div>
+                                <input type="text" class="form-control input-lg" id="fname" name="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">นามสกุล</label>
+                            <div>
+                                <input type="text" class="form-control input-lg" id="lname" name="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">ที่อยู่</label>
+                            <div>
+                                <input type="text" class="form-control input-lg" id="address" name="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">เบอร์โทร</label>
+                            <div>
+                                <input type="text" class="form-control input-lg" id="phone" name="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">ตำแหน่ง</label>
+                            <div>
+                                <input type="text" class="form-control input-lg" id="level" name="">
+                            </div>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                      <button type="button" class="btn btn-primary" id="add_emp">บันทึก</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             <!-- </div> -->
 
             <!-- <div class="col-md-4">
@@ -133,11 +196,11 @@ if(empty($_SESSION['emp_level'])) {
 
               <!-- Update  -->
               <!-- Modal -->
-              <!-- <div class="modal fade" id="cateModal" tabindex="-1" aria-labelledby="cateModalLabel" aria-hidden="true">
+              <!-- <div class="modal fade" id="addEmpModal" tabindex="-1" aria-labelledby="addEmpModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="cateModalLabel">Modal title</h5>
+                      <h5 class="modal-title" id="addEmpModalLabel">Modal title</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
