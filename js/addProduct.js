@@ -25,6 +25,8 @@ $(document).ready(function() {
     });
   }
 
+  // ADD DATA
+
   $(document).on('click', '#add', function(e) {
     e.preventDefault();
     $('#addModal').modal('toggle');
@@ -86,6 +88,94 @@ $(document).ready(function() {
       }
     })
 
+  })
+
+  // EDIT & UPDATE DATA
+  $(document).on('click', 'a[data-role=edit]', function(e) {
+    var id = $(this).data('id');
+    var name = $('#' + id).children('td[data-target=name]').text();
+    var type = $('#' + id).children('td[data-target=type]').text();
+    var size = $('#' + id).children('td[data-target=size]').text();
+    var color = $('#' + id).children('td[data-target=color]').text();
+    var qty = $('#' + id).children('td[data-target=qty]').text();
+    var min = $('#' + id).children('td[data-target=min]').text();
+    var max = $('#' + id).children('td[data-target=max]').text();
+    e.preventDefault();
+
+    $('#editModal').modal('toggle');
+
+    $('#code2').val(id);
+    $('#name2').val(name);
+    $('#type2').val(type);
+    $('#size2').val(size);
+    $('#color2').val(color);
+    $('#qty2').val(qty);
+    $('#min2').val(min);
+    $('#max2').val(max);
+
+    // DEBUG TEST 
+    // console.log("code " + id);
+    // console.log("name " + name);
+    // console.log("type " + type);
+    // console.log("size " + size);
+    // console.log("color " + color);
+    // console.log("qty " + qty);
+    // console.log("min " + min);
+    // console.log("max " + max);
+
+  })
+
+  $('#save2').click(function(e) {
+    var code = $('#code2').val();
+
+
+    var name = $('#name2').val();
+    var type = $('#type2').val();
+    var size = $('#size2').val();
+    var color = $('#color2').val();
+    var qty = $('#qty2').val();
+    var min = $('#min2').val();
+    var max = $('#min2').val();
+
+    // DEBUG TEST 
+    console.log("code " + code);
+    console.log("name " + name);
+    console.log("type " + type);
+    console.log("size " + size);
+    console.log("color " + color);
+    console.log("qty " + qty);
+    console.log("min " + min);
+    console.log("max " + max);
+
+    e.preventDefault();
+    // console.log("worked!" + id);
+
+    $.ajax({
+      url: 'addProductController.php',
+      method: 'POST',
+      data: {
+        code: code,
+        name: name,
+        type: type,
+        size: size,
+        color: color,
+        qty: qty,
+        min: min,
+        max: max,
+        update: 'update'
+      },
+      success: function(response) {
+        alert(response);
+      }
+    })
+
+
+  })
+
+  $(document).on('click', 'a[data-role=delete]', function(e) {
+    var code = $(this).data('id');
+    e.preventDefault();
+    alert("worked! " + code);
   })
 
 })
