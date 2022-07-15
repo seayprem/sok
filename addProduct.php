@@ -11,7 +11,7 @@ if(empty($_SESSION['emp_level'])) {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SOK Dashboard</title>
+  <title>เพิ่มรายการสินค้า - SOK Dashboard</title>
   <link rel="stylesheet" href="css/all.min.css">
   <link rel="stylesheet" href="css/fontawesome.min.css">
   <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -65,75 +65,68 @@ if(empty($_SESSION['emp_level'])) {
 
       <div class="dashboard-content px-3 pt-4">
         <h2 class="fs-5"> เพิ่มหมวดหมู่สินค้า</h2>
+        <button class="btn btn-success" id="add">เพิ่มรายการสินค้า</button>
         <hr>
+        
         <div class="col-md-12">
           <div class="row">
-            <div class="col-md-8">
-              <form action="#" method="post">
-                <!-- <div class="input-group mb-3">
-                  <input type="text" id="search" name="search" class="form-control" placeholder="ค้นหาข้อมูลรายการเดินสินค้า" aria-label="recipient's username" aria-describedby="basic-addon2">
-                  <span class="input-group-text" id="basic-addon2"><i class="fa-solid fa-magnifying-glass"></i></span>
-                </div> -->
-              </form>
+            <div class="col-md-12">
+
               <div class="table-responsive">
-                <table class="table align-middle table-hover " id="myTable">
+                <table class="table align-middle table-hover" id="myTable">
                   <thead class="table-dark">
                     <tr>
-                      <th class="text-center">ลำดับ</th>
-                      <th class="text-center">ชื่อประเภทสินค้า</th>
+                      <th class="text-center">รหัสสินค้า</th>
+                      <th class="text-center">ชื่อสินค้า</th>
+                      <th class="text-center">ประเภทสินค้า</th>
+                      <th class="text-center">ขนาดของสินค้า</th>
+                      <th class="text-center">สีสินค้า</th>
+                      <th class="text-center">จำนวนสินค้า</th>
+                      <th class="text-center">สินค้าคงเหลือขั้นต่ำที่ต้องสั่งซื้อ</th>
+                      <th class="text-center">สินค้าคงเหลือขั้นสูงที่ไม่ต้องสั่งซื้อ</th>
                       <th class="text-center">จัดการ</th>
                     </tr>
                   </thead>
-                  <tbody id="showcate" class="text-center">
-                  <?php 
+                  <tbody>
+                    <?php 
                     include_once('config/db.php');
-                    $sql = "SELECT * FROM `category`";
+                    $sql = "SELECT * FROM `inventory`";
                     $query = mysqli_query($conn, $sql);
                     while($row = mysqli_fetch_array($query)) {
+
+                    
                     ?>
-                    <tr id="<?= $row['cate_id']; ?>">
-                      <td><?= $row['cate_id']; ?></td>
-                      <td data-target="name"><?= $row['cate_name']; ?></td>
+                    <tr class="text-center">
+                      <td>P001</td>
+                      <td>พรมรถยนต์ดำแดง</td>
+                      <td>ไหมพรม</td>
+                      <td>XXL</td>
+                      <td>แดง</td>
+                      <td>0</td>
+                      <td>ไม่ได้ระบุ</td>
+                      <td>ไม่ได้ระบุ</td>
                       <td>
-                        <a href="#" data-role="update" data-id="<?= $row['cate_id']; ?>" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> แก้ไขข้อมูล</a>
-                        <a href="#" data-role="delete" data-id="<?= $row['cate_id']; ?>" class="btn btn-danger"><i class="fa-solid fa-trash"></i> ลบข้อมูล</a>
+                        <a href="#" class="btn btn-warning">แก้ไข</a>
+                        <a href="#" class="btn btn-danger">ลบ</a>
                       </td>
                     </tr>
-                   
                     <?php } ?>
                   </tbody>
                   <thead class="table-dark">
                     <tr>
-                      <th class="text-center">ลำดับ</th>
-                      <th class="text-center">ชื่อประเภทสินค้า</th>
+                      <th class="text-center">รหัสสินค้า</th>
+                      <th class="text-center">ชื่อสินค้า</th>
+                      <th class="text-center">ประเภทสินค้า</th>
+                      <th class="text-center">ขนาดของสินค้า</th>
+                      <th class="text-center">สีสินค้า</th>
+                      <th class="text-center">จำนวนสินค้า</th>
+                      <th class="text-center">สินค้าคงเหลือขั้นต่ำที่ต้องสั่งซื้อ</th>
+                      <th class="text-center">สินค้าคงเหลือขั้นสูงที่ไม่ต้องสั่งซื้อ</th>
                       <th class="text-center">จัดการ</th>
                     </tr>
                   </thead>
                 </table>
-                  
               </div>
-
-
-            </div>
-            
-
-            <div class="col-md-4">
-              <h2 class="fs-5 text-center"> เพิ่มหมวดหมู่สินค้า</h2>
-              <form action="#" method="post" id="frm">
-                <div class="input-group mb-3">
-                  <span class="input-group-text" id="cate_name"><i class="fa-solid fa-cart-plus"></i></span>
-                  <input type="text" class="form-control" id="cate_name_input" placeholder="กรุณาป้อนชื่อหมวดหมู่สินค้า" aria-label="Username" aria-describedby="cate_name">
-                </div>
-                <div class="d-grid gap-2">
-                  <button class="btn btn-warning" id="add_cate">เพิ่มหมวดหมู่สินค้า</button>
-                  <button id="add" class="btn btn-success">ยืนยัน</button>
-                  <button id="cancel" class="btn btn-danger">ยกเลิก</button>
-                </div>
-
-
-              </form>
-
-             
 
             </div>
           </div>
@@ -141,30 +134,25 @@ if(empty($_SESSION['emp_level'])) {
       </div>
       <!-- end content body  -->
 
-        <!-- Update  -->
-        <!-- Modal -->
-        
-        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-              <div class="input-group mb-3">
-                <span class="input-group-text"><i class="fa-solid fa-cart-plus"></i></span>
-                <input type="text" id="editname" class="form-control" placeholder="กรุณาป้อนชื่อหมวดหมู่สินค้า" value="" aria-label="Username" aria-describedby="cate_name">
-                <input type="hidden" id="editid">
-              </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                <button type="button" class="btn btn-primary" id="saved">บันทึก</button>
-              </div>
+      <!-- Modal Add Data  -->
+      <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addModal">เพิ่มรายการสินค้า</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+              <button type="button" class="btn btn-primary">บันทึก</button>
             </div>
           </div>
         </div>
+      </div>
+
 
     </div>
     <?php } else {
@@ -180,7 +168,7 @@ if(empty($_SESSION['emp_level'])) {
   <script src="js/logout.js"></script>
   <script src="js/responsive.js"></script>
   <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-  <script src="js/addCategory.js"></script>
+  <script src="js/addProduct.js"></script>
 
 </body>
 </html>

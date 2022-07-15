@@ -1,4 +1,31 @@
 $(document).ready(function(e) {
+
+  // datatable 
+
+  getDataTable();
+
+  function getDataTable() {
+    $(document).ready( function () {
+      $('#myTable').DataTable({
+        "order": [[0, 'desc']],
+        "language": {
+          "zeroRecords": "ไม่พบรายการที่ค้นหา",
+          "lengthMenu": "แสดงผล _MENU_ รายการ",
+          "search": "ค้นหา",
+          "paginate": {
+            "first":      "First",
+            "last":       "Last",
+            "next":       "ต่อไป",
+            "previous":   "ก่อนหน้า"
+          },
+          "info": "Showing page _PAGE_ of _PAGES_ ของทั้งหมด _TOTAL_ รายการ",
+        }
+      });
+    });
+  }
+
+  // ADD DATA
+
   const add = $('#add');
   const cancel = $('#cancel');
   const cate_name_input = $('#cate_name_input');
@@ -67,7 +94,7 @@ $(document).ready(function(e) {
                   showConfirmButton: false,
                   timer: 1500
                 }).then((result) => {
-                  load_data();
+                  window.location.href = "addCategory.php";
                 })
                 frm[0].reset();
                 add.hide();
@@ -95,206 +122,111 @@ $(document).ready(function(e) {
     })
   })
 
+  // GET INFO DATA ONE SELECT 
 
-  // GET DATA
+  $(document).on('click', 'a[data-role=update]', function() {
+    var id = $(this).data('id');
+    var name = $('#' + id).children('td[data-target=name]').text();
 
-  load_data();
+    $("#editname").val(name)
+    $("#editid").val(id)
+    $('#editModal').modal('toggle');
+  });
 
-  function load_data(query) {
-    $.ajax({
-      url: 'addCategoryFetch.php',
-      method: 'POST',
-      data: {
-        query: query
-      },
-      success: function(data) {
-        $('#showcate').html(data);
-      }
-    })
-  }
+  // SAVE & Update
 
-  $('#search').keyup(function() {
-    var search = $(this).val();
-    if(search != '') {
-      load_data(search);
+  $(document).on('click', '#saved', function(e) {
+
+    var name = $('#editname').val();
+    var id = $('#editid').val();
+    e.preventDefault();
+
+    if(!name) {
+      Swal.fire({
+        title: 'โปรดกรอกข้อมูลให้ครบถ้วน',
+        icon: 'error',
+        confirmButtonText: 'ตกลง',
+      })
     } else {
-      load_data();
-    }
-  })
-
-  // IT WORKING DONT TOUCH IT
-  // มันไม่บัคก็อย่าไปยุ่งกับมัน
-
-  // EDIT
-  $(document).on('click', '#edit', function(e) {
-    e.preventDefault();
-    const cateid = $(this).data('id');
-    // Swal.fire({
-    //   icon: 'success',
-    //   title: btnShow,
-    // })
-
-    // GET params
-
-    $.ajax({
-      url: 'addCategoryUpdate.php',
-      method: 'POST',
-      data: {
-        cateid: cateid
-      },
-      success: function(response) {
-        const cate_data = $('#cate_data');
-        cate_data.html(response);
-      }
-    })
-  })
-
-  $("#saved").click(function(e) {
-
-    const cateid = $('#cateid').val();
-    // alert(cateid)
-    const catename = $('#catename').val();
-    // console.log(catename)
-
-
-    e.preventDefault();
-
-    $.ajax({
-      url: 'addCategoryUpdate.php',
-      method: 'POST',
-      data: {
-        update: cateid,
-        name: catename
-      },
-      success: function(data) {
-        if(data === 'success') {
-          Swal.fire({
-            icon: 'success',
-            title: 'ทำการอัพเดทเสร็จสิ้น',
-            showConfirmButton: false,
-            timer: 1500
-          }).then((result) => {
-            load_data();
-            $('#cateModal').modal('hide');
-          })
-        } else {
-          alert("failed")
+      $.ajax({
+        url: 'addCategoryController.php',
+        method: 'post',
+        data: {
+          name: name,
+          id: id,
+          update: 'update'
+        },
+        success: function(response) {
+          if(response === "success") {
+            Swal.fire({
+              icon: 'success',
+              title: 'บันทึกสำเร็จ',
+              showConfirmButton: false,
+              timer: 1500
+            })
+            $('#editModal').modal('toggle');
+            $('#' + id).children('td[data-target=name]').text(name);
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'บันทึกล้มเหลว',
+              showConfirmButton: false,
+              timer: 1500
+            })
+          }
         }
-      }
-    })
-
-  })
-
-  // DELETE
-  $(document).on('click', '#delete', function(e) {
-    const cateid = $(this).data('id');
-    // console.log(cateid)
-    const catenames = $(this).data('names');
-    e.preventDefault();
+      })
+    }
 
     
+  })
 
+  // Delete
+
+  $(document).on('click', 'a[data-role=delete]', function(e) {
+    var id = $(this).data('id');
+    var name = $('#' + id).children('td[data-target=name]').text();
+    e.preventDefault();
     Swal.fire({
-      title: 'แน่ใจใช่หรือไม่? ที่จะลบข้อมูล ' + catenames,
-      text: "เมื่อลบไม่แล้วไม่สามารถย้อนข้อมูลกลับมาได้",
+      title: 'คุณต้องการลบข้อมูล: ' + name + ' นี้หรือไม่?',
+      text: "จะไม่สามารถย้อนกลับมาได้อีก",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'ตกลง',
+      confirmButtonText: 'ใช่ลบเลย',
       cancelButtonText: 'ยกเลิก',
     }).then((result) => {
       if (result.isConfirmed) {
-       
+
         $.ajax({
-          url: 'addCategoryUpdate.php',
+          url: 'addCategoryController.php',
           method: 'POST',
           data: {
-            del: cateid
+            id: id,
+            delete: 'delete'
           },
-          success: function(data) {
-            if(data === "success") {
+          success: function(response) {
+            if(response === 'success') {
               Swal.fire({
                 icon: 'success',
-                title: 'ทำการลบข้อมูลเสร็จสิ้น',
+                title: 'ลบข้อมูลสำเร็จ',
                 showConfirmButton: false,
                 timer: 1500
               }).then((result) => {
-                load_data();
+                window.location.href = "addCategory.php";
               })
             } else {
-              Swal.fire({
-                icon: 'error',
-                title: 'ทำการลบข้อมูลล้มเหลว กรุณาลองอีกครั้ง',
-                showConfirmButton: false,
-                timer: 1500
-              }).then((result) => {
-                load_data();
-              })
+              Swal.fire(
+                'ล้มหลว โปรดติดต่อเจ้าหน้าที่!',
+                'ลบข้อมูลไม่สำเร็จ',
+                'error'
+              )
             }
-            
           }
         })
-        
       }
     })
   })
-
-
-  // Pagination
-  $('#notyet').click(function(e) {
-    e.preventDefault()
-    Swal.fire({
-      icon: 'error',
-      title: 'ยังทำไม่เป็น',
-      text: 'ช่วยด้วยยย',
-      showConfirmButton: false,
-      timer: 1500
-    })
-  })
-
-  $('#notyet1').click(function(e) {
-    e.preventDefault()
-    Swal.fire({
-      icon: 'error',
-      title: 'ยังทำไม่เป็น',
-      text: 'ช่วยด้วยยย',
-      showConfirmButton: false,
-      timer: 1500
-    })
-  })
-
-  $('#notyet2').click(function(e) {
-    e.preventDefault()
-    Swal.fire({
-      icon: 'error',
-      title: 'ยังทำไม่เป็น',
-      text: 'ช่วยด้วยยย',
-      showConfirmButton: false,
-      timer: 1500
-    })
-  })
-
-  $('#notyet3').click(function(e) {
-    e.preventDefault()
-    Swal.fire({
-      icon: 'error',
-      title: 'ยังทำไม่เป็น',
-      text: 'ช่วยด้วยยย',
-      showConfirmButton: false,
-      timer: 1500
-    })
-  })
-
-  $('#notyet4').click(function(e) {
-    e.preventDefault()
-    Swal.fire({
-      icon: 'error',
-      title: 'ยังทำไม่เป็น',
-      text: 'ช่วยด้วยยย',
-      showConfirmButton: false,
-      timer: 1500
-    })
-  })
-
+  
 })
