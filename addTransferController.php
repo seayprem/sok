@@ -11,17 +11,17 @@ if(isset($_POST['add'])) {
 
 
   // DEBUG TESTER 
-  echo "<br>";
-  echo $product_id;
-  echo "<br>";
-  echo $qty;
-  echo "<br>";
-  echo $status;
-  echo "<br>";
-  echo $employee;
-  echo "<br>";
-  echo $company;
-  echo "<br>";
+  // echo "<br>";
+  // echo $product_id;
+  // echo "<br>";
+  // echo $qty;
+  // echo "<br>";
+  // echo $status;
+  // echo "<br>";
+  // echo $employee;
+  // echo "<br>";
+  // echo $company;
+  // echo "<br>";
 
   if(empty($employee)) {
 

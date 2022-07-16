@@ -82,8 +82,15 @@ $(document).ready(function() {
         add: 'add'
       },
       success: function(response) {
-        console.log(response);
-      }
+        if(response === "success") {
+          // เดี๋ยวกลับมาทำต่อ
+          alert("success");
+          window.location.href = "addTransfer.php";
+        } else {
+          alert("failed");
+        }
+        
+      } 
     })
   })
 
