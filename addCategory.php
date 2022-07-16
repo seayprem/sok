@@ -11,7 +11,7 @@ if(empty($_SESSION['emp_level'])) {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SOK Dashboard</title>
+  <title>เพิ่มประเภทสินค้า - SOK Dashboard</title>
   <link rel="stylesheet" href="css/all.min.css">
   <link rel="stylesheet" href="css/fontawesome.min.css">
   <link rel="stylesheet" href="css/bootstrap.min.css">

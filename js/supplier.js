@@ -67,7 +67,7 @@ $(document).ready(function() {
             showConfirmButton: false,
             timer: 1500
           }).then((result) => {
-            window.location.href = 'supplier.php';
+            window.location.href = 'addSupplier.php';
           })
         } else {
           Swal.fire({
@@ -140,7 +140,7 @@ $(document).ready(function() {
             showConfirmButton: false,
             timer: 1500
           }).then((result) => {
-            window.location.href = 'supplier.php';
+            window.location.href = 'addSupplier.php';
           })
         } else {
           Swal.fire({
@@ -192,7 +192,7 @@ $(document).ready(function() {
                 showConfirmButton: false,
                 timer: 1500
               }).then((result) => {
-                window.location.href = 'supplier.php';
+                window.location.href = 'addSupplier.php';
               })
             } else {
               Swal.fire({

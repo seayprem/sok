@@ -64,7 +64,7 @@ if(empty($_SESSION['emp_level'])) {
       <!-- content body  -->
 
       <div class="dashboard-content px-3 pt-4">
-        <h2 class="fs-5"> เพิ่มหมวดหมู่สินค้า</h2>
+        <h2 class="fs-5"> เพิ่มรายการสินค้า</h2>
         <button class="btn btn-success" id="add">เพิ่มรายการสินค้า</button>
         <hr>
         
