@@ -31,16 +31,18 @@ $(document).ready(function() {
   $('#emp').hide();
   $('#company').hide();
 
-  $('#selectMode').change(function() {
+  $('#status').change(function() {
     // e.preventDefault();
     
     // DEBUG 
     if(this.value == 1) {
-      $('#emp').show();
-      $('#company').hide();
-    } else {
       $('#emp').hide();
       $('#company').show();
+      $('#emp').prop('selectedIndex', 0);
+    } else {
+      $('#emp').show();
+      $('#company').hide();
+      $('#company').prop('selectedIndex', 0);
     }
     
   })

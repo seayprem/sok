@@ -185,14 +185,14 @@ include_once('config/db.php');
                     <option value="2">เบิกจ่าย</option>
                   </select>
                 </div>
-                <div class="mb-3" >
+                <!-- <div class="mb-3" >
                   <label class="form-label">พนักงาน / บริษัท</label>
                   <select class="form-select" id="selectMode">
                     <option selected disabled>----- กรุณาเลือกบุคคลที่ทำรายการ ----</option>
                     <option value="1">พนักงาน</option>
                     <option value="2">บริษัท</option>
                   </select>
-                </div>
+                </div> -->
                 <div class="mb-3" id="emp">
                   <label class="form-label">พนักงาน</label>
                   <select class="form-select" id="empId">

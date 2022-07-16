@@ -29,7 +29,13 @@ if(isset($_POST['add'])) {
       $sql = "INSERT INTO `transfer` (`t_id`, `t_datetime`, `t_status`, `t_qty`, `emp_id`, `inv_id`, `sup_id`) VALUES (NULL, current_timestamp(), $status, $qty, NULL, '".$product_id."', $company)";
       $query = mysqli_query($conn, $sql);
       if($query) {
-        echo "success";
+        $update_sql = "UPDATE inventory SET inventory.inv_qty = (SELECT t_qty FROM transfer ORDER BY t_id DESC LIMIT 1) + inventory.inv_qty WHERE inventory.inv_id = '$product_id'";
+        $update_query = mysqli_query($conn, $update_sql);
+        if($update_query) {
+          echo "success";
+        } else {
+          echo "failed";
+        }
       } else {
         echo "failed";
       }
@@ -41,7 +47,13 @@ if(isset($_POST['add'])) {
       $sql = "INSERT INTO `transfer` (`t_id`, `t_datetime`, `t_status`, `t_qty`, `emp_id`, `inv_id`, `sup_id`) VALUES (NULL, current_timestamp(), $status, $qty, $employee, '$product_id', NULL)";
       $query = mysqli_query($conn, $sql);
       if($query) {
-        echo "success";
+        $update_sql = "UPDATE inventory SET inventory.inv_qty = inventory.inv_qty - (SELECT t_qty FROM transfer ORDER BY t_id DESC LIMIT 1) WHERE inventory.inv_id = '$product_id'";
+        $update_query = mysqli_query($conn, $update_sql);
+        if($update_query) {
+          echo "success";
+        } else {
+          echo "failed";
+        }
       } else {
         echo "failed";
       }
