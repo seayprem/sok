@@ -95,8 +95,8 @@ if(empty($_SESSION['emp_level'])) {
                       <td><?= $row['cate_id']; ?></td>
                       <td data-target="name"><?= $row['cate_name']; ?></td>
                       <td>
-                        <a href="#" data-role="update" data-id="<?= $row['cate_id']; ?>" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> แก้ไขข้อมูล</a>
-                        <a href="#" data-role="delete" data-id="<?= $row['cate_id']; ?>" class="btn btn-danger"><i class="fa-solid fa-trash"></i> ลบข้อมูล</a>
+                        <a href="#" data-role="update" data-id="<?= $row['cate_id']; ?>" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a href="#" data-role="delete" data-id="<?= $row['cate_id']; ?>" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
                       </td>
                     </tr>
                    

@@ -108,8 +108,8 @@ if(empty($_SESSION['emp_level'])) {
                       <td data-target="min"><?= $row['inv_min']; ?></td>
                       <td data-target="max"><?= $row['inv_max']; ?></td>
                       <td>
-                        <a href="#" data-role="edit" data-id="<?= $row['inv_id']; ?>"; class="btn btn-warning">แก้ไข</a>
-                        <a href="#" data-role="delete" data-id="<?= $row['inv_id']; ?>"; class="btn btn-danger">ลบ</a>
+                        <a href="#" data-role="edit" data-id="<?= $row['inv_id']; ?>"; class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a href="#" data-role="delete" data-id="<?= $row['inv_id']; ?>"; class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
                       </td>
                     </tr>
                     <?php } ?>

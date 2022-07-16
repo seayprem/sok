@@ -7,7 +7,6 @@ if(isset($_POST['add'])) {
   $employee = $_POST['employee'];
   $company = $_POST['company'];
 
-  
 
 
   // DEBUG TESTER 
@@ -89,4 +88,18 @@ if(isset($_POST['add'])) {
   // }
 
 }
+
+// DELETE 
+
+if(isset($_POST['delete'])) {
+  $id = $_POST['id'];
+  $sql = "DELETE FROM `transfer` WHERE `t_id` = $id ";
+  $query = mysqli_query($conn, $sql);
+  if($query) {
+    echo "success";
+  } else {
+    echo "failed";
+  }
+}
+
 ?>

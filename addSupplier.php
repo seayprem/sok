@@ -98,8 +98,8 @@ if(empty($_SESSION['emp_level'])) {
                       <td data-target="email"><?= $row['sup_email']; ?></td>
                       <td data-target="phone"><?= $row['sup_phone']; ?></td>
                       <td>
-                        <a data-id="<?= $row['sup_id']; ?>" data-role="edit" class="btn btn-warning">แก้ไข</a>
-                        <a data-id="<?= $row['sup_id']; ?>" data-role="delete" class="btn btn-danger">ลบ</a>
+                        <a data-id="<?= $row['sup_id']; ?>" data-role="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a data-id="<?= $row['sup_id']; ?>" data-role="delete" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
                       </td>
                     </tr>
                     <?php } ?>

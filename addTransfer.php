@@ -100,9 +100,9 @@ include_once('config/db.php');
 
                     
                     ?>
-                    <tr class="text-center">
+                    <tr id="<?= $row['t_id']; ?>" class="text-center">
                       <td><?= $row['t_id']; ?></td>
-                      <td><?= $row['inv_name']; ?></td>
+                      <td data-target="product"><?= $row['inv_name']; ?></td>
                       <td><?= $row['cate_name']; ?></td>
                       <td><?= $row['t_qty']; ?></td>
                       <td>
@@ -120,9 +120,9 @@ include_once('config/db.php');
                       <td><?= $row['emp_fname'] ?><?= $row['sup_company']; ?></td>
                       <td><?= $row['t_datetime']; ?></td>
                       <td>
-                        <a href="#" class="btn btn-secondary">รายละเอียด</a>
-                        <a href="#" class="btn btn-warning">แก้ไข</a>
-                        <a href="#" class="btn btn-danger">ลบข้อมูล</a>
+                        <a href="#" class="btn btn-secondary"><i class="fa-solid fa-circle-info"></i></a>
+                        <a href="#" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a data-id="<?= $row['t_id']; ?>" data-role="delete" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
                       </td>
                     </tr>
                     <?php } ?>
