@@ -25,37 +25,76 @@ if(isset($_POST['add'])) {
   if(empty($employee)) {
 
     if($status == 1) {
-      $sql = "INSERT INTO `transfer` (`t_id`, `t_datetime`, `t_status`, `t_qty`, `emp_id`, `inv_id`, `sup_id`) VALUES (NULL, current_timestamp(), $status, $qty, NULL, '".$product_id."', $company)";
-      $query = mysqli_query($conn, $sql);
-      if($query) {
-        $update_sql = "UPDATE inventory SET inventory.inv_qty = (SELECT t_qty FROM transfer ORDER BY t_id DESC LIMIT 1) + inventory.inv_qty WHERE inventory.inv_id = '$product_id'";
-        $update_query = mysqli_query($conn, $update_sql);
-        if($update_query) {
-          echo "success";
+
+      if($qty <= 0) {
+        echo "notzeroadd";
+      } else {
+        $sql = "INSERT INTO `transfer` (`t_id`, `t_datetime`, `t_status`, `t_qty`, `emp_id`, `inv_id`, `sup_id`) VALUES (NULL, current_timestamp(), $status, $qty, NULL, '".$product_id."', $company)";
+        $query = mysqli_query($conn, $sql);
+        if($query) {
+          $update_sql = "UPDATE inventory SET inventory.inv_qty = (SELECT t_qty FROM transfer ORDER BY t_id DESC LIMIT 1) + inventory.inv_qty WHERE inventory.inv_id = '$product_id'";
+          $update_query = mysqli_query($conn, $update_sql);
+          if($update_query) {
+            echo "success";
+          } else {
+            echo "failed";
+          }
         } else {
           echo "failed";
         }
-      } else {
-        echo "failed";
       }
+
+      
     }
   }
 
   if(empty($company)) {
     if($status == 2) {
-      $sql = "INSERT INTO `transfer` (`t_id`, `t_datetime`, `t_status`, `t_qty`, `emp_id`, `inv_id`, `sup_id`) VALUES (NULL, current_timestamp(), $status, $qty, $employee, '$product_id', NULL)";
-      $query = mysqli_query($conn, $sql);
-      if($query) {
-        $update_sql = "UPDATE inventory SET inventory.inv_qty = inventory.inv_qty - (SELECT t_qty FROM transfer ORDER BY t_id DESC LIMIT 1) WHERE inventory.inv_id = '$product_id'";
-        $update_query = mysqli_query($conn, $update_sql);
-        if($update_query) {
-          echo "success";
+      // $sql = "INSERT INTO `transfer` (`t_id`, `t_datetime`, `t_status`, `t_qty`, `emp_id`, `inv_id`, `sup_id`) VALUES (NULL, current_timestamp(), $status, $qty, $employee, '$product_id', NULL)";
+      // $query = mysqli_query($conn, $sql);
+      
+
+         // if($query) {
+
+        // test for export with qty zero
+        $selete_inventory_sql = "SELECT * FROM inventory WHERE inv_id = '$product_id'";
+        $select_inventory_query = mysqli_query($conn, $selete_inventory_sql);
+        $select_inventory_row = mysqli_fetch_array($select_inventory_query);
+
+        $qtyInventory = $select_inventory_row['inv_qty'];
+
+        if($qty <= 0) {
+          echo "notzero";
         } else {
-          echo "failed";
+          if($qty > $qtyInventory || $qty == 0) {
+            echo "unsuccess";
+          } else {
+            $sql = "INSERT INTO `transfer` (`t_id`, `t_datetime`, `t_status`, `t_qty`, `emp_id`, `inv_id`, `sup_id`) VALUES (NULL, current_timestamp(), $status, $qty, $employee, '$product_id', NULL)";
+            $query = mysqli_query($conn, $sql);
+            if($query) {
+              $update_sql = "UPDATE inventory SET inventory.inv_qty = inventory.inv_qty - (SELECT t_qty FROM transfer ORDER BY t_id DESC LIMIT 1) WHERE inventory.inv_id = '$product_id'";
+              $update_query = mysqli_query($conn, $update_sql);
+              if($update_query) {
+                echo "success";
+              } else {
+                echo "unsuccess";
+              }
+            }
+          }
         }
-      } else {
-        echo "failed";
-      }
+
+        
+
+        // $update_sql = "UPDATE inventory SET inventory.inv_qty = inventory.inv_qty - (SELECT t_qty FROM transfer ORDER BY t_id DESC LIMIT 1) WHERE inventory.inv_id = '$product_id'";
+        // $update_query = mysqli_query($conn, $update_sql);
+        // if($update_query) {
+        //   echo "success";
+        // } else {
+        //   echo "failed";
+        // }
+      // } else {
+        // echo "failed";
+      // }
     }
   }
 

@@ -84,6 +84,10 @@ include_once('config/db.php');
                     <tr>
                       <th class="text-center">ลำดับเลขทำรายการ</th>
                       <th class="text-center">ชื่อสินค้า</th>
+                      <th style="display: none;"></th>
+                      <th style="display: none;"></th>
+                      <th style="display: none;"></th>
+                      <th style="display: none;"></th>
                       <th class="text-center">ประเภทสินค้า</th>
                       <th class="text-center">จำนวนสินค้า</th>
                       <th class="text-center">ประเภทการทำรายการ</th>
@@ -103,9 +107,13 @@ include_once('config/db.php');
                     <tr id="<?= $row['t_id']; ?>" class="text-center">
                       <td><?= $row['t_id']; ?></td>
                       <td data-target="product"><?= $row['inv_name']; ?></td>
-                      <td><?= $row['cate_name']; ?></td>
-                      <td><?= $row['t_qty']; ?></td>
-                      <td>
+                      <td data-target="category"><?= $row['cate_name']; ?></td>
+                      <td data-target="amount"><?= $row['t_qty']; ?></td>
+                      <td data-target="status2" style="display: none;"><?= $row['t_status']; ?></td>
+                      <td data-target="empid" style="display: none;"><?= $row['emp_id']; ?></td>
+                      <td data-target="supid" style="display: none;"><?= $row['sup_id']; ?></td>
+                      <td data-target="productId" style="display: none;"><?= $row['inv_id']; ?></td>
+                      <td data-target="statut">
                         <?php 
                         if($row['t_status'] == 1) {
                           ?>
@@ -117,11 +125,11 @@ include_once('config/db.php');
                           <h5><span class="badge rounded-pill bg-danger">เบิกจ่าย</span></h5>
                         <?php } ?>
                       </td>
-                      <td><?= $row['emp_fname'] ?><?= $row['sup_company']; ?></td>
-                      <td><?= $row['t_datetime']; ?></td>
+                      <td data-target="empname"><?= $row['emp_fname'] ?><?= $row['sup_company']; ?></td>
+                      <td data-target="timedate"><?= $row['t_datetime']; ?></td>
                       <td>
-                        <a href="#" class="btn btn-secondary"><i class="fa-solid fa-circle-info"></i></a>
-                        <a href="#" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a data-id="<?= $row['t_id']; ?>" data-role="info" href="#" class="btn btn-secondary"><i class="fa-solid fa-circle-info"></i></a>
+                        <a data-id="<?= $row['t_id']; ?>" data-role="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
                         <a data-id="<?= $row['t_id']; ?>" data-role="delete" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
                       </td>
                     </tr>
@@ -228,6 +236,120 @@ include_once('config/db.php');
           </div>
         </div>
       </div>
+
+
+      <!-- Modal -->
+      <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="infoModalLabel">รายละเอียดรายการเดินสินค้า</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <h5><b>ลำดับเลขทำรายการ: </b><a id="infoId"></a></h5>
+              <h5><b>ชื่อสินค้า: </b><a id="infoProduct"></a></h5>
+              <h5><b>ประเภทสินค้า: </b><a id="infoType"></a></h5>
+              <h5><b>จำนวนสินค้า: </b><a id="infoAmount"></a></h5>
+              <h5><b>สถานะทำรายการ: </b>
+                <p id="infoStatus" class="badge rounded-pill bg-secondary" data-status="import"></p>
+              </h5>
+              <h5><b>พนักงาน / บริษัท: </b><a id="infoEmpname"></a></h5>
+              <h5><b>วันที่เวลาทำรายการ: </b><a id="infoDatetime"></a></h5>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="editModalLabel">รายละเอียดรายการเดินสินค้า</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <form action="#" method="POST">
+                <div class="mb-3">
+                  <label class="form-label">รายการสินค้า</label>
+                  <select class="form-select" id="inv_id2">
+                    <option value="" id="productId" selected></option>
+                    <option disabled>----- กรุณาเลือกสินค้า -----</option>
+                    <?php 
+                    $inventory_sql = "SELECT * FROM `inventory` ORDER BY inv_id DESC";
+                    $inventory_query = mysqli_query($conn, $inventory_sql);
+                    while($inventory_row = mysqli_fetch_array($inventory_query)) {
+
+                    
+                    ?>
+                    <option value="<?= $inventory_row['inv_id']; ?>"><?= $inventory_row['inv_name']; ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">จำนวนสินค้า</label>
+                  <input type="number" class="form-control" value="0" id="qty2" placeholder="กรุณาป้อนจำนวนสินค้า" min="0">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">ประเภทการทำรายการ</label>
+                  <select class="form-select" id="status2">
+                    <option id="st2" value="" selected></option>
+                    <option  disabled>----- กรุณาเลือกประเภททำรายการ ----</option>
+                    <option value="1">นำเข้า</option>
+                    <option value="2">เบิกจ่าย</option>
+                  </select>
+                </div>
+                <!-- <div class="mb-3" >
+                  <label class="form-label">พนักงาน / บริษัท</label>
+                  <select class="form-select" id="selectMode">
+                    <option selected disabled>----- กรุณาเลือกบุคคลที่ทำรายการ ----</option>
+                    <option value="1">พนักงาน</option>
+                    <option value="2">บริษัท</option>
+                  </select>
+                </div> -->
+                <div class="mb-3" id="emp2">
+                  <label class="form-label">พนักงาน</label>
+                  <select class="form-select" id="empId2">
+                    <option id="selempid2" value="" selected></option>
+                    <option disabled>----- กรุณาเลือกพนักงาน ----</option>
+                    <?php 
+                    $employee_sql = "SELECT * FROM employee ORDER BY emp_id DESC";
+                    $employee_query = mysqli_query($conn, $employee_sql);
+                    while($employee_row = mysqli_fetch_array($employee_query)) {
+                    ?>
+                    <option value="<?= $employee_row['emp_id']; ?>"><?= $employee_row['emp_fname']; ?>&nbsp;&nbsp;<?= $employee_row['emp_lname']; ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+                <div class="mb-3" id="company2">
+                  <label class="form-label">บริษัท</label>
+                  <select class="form-select" id="supId2">
+                    <option id="selsupid2" value="" selected></option>
+                    <option  disabled>----- กรุณาเลือกบริษัท ----</option>
+                    <?php 
+                    $company_sql = "SELECT * FROM `supplier` ORDER BY sup_id DESC";
+                    $company_query = mysqli_query($conn, $company_sql);
+                    while($company_row = mysqli_fetch_array($company_query)) {
+                    ?>
+                    <option value="<?= $company_row['sup_id']; ?>"><?= $company_row['sup_company']; ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+              <button type="button" class="btn btn-primary" id="update">บันทึก</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
 
     </div>
     <?php } else {

@@ -105,7 +105,22 @@ $(document).ready(function() {
               }).then((result) => {
                 window.location.href = "addTransfer.php";
               })
-            } else {
+            } else if(response === "unsuccess") {
+              Swal.fire({
+                icon: 'error',
+                title: 'ไม่สามารถเบิกจ่ายได้ เนื่องจากสินค้ามีไม่เพียงพอ'
+              })
+             } else if(response === "notzero") {
+              Swal.fire({
+                icon: 'error',
+                title: 'ไม่สามารถเบิกจ่ายได้ เนื่องจากคุณใส่จำนวนน้อยกว่า 0 หรือเท่ากับ 0'
+              })
+             } else if(response === "notzeroadd") {
+              Swal.fire({
+                icon: 'error',
+                title: 'ไม่สามารถเพิ่มรายการเดินสินค้า เนื่องจากคุณใส่จำนวนน้อยกว่า 0 หรือเท่ากับ 0'
+              })
+             } else {
               // Swal.fire({
               //   icon: 'error',
               //   title: 'เพิ่มรายการเดินสินค้าล้มเหลว!'
@@ -170,6 +185,132 @@ $(document).ready(function() {
         
       }
     })
+
+  })
+
+  // INFO
+  $(document).on('click', 'a[data-role=info]', function(e) {
+    e.preventDefault();
+
+    // SELECT EMP & COMPANY
+
+   
+
+    // DEBUG TEST 
+
+    var id = $(this).data('id');
+
+    var product = $('#' + id).children('td[data-target=product]').text();
+    var category = $('#' + id).children('td[data-target=category]').text();
+    var amount = $('#' + id).children('td[data-target=amount]').text();
+    var status = $('#' + id).children('td[data-target=statut]').text();
+    var empname = $('#' + id).children('td[data-target=empname]').text();
+    var timedate = $('#' + id).children('td[data-target=timedate]').text();
+
+    // Swal.fire({
+    //   icon: 'success',
+    //   title: 'Worked! with: ' + id
+    // })
+
+    $('#infoModal').modal('toggle');
+
+
+    $('#infoId').text(id);
+    $('#infoProduct').text(product);
+    $('#infoType').text(category);
+    $('#infoAmount').text(amount);
+    $('#infoStatus').text(status);
+    $('#infoEmpname').text(empname);
+    $('#infoDatetime').text(timedate);
+
+  })
+
+
+  // EDIT
+  $(document).on('click', 'a[data-role=edit]', function(e) {
+    e.preventDefault();
+
+    var id = $(this).data('id');
+
+    var product = $('#' + id).children('td[data-target=product]').text();
+    var productId = $('#' + id).children('td[data-target=productId]').text();
+    var category = $('#' + id).children('td[data-target=category]').text();
+    var amount = $('#' + id).children('td[data-target=amount]').text();
+    var status = $('#' + id).children('td[data-target=statut]').text();
+    var status2 = $('#' + id).children('td[data-target=status2]').text();
+    var empname = $('#' + id).children('td[data-target=empname]').text();
+    var empid = $('#' + id).children('td[data-target=empid]').text();
+    var supid = $('#' + id).children('td[data-target=supid]').text();
+    var timedate = $('#' + id).children('td[data-target=timedate]').text();
+
+     // SELECT EMP & COMPANY
+
+    $('#emp2').hide();
+    $('#company2').hide();
+
+    $('#status2').change(function() {
+      // e.preventDefault();
+      
+      // DEBUG 
+      if(this.value == 1) {
+        $('#emp2').hide();
+        $('#company2').show();
+        $('#emp2').prop('selectedIndex', 0);
+      } else {
+        $('#emp2').show();
+        $('#company2').hide();
+        $('#company2').prop('selectedIndex', 0);
+        $('#selempid2').prop('selected', false);
+      }
+      
+    })
+
+
+    var id = $(this).data('id');
+
+    $('#editModal').modal('toggle');
+
+    $('#productId').val(productId)
+    $('#productId').text(product)
+    $('#qty2').val(amount)
+
+
+    // Change Select
+
+    $('#st2').val(status2).change();
+    $('#st2').text(status)
+
+    $('#selempid2').val(empid)
+    $('#selempid2').text(empname)
+
+    $('#selsupid2').val(supid)
+    $('#selsupid2').text(empname)
+
+
+
+    // console.log(id);
+  })
+
+
+  $('#update').click(function(e) {
+    e.preventDefault();
+
+    Swal.fire({
+      icon: "warning",
+      title: "กำลังอยู่ในช่วงพักเขียนโค้ด มันเหนื่อยยยยยยยย"
+    })
+
+    var inv_id2 = $("#inv_id2").val();
+    var qty2 = $("#qty2").val();
+    var status2 = $("#status2").val();
+    var empId2 = $("#empId2").val();
+    var supId2 = $("#supId2").val();
+
+    console.log(inv_id2);
+    console.log(qty2);
+    console.log(status2);
+    console.log(empId2);
+    console.log(supId2);
 
   })
 
