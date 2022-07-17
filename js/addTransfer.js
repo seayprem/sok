@@ -31,20 +31,35 @@ $(document).ready(function() {
   $('#emp').hide();
   $('#company').hide();
 
-  $('#status').change(function() {
+
+  $('#status').change(function(e) {
     // e.preventDefault();
     
     // DEBUG 
+    // กว่าจะแก้ได้อีเวร
     if(this.value == 1) {
       $('#emp').hide();
       $('#company').show();
-      $('#emp').prop('selectedIndex', 0);
+      // $('#company').find('option:eq(0)').prop('selected', true);
+      // $('#emp').prop('selectedIndex',0);
     } else {
       $('#emp').show();
       $('#company').hide();
-      $('#company').prop('selectedIndex', 0);
+      // $('#emp').find('option:eq(0)').prop('selected', true);
+      // $('#company').prop('selectedIndex',0);
     }
-    
+  })
+
+  // ทำงานได้ละ อย่าแก้นะ ขอร้อง T_T
+
+  $('#emp').change(function(e) {
+    $('#company').find('option:eq(0)').prop('selected', true);
+    $('#emp').prop('selectedIndex',0);
+  })
+
+  $('#company').change(function(e) {
+    $('#emp').find('option:eq(0)').prop('selected', true);
+    $('#company').prop('selectedIndex',0);
   })
 
   // ADD
