@@ -270,17 +270,29 @@ $(document).ready(function() {
       if(this.value == 1) {
         $('#emp2').hide();
         $('#company2').show();
-        $('#emp2').prop('selectedIndex', 0);
+        // $('#emp2').prop('selectedI ndex', 0);
       } else {
         $('#emp2').show();
         $('#company2').hide();
-        $('#company2').prop('selectedIndex', 0);
-        $('#selempid2').prop('selected', false);
+        // $('#company2').prop('selectedIndex', 0);
+        // $('#selempid2').prop('selected', false);
       }
       
     })
 
+    // ทำงานได้ละ อย่าแก้นะ ขอร้อง T_T
 
+    $('#emp2').change(function(e) {
+      $('#company2').find('option:eq(1)').prop('selected', true);
+      $('#emp2').prop('selectedIndex',1);
+    })
+
+    $('#company2').change(function(e) {
+      $('#emp2').find('option:eq(1)').prop('selected', true);
+      $('#company2').prop('selectedIndex',1);
+    })
+
+    
     var id = $(this).data('id');
 
     $('#editModal').modal('toggle');
