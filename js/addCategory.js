@@ -19,6 +19,7 @@ $(document).ready(function(e) {
             "previous":   "ก่อนหน้า"
           },
           "info": "Showing page _PAGE_ of _PAGES_ ของทั้งหมด _TOTAL_ รายการ",
+          "emptyTable": "ไม่พบข้อมูลอยู่ในระบบ"
         }
       });
     });
