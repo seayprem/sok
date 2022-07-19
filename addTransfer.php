@@ -171,13 +171,13 @@ include_once('config/db.php');
                   <select class="form-select" id="inv_id">
                     <option selected disabled>----- กรุณาเลือกสินค้า -----</option>
                     <?php 
-                    $inventory_sql = "SELECT * FROM `inventory` ORDER BY inv_id DESC";
+                    $inventory_sql = "SELECT * FROM inventory INNER JOIN category ON inventory.cate_id = category.cate_id ORDER BY inv_id DESC";
                     $inventory_query = mysqli_query($conn, $inventory_sql);
                     while($inventory_row = mysqli_fetch_array($inventory_query)) {
 
                     
                     ?>
-                    <option value="<?= $inventory_row['inv_id']; ?>"><?= $inventory_row['inv_name']; ?></option>
+                    <option value="<?= $inventory_row['inv_id']; ?>"><?= $inventory_row['inv_id']; ?> - <?= $inventory_row['inv_name']; ?> - <?= $inventory_row['cate_name']; ?> - <?= $inventory_row['inv_color']; ?></option>
                     <?php } ?>
                   </select>
                 </div>
