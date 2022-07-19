@@ -66,14 +66,10 @@ if(empty($_SESSION['emp_level'])) {
           <div class="row">
             <!-- <div class="col-md-8"> -->
               <form action="#" method="post">
-                <div class="input-group mb-3">
-                  <input type="text" id="search" name="search" class="form-control" placeholder="ค้นหาข้อมูลรายการเดินสินค้า" aria-label="recipient's username" aria-describedby="basic-addon2">
-                  <span class="input-group-text" id="basic-addon2"><i class="fa-solid fa-magnifying-glass"></i></span>
-                </div>
               </form>
 
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button class="btn btn-success" id="add">เพิ่มผู้ใช้</button>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-2">
+                <button class="btn btn-success" id="add"><i class="fa-solid fa-user-plus"></i> เพิ่มผู้ใช้</button>
             </div>
 
               <div class="table-responsive">
@@ -82,6 +78,8 @@ if(empty($_SESSION['emp_level'])) {
                     <tr>
                       <th class="text-center">ไอดี</th>
                       <th class="text-center">ชื่อ</th>
+                      <th style="display:none;" class="text-center">ชื่อ</th>
+                      <th style="display:none;" class="text-center">ชื่อ</th>
                       <th class="text-center">นามสกุล</th>
                       <th class="text-center">ที่อยู่</th>
                       <th class="text-center">เบอร์โทร</th>
@@ -107,8 +105,8 @@ if(empty($_SESSION['emp_level'])) {
                         <td data-target="phone"><?= $row['emp_phone']; ?></td>
                         <td data-target="level"><?= $row['emp_level']; ?></td>
                         <td>
-                          <a href="#" data-role="edit" data-id="<?= $row['emp_id']; ?>" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> แก้ไขข้อมูล</a>
-                          <a href="#" data-role="delete" data-id="<?= $row['emp_id']; ?>" class="btn btn-danger"><i class="fa-solid fa-trash"></i> ลบข้อมูล</a>
+                          <a href="#" data-role="edit" data-id="<?= $row['emp_id']; ?>" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                          <a href="#" data-role="delete" data-id="<?= $row['emp_id']; ?>" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
                         </td>
                       </tr>
                     <?php } ?>
@@ -127,22 +125,6 @@ if(empty($_SESSION['emp_level'])) {
                 </table>
                   
               </div>
-
-                <ul class="pagination justify-content-center">
-                  <li class="page-item disabled" id="notyet">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">ก่อนหน้า</a>
-                  </li>
-                  <li class="page-item active" id="notyet1"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item" id="notyet2" aria-current="page">
-                    <a class="page-link" href="#">2</a>
-                  </li>
-                  <li class="page-item" id="notyet3"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item" id="notyet4">
-                    <a class="page-link" href="#">ต่อไป</a>
-                  </li>
-                </ul>
-
-
                 <!-- Modal -->
               <div class="modal fade" id="addEmpModal" tabindex="-1" aria-labelledby="addEmpModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
