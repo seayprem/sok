@@ -12,7 +12,9 @@ if(isset($_POST['addproduct'])) {
   $min = $_POST['min'];
   $max = $_POST['max'];
 
-  $sql = "INSERT INTO `inventory` (inv_id, inv_name, inv_qty, inv_min, inv_max, inv_size, inv_color, cate_id) VALUES ('".$code."', '".$name."', $qty, $min, $max, '$size', '$color', $type)";
+  $code_sub = $_POST['code'].'L';
+
+  $sql = "INSERT INTO `inventory` (inv_id, inv_name, inv_qty, inv_min, inv_max, inv_size, inv_color, cate_id, inv_sub_id) VALUES ('".$code."', '".$name."', $qty, $min, $max, '$size', '$color', $type, null), ('".$code_sub."', '".$name."', 0, 0, 0, 'L', '$color', $type, '".$code."')";
   $query = mysqli_query($conn, $sql);
   if($query) {
     echo "success";
