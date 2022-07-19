@@ -182,9 +182,9 @@ if(empty($_SESSION['emp_level'])) {
                 <select class="form-select" id="size">
                   <option disabled selected>กรุณาเลือกขนาดของสินค้า</option>
                  
-                  <option value="1">XL</option>
-                  <option value="2">L</option>
-                  <option value="3">M</option>
+                  <option value="XL">XL</option>
+                  <option value="L">L</option>
+                  <option value="ม้วน">ม้วน</option>
                 </select>
               </div>
 
@@ -194,9 +194,9 @@ if(empty($_SESSION['emp_level'])) {
                 <select class="form-select" id="color">
                   <option disabled selected>กรุณาเลือกสีของสินค้า</option>
                  
-                  <option value="1">แดง</option>
-                  <option value="2">ดำ</option>
-                  <option value="3">เหลือง</option>
+                  <option value="แดง">แดง</option>
+                  <option value="ดำ">ดำ</option>
+                  <option value="เหลือง">เหลือง</option>
                 </select>
               </div>
 
@@ -274,9 +274,9 @@ if(empty($_SESSION['emp_level'])) {
                 <select class="form-select" id="size2">
                   <option disabled selected>กรุณาเลือกขนาดของสินค้า</option>
                  
-                  <option value="1">XL</option>
-                  <option value="2">L</option>
-                  <option value="3">M</option>
+                  <option value="XL">XL</option>
+                  <option value="L">L</option>
+                  <option value="ม้วน">ม้วน</option>
                 </select>
               </div>
 
@@ -286,9 +286,9 @@ if(empty($_SESSION['emp_level'])) {
                 <select class="form-select" id="color2">
                   <option disabled selected>กรุณาเลือกสีของสินค้า</option>
                  
-                  <option value="1">แดง</option>
-                  <option value="2">ดำ</option>
-                  <option value="3">เหลือง</option>
+                  <option value="แดง">แดง</option>
+                  <option value="ดำ">ดำ</option>
+                  <option value="เหลือง">เหลือง</option>
                 </select>
               </div>
 
