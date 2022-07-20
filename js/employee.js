@@ -175,7 +175,7 @@ $(document).ready(function() {
           if(response === 'success') {
             Swal.fire({
               icon: 'success',
-              title: 'อัปเดทข้อมูลพนักงานง่อยๆคนนึงสำเร็จ',
+              title: 'อัปเดทข้อมูลพนักงานสำเร็จ',
               showConfirmButton: false,
               timer: 1500
             }).then((result) => {
@@ -187,7 +187,7 @@ $(document).ready(function() {
           } else {
             Swal.fire({
               icon: 'error',
-              title: 'พัง โปรดท่องนะโม'
+              title: 'อัปเดทพนักงานล้มเหลว โปรดลองอีกครั้งค่ะ!'
             })
           }
         }
@@ -202,8 +202,8 @@ $(document).ready(function() {
       // alert("worked! " + code);
   
       Swal.fire({
-        title: 'คุณแน่ใจใช่หรือไม่? จะลบพนักงานกากๆคนนี้',
-        text: "ลบแล้วลบเลยนะฮ้าบ",
+        title: 'คุณแน่ใจใช่หรือไม่? จะลบพนักงานคนนี้',
+        text: "ข้อมูลถูกลบออกจากระบบแล้ว",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
