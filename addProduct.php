@@ -21,6 +21,10 @@ if(empty($_SESSION['emp_level'])) {
     .dataTables_filter input {
       margin-bottom: 5px;
     }
+
+    .highlight-zero {
+      background: red !important;
+    }
   </style>
 </head>
 <body>
@@ -97,7 +101,7 @@ if(empty($_SESSION['emp_level'])) {
 
                     
                     ?>
-                    <tr id="<?= $row['inv_id']; ?>" class="text-center">
+                    <tr id="<?= $row['inv_id']; ?>" class="text-center <?php if($row['inv_qty'] == 0) { echo 'highlight-zero'; } else { echo ''; } ?>">
                       <td data-target="type" style="display: none;"><?= $row['cate_id']; ?></td>
                       <td><?= $row['inv_id']; ?></td>
                       <td data-target="name"><?= $row['inv_name']; ?></td>
