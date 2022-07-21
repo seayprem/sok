@@ -126,7 +126,7 @@ include_once('config/db.php');
                         <?php } ?>
                       </td>
                       <td data-target="empname"><?= $row['emp_fname'] ?><?= $row['sup_company']; ?></td>
-                      <td data-target="timedate"><?= $row['t_datetime']; ?></td>
+                      <td data-target="timedate"><?php echo DateThai($row['t_datetime']); ?></td>
                       <td>
                         <a data-id="<?= $row['t_id']; ?>" data-role="info" href="#" class="btn btn-secondary"><i class="fa-solid fa-circle-info"></i></a>
                         <a data-id="<?= $row['t_id']; ?>" data-role="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
