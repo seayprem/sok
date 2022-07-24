@@ -224,7 +224,7 @@ include_once('config/db.php');
                   <select class="form-select" id="empId">
                     <option selected disabled>----- กรุณาเลือกพนักงาน ----</option>
                     <?php 
-                    $employee_sql = "SELECT * FROM employee ORDER BY emp_id DESC";
+                    $employee_sql = "SELECT * FROM employee WHERE emp_level = 1 ORDER BY emp_id DESC";
                     $employee_query = mysqli_query($conn, $employee_sql);
                     while($employee_row = mysqli_fetch_array($employee_query)) {
                     ?>
