@@ -23,7 +23,7 @@ if(empty($_SESSION['emp_level'])) {
     }
 
     .highlight-zero {
-      background: red !important;
+      background: #f57a7a !important;
     }
   </style>
 </head>
