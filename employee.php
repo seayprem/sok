@@ -76,14 +76,13 @@ if(empty($_SESSION['emp_level'])) {
                 <table class="table align-middle table-hover" id="myTable">
                   <thead class="table-dark">
                     <tr>
-                      <th class="text-center">ไอดี</th>
+                      <th class="text-center">ตำแหน่ง</th>
                       <th class="text-center">ชื่อ</th>
                       <th style="display:none;" class="text-center">ชื่อ</th>
                       <th style="display:none;" class="text-center">ชื่อ</th>
                       <th class="text-center">นามสกุล</th>
                       <th class="text-center">ที่อยู่</th>
                       <th class="text-center">เบอร์โทร</th>
-                      <th class="text-center">ตำแหน่ง</th>
                       <th class="text-center">จัดการ</th>
                     </tr>
                   </thead>
@@ -96,14 +95,23 @@ if(empty($_SESSION['emp_level'])) {
                       while($row = mysqli_fetch_array($query)) {
                       ?>
                       <tr id="<?= $row['emp_id']; ?>">
-                        <td><?= $row['emp_id']; ?></td>
+                        <td data-target="level">
+                          <?php 
+                          if($row['emp_level'] == 1) {
+                            echo "พนักงานจัดการสินค้า";
+                          } else if($row['emp_level'] == 2) {
+                            echo "เจ้าของกิจการ";
+                          } else {
+                            echo "แอดมิน";
+                          }
+                          ?>
+                        </td>
                         <td style="display:none;" data-target="user"><?= $row['emp_user']; ?></td>
                         <td style="display:none;" data-target="pass"><?= $row['emp_pass']; ?></td>
                         <td data-target="fname"><?= $row['emp_fname']; ?></td>
                         <td data-target="lname"><?= $row['emp_lname']; ?></td>
                         <td data-target="address"><?= $row['emp_address']; ?></td>
                         <td data-target="phone"><?= $row['emp_phone']; ?></td>
-                        <td data-target="level"><?= $row['emp_level']; ?></td>
                         <td>
                           <a href="#" data-role="edit" data-id="<?= $row['emp_id']; ?>" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
                           <a href="#" data-role="delete" data-id="<?= $row['emp_id']; ?>" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
@@ -113,12 +121,11 @@ if(empty($_SESSION['emp_level'])) {
                   </tbody>
                   <thead class="table-dark">
                   <tr>
-                      <th class="text-center">ไอดี</th>
+                      <th class="text-center">ตำแหน่ง</th>
                       <th class="text-center">ชื่อ</th>
                       <th class="text-center">นามสกุล</th>
                       <th class="text-center">ที่อยู่</th>
                       <th class="text-center">เบอร์โทร</th>
-                      <th class="text-center">ตำแหน่ง</th>
                       <th class="text-center">จัดการ</th>
                     </tr>
                   </thead>
