@@ -22,6 +22,7 @@ $(document).ready(function() {
           "emptyTable": "ไม่พบข้อมูลอยู่ในระบบ"
         }
       });
+
     });
   }
 
@@ -340,5 +341,7 @@ $(document).ready(function() {
     console.log(supId2);
 
   })
+
+ 
 
 })

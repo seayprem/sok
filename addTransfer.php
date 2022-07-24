@@ -72,6 +72,9 @@ include_once('config/db.php');
       <div class="dashboard-content px-3 pt-4">
         <h2 class="fs-5"> เพิ่มรายการเดินสินค้า</h2>
         <button class="btn btn-success" id="add">เพิ่มข้อมูลรายการเดินสินค้า</button>
+        <a href="addTransfer.php" class="btn btn-success" id="normal">แสดงรายการทั้งหมดแบบปกติ</a>
+        <a href="addTransfer.php?status=1" class="btn btn-success" id="import">แสดงรายการนำเข้า</a>
+        <a href="addTransfer.php?status=2" class="btn btn-success" id="export">แสดงรายการเบิกจ่าย</a>
         <hr>
 
         <div class="col-md-12">
@@ -79,6 +82,9 @@ include_once('config/db.php');
             <div class="col-md-12">
 
               <div class="table-responsive">
+
+                <!-- Table  -->
+
                 <table class="table align-middle table-hover" id="myTable">
                   <thead class="table-dark">
                     <tr>
@@ -98,7 +104,16 @@ include_once('config/db.php');
                   </thead>
                   <tbody>
                     <?php 
-                    $sql = "SELECT * FROM `transfer` LEFT JOIN `employee` ON employee.emp_id = transfer.emp_id LEFT JOIN supplier ON transfer.sup_id = supplier.sup_id LEFT JOIN inventory ON transfer.inv_id = inventory.inv_id LEFT JOIN category ON inventory.cate_id = category.cate_id WHERE (transfer.emp_id IS NULL or transfer.emp_id = '') OR (transfer.emp_id IS NOT NULL or transfer.emp_id != '') OR (transfer.sup_id IS NULL or transfer.sup_id = '') OR (transfer.sup_id IS NOT NULL or transfer.sup_id != '') OR (transfer.inv_id IS NULL or transfer.inv_id = '') OR (transfer.inv_id IS NOT NULL or transfer.inv_id != '')";
+                    error_reporting(0); // ปิด Error
+                    if($_GET['status'] == 1) {
+                      $sql = "SELECT * FROM `transfer` LEFT JOIN `employee` ON employee.emp_id = transfer.emp_id LEFT JOIN supplier ON transfer.sup_id = supplier.sup_id LEFT JOIN inventory ON transfer.inv_id = inventory.inv_id LEFT JOIN category ON inventory.cate_id = category.cate_id WHERE transfer.t_status = 1";
+                    } else if($_GET['status'] == 2) {
+                      $sql = "SELECT * FROM `transfer` LEFT JOIN `employee` ON employee.emp_id = transfer.emp_id LEFT JOIN supplier ON transfer.sup_id = supplier.sup_id LEFT JOIN inventory ON transfer.inv_id = inventory.inv_id LEFT JOIN category ON inventory.cate_id = category.cate_id WHERE transfer.t_status = 2";
+                    } else {
+                      $sql = "SELECT * FROM `transfer` LEFT JOIN `employee` ON employee.emp_id = transfer.emp_id LEFT JOIN supplier ON transfer.sup_id = supplier.sup_id LEFT JOIN inventory ON transfer.inv_id = inventory.inv_id LEFT JOIN category ON inventory.cate_id = category.cate_id WHERE (transfer.emp_id IS NULL or transfer.emp_id = '') OR (transfer.emp_id IS NOT NULL or transfer.emp_id != '') OR (transfer.sup_id IS NULL or transfer.sup_id = '') OR (transfer.sup_id IS NOT NULL or transfer.sup_id != '') OR (transfer.inv_id IS NULL or transfer.inv_id = '') OR (transfer.inv_id IS NOT NULL or transfer.inv_id != '')";
+                    }
+                    
+                    
                     $query = mysqli_query($conn, $sql);
                     while($row = mysqli_fetch_array($query)) {
 
@@ -148,6 +163,9 @@ include_once('config/db.php');
                     </tr>
                   </thead>
                 </table>
+
+                <!-- End Table  -->
+
               </div>
 
             </div>
