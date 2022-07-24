@@ -48,7 +48,6 @@ $(document).ready(function() {
     // console.log("email: " + email);
     // console.log("phone: " + phone);
 
-
     $.ajax({
       url: 'supplierController.php',
       method: 'POST',
@@ -68,6 +67,16 @@ $(document).ready(function() {
             timer: 1500
           }).then((result) => {
             window.location.href = 'addSupplier.php';
+          })
+        } else if(response === 'checkyourdata') {
+          Swal.fire({
+            icon: 'warning',
+            title: 'กรุณากรอกข้อมูลให้ครบถ้วน!',
+          })
+        } else if(response === 'phone') {
+          Swal.fire({
+            icon: 'warning',
+            title: 'กรุณากรอกเบอร์โทรติดต่อให้ครบถ้วน!',
           })
         } else {
           Swal.fire({

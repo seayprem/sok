@@ -19,13 +19,27 @@ if(isset($_POST['add'])) {
   // echo $phone;
   // echo "<br>";
 
-  $sql = "INSERT INTO `supplier` (sup_company, sup_address, sup_email, sup_phone) VALUES ('".$name."', '".$address."','".$email."','".$phone."')";
-  $query = mysqli_query($conn, $sql);
-  if($query) {
-    echo "success";
+  if(empty($name) || empty($address) || empty($email) || empty($phone)) {
+    echo "checkyourdata";
+  } else if(strlen($phone) != 10) {
+    echo "phone";
   } else {
-    echo "failed";
+    $sql = "INSERT INTO `supplier` (sup_company, sup_address, sup_email, sup_phone) VALUES ('".$name."', '".$address."','".$email."','".$phone."')";
+    $query = mysqli_query($conn, $sql);
+    if($query) {
+      echo "success";
+    } else {
+      echo "failed";
+    }
   }
+
+  // $sql = "INSERT INTO `supplier` (sup_company, sup_address, sup_email, sup_phone) VALUES ('".$name."', '".$address."','".$email."','".$phone."')";
+  // $query = mysqli_query($conn, $sql);
+  // if($query) {
+  //   echo "success";
+  // } else {
+  //   echo "failed";
+  // }
 
 }
 
