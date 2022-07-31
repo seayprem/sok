@@ -385,10 +385,9 @@ include_once('config/db.php');
         $('div').hide();
         Swal.fire({
           icon: 'error',
-          title: 'คุณไม่ได้รับอนุญาตในการเข้าถึงหน้าต่างนี้',
-          text: 'กรุณาเข้าสู่ระบบ!',
+          title: 'หน้าเพจนี้ได้สำหรับพนักงานจัดการคลังสินค้าหรือเจ้าของกิจการเท่านั้น',
         }).then((result) => {
-          window.location.href = 'login.php';
+          history.back();
         });
       });
       </script>";

@@ -1,7 +1,21 @@
 <?php 
+error_reporting(0);
 session_start();
 if(empty($_SESSION['emp_level'])) {
-  echo '<script>alert("คุณไม่ได้รับอนุญาตในการเข้าถึงหน้าต่างนี้");window.location.href = "login.php"</script>';
+  echo '<script src="js/sweetalert2@11.js"></script>';
+  echo '<script src="js/jquery-3.6.0.min.js"></script>';
+  echo "<script>
+  $(document).ready(function() {
+    $('div').hide();
+    Swal.fire({
+      icon: 'error',
+      title: 'คุณไม่ได้รับอนุญาตในการเข้าถึงหน้าต่างนี้',
+      text: 'กรุณาเข้าสู่ระบบ!',
+    }).then((result) => {
+      window.location.href = 'login.php';
+    });
+  });
+  </script>";
 }
 ?>
 <!DOCTYPE html>
@@ -277,7 +291,19 @@ if(empty($_SESSION['emp_level'])) {
       </div>
     </div>
     <?php } else {
-      echo '<script>alert("หน้าเพจนี้สำหรับแอดมินเท่านั้น!");window.location.href = "index.php"</script>';
+      echo '<script src="js/sweetalert2@11.js"></script>';
+      echo '<script src="js/jquery-3.6.0.min.js"></script>';
+      echo "<script>
+      $(document).ready(function() {
+        $('div').hide();
+        Swal.fire({
+          icon: 'error',
+          title: 'หน้าเพจนี้สำหรับแอดมินเท่านั้น',
+        }).then((result) => {
+          history.back();
+        });
+      });
+      </script>";
     } ?>
   </div>
 

@@ -1,4 +1,5 @@
 <?php 
+error_reporting(0);
 session_start();
 if(empty($_SESSION['emp_level'])) {
   echo '<script src="js/sweetalert2@11.js"></script>';
@@ -333,7 +334,20 @@ if(empty($_SESSION['emp_level'])) {
 
     </div>
     <?php } else {
-      echo '<script>alert("หน้าเพจนี้ได้สำหรับพนักงานจัดการคลังสินค้า หรือ เจ้าของกิจการเท่านั้น!");window.location.href = "index.php"</script>';
+      echo '<script src="js/sweetalert2@11.js"></script>';
+      echo '<script src="js/jquery-3.6.0.min.js"></script>';
+      echo "<script>
+      $(document).ready(function() {
+        $('div').hide();
+        Swal.fire({
+          icon: 'error',
+          title: 'หน้าเพจนี้ได้สำหรับพนักงานจัดการคลังสินค้า หรือ เจ้าของกิจการเท่านั้น!',
+        }).then((result) => {
+          history.back();
+        });
+      });
+      </script>";
+      // echo '<script>alert("หน้าเพจนี้ได้สำหรับพนักงานจัดการคลังสินค้า หรือ เจ้าของกิจการเท่านั้น!");window.location.href = "index.php"</script>';
     } ?>
   </div>
 
