@@ -1,7 +1,22 @@
 <?php 
+error_reporting(0); // ปิด Error
 session_start();
 if(empty($_SESSION['emp_level'])) {
-  echo '<script>alert("คุณไม่ได้รับอนุญาตในการเข้าถึงหน้าต่างนี้");window.location.href = "login.php"</script>';
+  echo '<script src="js/sweetalert2@11.js"></script>';
+  echo '<script src="js/jquery-3.6.0.min.js"></script>';
+  echo "<script>
+  $(document).ready(function() {
+    $('div').hide();
+    Swal.fire({
+      icon: 'error',
+      title: 'คุณไม่ได้รับอนุญาตในการเข้าถึงหน้าต่างนี้',
+      text: 'กรุณาเข้าสู่ระบบ!',
+    }).then((result) => {
+      window.location.href = 'login.php';
+    });
+  });
+  </script>";
+  // echo '<script>alert("คุณไม่ได้รับอนุญาตในการเข้าถึงหน้าต่างนี้");window.location.href = "login.php"</script>';
 }
 
 include_once('config/db.php');
@@ -104,7 +119,6 @@ include_once('config/db.php');
                   </thead>
                   <tbody>
                     <?php 
-                    error_reporting(0); // ปิด Error
                     if($_GET['status'] == 1) {
                       $sql = "SELECT * FROM `transfer` LEFT JOIN `employee` ON employee.emp_id = transfer.emp_id LEFT JOIN supplier ON transfer.sup_id = supplier.sup_id LEFT JOIN inventory ON transfer.inv_id = inventory.inv_id LEFT JOIN category ON inventory.cate_id = category.cate_id WHERE transfer.t_status = 1";
                     } else if($_GET['status'] == 2) {
@@ -371,7 +385,21 @@ include_once('config/db.php');
 
     </div>
     <?php } else {
-      echo '<script>alert("หน้าเพจนี้ได้สำหรับพนักงานจัดการคลังสินค้าเท่านั้น!");window.location.href = "index.php"</script>';
+      echo '<script src="js/sweetalert2@11.js"></script>';
+      echo '<script src="js/jquery-3.6.0.min.js"></script>';
+      echo "<script>
+      $(document).ready(function() {
+        $('div').hide();
+        Swal.fire({
+          icon: 'error',
+          title: 'คุณไม่ได้รับอนุญาตในการเข้าถึงหน้าต่างนี้',
+          text: 'กรุณาเข้าสู่ระบบ!',
+        }).then((result) => {
+          window.location.href = 'login.php';
+        });
+      });
+      </script>";
+      // echo '<script>alert("หน้าเพจนี้ได้สำหรับพนักงานจัดการคลังสินค้าเท่านั้น!");window.location.href = "index.php"</script>';
     } ?>
   </div>
 

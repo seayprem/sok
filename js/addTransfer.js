@@ -1,11 +1,12 @@
 $(document).ready(function() {
 
-  // datatable 
-
   getDataTable();
 
   function getDataTable() {
     $(document).ready( function () {
+
+
+      // DataTables initialisation
       $('#myTable').DataTable({
         "order": [[0, 'desc']],
         "language": {
@@ -22,6 +23,8 @@ $(document).ready(function() {
           "emptyTable": "ไม่พบข้อมูลอยู่ในระบบ"
         }
       });
+
+   
 
     });
   }
@@ -341,6 +344,9 @@ $(document).ready(function() {
     console.log(supId2);
 
   })
+
+  // Date Picker
+  
 
  
 
