@@ -94,6 +94,7 @@ if(empty($_SESSION['emp_level'])) {
                       <th class="text-center">ชื่อ</th>
                       <th style="display:none;" class="text-center">ชื่อ</th>
                       <th style="display:none;" class="text-center">ชื่อ</th>
+                      <th style="display:none;" class="text-center">ชื่อ</th>
                       <th class="text-center">นามสกุล</th>
                       <th class="text-center">ที่อยู่</th>
                       <th class="text-center">เบอร์โทร</th>
@@ -109,7 +110,7 @@ if(empty($_SESSION['emp_level'])) {
                       while($row = mysqli_fetch_array($query)) {
                       ?>
                       <tr id="<?= $row['emp_id']; ?>">
-                        <td data-target="level">
+                        <td>
                           <?php 
                           if($row['emp_level'] == 1) {
                             echo "พนักงานจัดการสินค้า";
@@ -121,6 +122,7 @@ if(empty($_SESSION['emp_level'])) {
                           ?>
                         </td>
                         <td style="display:none;" data-target="user"><?= $row['emp_user']; ?></td>
+                        <td style="display:none;" data-target="level"><?= $row['emp_level']; ?></td>
                         <td style="display:none;" data-target="pass"><?= $row['emp_pass']; ?></td>
                         <td data-target="fname"><?= $row['emp_fname']; ?></td>
                         <td data-target="lname"><?= $row['emp_lname']; ?></td>
