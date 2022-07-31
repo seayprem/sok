@@ -32,8 +32,6 @@ if($_SESSION['emp_level'] == 1) {
         <li class=""><a href="transfer.php" class="text-decoration-none px-3 py-2 d-block"><i
               class="fa-solid fa-arrow-right-arrow-left"></i> รายการเดินสินค้า</a>
         </li>
-        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-dolly"></i>
-            รายการเบิกจ่ายสินค้า</a></li>
         <li class=""><a href="supplier.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-building"></i>
             บริษัทคู่ค้าการผลิต</a></li>
       </ul>
@@ -86,7 +84,7 @@ if($_SESSION['emp_level'] == 2) {
 
         <a class="text-decoration-none px-3 py-2 d-block text-secondary"><small>คลังสินค้า</small></a>
 
-        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"><i
+        <li class=""><a href="products.php" class="text-decoration-none px-3 py-2 d-block"><i
               class="fa-solid fa-boxes-stacked"></i> สินค้าคงเหลือ</a>
         </li>
         <!-- <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block d-flex justify-content-between">
@@ -94,12 +92,10 @@ if($_SESSION['emp_level'] == 2) {
             <span class="bg-dark rounded-pill text-white py-0 px-2">02</span>
           </a>
         </li> -->
-        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"><i
+        <li class=""><a href="transfer.php" class="text-decoration-none px-3 py-2 d-block"><i
               class="fa-solid fa-arrow-right-arrow-left"></i> รายการเดินสินค้า</a>
         </li>
-        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-dolly"></i>
-            รายการเบิกจ่ายสินค้า</a></li>
-        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-building"></i>
+        <li class=""><a href="supplier.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-building"></i>
             บริษัทคู่ค้าการผลิต</a></li>
       </ul>
       <hr class="h-color mx-2">
