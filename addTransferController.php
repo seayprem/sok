@@ -74,6 +74,10 @@ if(isset($_POST['add'])) {
             if($query) {
               $update_sql = "UPDATE inventory SET inventory.inv_qty = inventory.inv_qty - (SELECT t_qty FROM transfer ORDER BY t_id DESC LIMIT 1) WHERE inventory.inv_id = '$product_id'";
               $update_query = mysqli_query($conn, $update_sql);
+              if(!empty($select_inventory_row["inv_sub_id"])) {
+                $update_sub_sql = "UPDATE inventory SET inventory.inv_qty = inventory.inv_qty + (SELECT t_qty FROM transfer ORDER BY t_id DESC LIMIT 1) WHERE inventory.inv_id = '".$select_inventory_row["inv_sub_id"]."'";
+                $update_sub_query = mysqli_query($conn, $update_sub_sql);
+              }
               if($update_query) {
                 echo "success";
               } else {
