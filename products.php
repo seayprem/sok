@@ -39,6 +39,10 @@ if(empty($_SESSION['emp_level'])) {
     .highlight-zero {
       background: #f57a7a !important;
     }
+
+    .highlight-min {
+      background: yellow !important;
+    }
   </style>
 </head>
 <body>
@@ -113,7 +117,13 @@ if(empty($_SESSION['emp_level'])) {
 
                     
                     ?>
-                    <tr id="<?= $row['inv_id']; ?>" class="text-center <?php if($row['inv_qty'] == 0) { echo 'highlight-zero'; } else { echo ''; } ?>">
+                    <tr id="<?= $row['inv_id']; ?>" class="text-center <?php 
+                    if($row['inv_qty'] == 0) { 
+                      echo 'highlight-zero'; 
+                    } else if($row['inv_qty'] <= $row['inv_min']) {
+                      echo 'highlight-min';
+                    }
+                    ?>">
                       <td data-target="type" style="display: none;"><?= $row['cate_id']; ?></td>
                       <td><?= $row['inv_id']; ?></td>
                       <td data-target="name"><?= $row['inv_name']; ?></td>

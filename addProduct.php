@@ -125,10 +125,6 @@ if(empty($_SESSION['emp_level'])) {
                     } else if($row['inv_qty'] <= $row['inv_min']) {
                       echo 'highlight-min';
                     }
-                    
-                    // if($row['inv_min'] >= $row['inv_qty']) {
-                    //   echo 'highlight-min';
-                    // }
                     ?>
                     
                     ">
