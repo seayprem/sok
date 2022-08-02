@@ -87,7 +87,7 @@ include_once('config/db.php');
       <div class="dashboard-content px-3 pt-4">
         <h2 class="fs-5"> เพิ่มรายการเดินสินค้า</h2>
         <button class="btn btn-success" id="add">เพิ่มข้อมูลรายการเดินสินค้า</button>
-        <a href="addTransfer.php" class="btn btn-success" id="normal">แสดงรายการทั้งหมดแบบปกติ</a>
+        <a href="addTransfer.php" class="btn btn-success" id="normal">แสดงรายการทั้งหมด</a>
         <a href="addTransfer.php?status=1" class="btn btn-success" id="import">แสดงรายการนำเข้า</a>
         <a href="addTransfer.php?status=2" class="btn btn-success" id="export">แสดงรายการเบิกจ่าย</a>
         <hr>
