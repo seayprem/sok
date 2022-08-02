@@ -97,9 +97,6 @@ if(isset($_POST['add'])) {
                 } else {
                   echo "success";
                 }
-
-                
-                
                 
               } else {
                 echo "unsuccess";
