@@ -75,7 +75,28 @@ if(isset($_POST['add'])) {
               $update_sql = "UPDATE inventory SET inventory.inv_qty = inventory.inv_qty - (SELECT t_qty FROM transfer ORDER BY t_id DESC LIMIT 1) WHERE inventory.inv_id = '$product_id'";
               $update_query = mysqli_query($conn, $update_sql);
               if($update_query) {
-                echo "success";
+
+                // โค้ดนี้เมื่อเบิกจ่ายแล้ว ก็จะไปเพิ่มไซต์ L อัตโนมัติ
+                $originColor = $select_inventory_row['inv_color'];
+
+                $sizeL_sql = "SELECT * FROM `inventory` WHERE inv_size = 'L' AND inv_color = '$originColor'";
+                $sizeL_query = mysqli_query($conn, $sizeL_sql);
+                $sizeL_row = mysqli_fetch_array($sizeL_query);
+
+                $color = $sizeL_row['inv_color'];
+                $idl = $sizeL_row['inv_id'];
+
+                if($select_inventory_row['inv_size'] == "XL" && $select_inventory_row['inv_color'] == $color) {
+                  $update_size_l_sql = "UPDATE inventory SET inventory.inv_qty = (SELECT t_qty FROM transfer ORDER BY t_id DESC LIMIT 1) + inventory.inv_qty WHERE inventory.inv_id = '$idl'";
+                  $update_size_l_query = mysqli_query($conn, $update_size_l_sql);
+  
+                  if($update_size_l_query) {
+                    echo "success";
+                  }
+                } else {
+                  echo "success";
+                }
+
               } else {
                 echo "unsuccess";
               }
