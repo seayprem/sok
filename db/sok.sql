@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 16, 2022 at 01:07 PM
+-- Generation Time: Aug 03, 2022 at 03:28 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -37,22 +37,7 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`cate_id`, `cate_name`) VALUES
-(4, 'ไหมพรม'),
-(5, 'พรมไหม'),
-(9, ' ทำไมถึงลบไม่ได้วะ งง'),
-(10, 'firebase'),
-(11, 'AWS'),
-(12, 'mammothz'),
-(13, 'getprobots'),
-(14, 'ninokunang'),
-(18, 'eurusd'),
-(19, 'awdawd'),
-(27, 'อิอิ'),
-(30, 'sstest'),
-(32, 'asasdasda'),
-(34, 'working'),
-(35, 'worked!'),
-(36, 'awdawd');
+(1, '7D');
 
 -- --------------------------------------------------------
 
@@ -76,8 +61,15 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`emp_id`, `emp_user`, `emp_pass`, `emp_fname`, `emp_lname`, `emp_address`, `emp_phone`, `emp_level`) VALUES
-(1, 'prem', 'prem', 'วันชัย', 'แซ่ลิ้ม', '124 จังหวัด นครราชสีมา', '0979645941', 3),
-(2, 'sun', 'sun', 'จิรายุทธ', 'มิตรอธิพันธ์', 'บัวใหญ่มั้ง ', '1234567890', 1);
+(1, 'prem', 'prem', 'วันชัย', 'แซ่ลิ้ม', '124 จังหวัด นครราชสีมา awd', '0979645941', 3),
+(2, 'sun', 'sun', 'จิรายุทธ', 'มิตรอธิพันธ์', 'บัวใหญ่มั้ง ', '1234567890', 1),
+(4, 'chakrit', '1234', 'ชาคริต', 'โชติ', 'จำไม่ได้', '123123', 1),
+(5, 'emp', 'emp', 'emp', 'emp', 'emp', '12321', 1),
+(6, 'admin', 'admin', 'admin', 'admin', 'localhost', '123', 3),
+(7, 'owner', 'owner', 'owner', 'owner', 'im your boss', '123123', 2),
+(10, 'fon', 'fon', 'ธัญกร', 'ธัญเฉลิม', 'โน้นสูงงงงง', '1231244', 1),
+(12, 'fon2', 'fon2', 'fon', 'fon', '123', '3123', 1),
+(15, 'aw', 'aw', 'aw', 'aw', 'aw', 'aw', 3);
 
 -- --------------------------------------------------------
 
@@ -90,19 +82,10 @@ CREATE TABLE `inventory` (
   `inv_name` varchar(255) NOT NULL,
   `inv_qty` int(11) NOT NULL DEFAULT 0,
   `inv_min` int(11) DEFAULT NULL,
-  `inv_max` int(11) DEFAULT NULL,
-  `inv_size` int(1) DEFAULT NULL,
-  `inv_color` int(1) DEFAULT NULL,
+  `inv_size` varchar(64) DEFAULT NULL,
+  `inv_color` varchar(64) DEFAULT NULL,
   `cate_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `inventory`
---
-
-INSERT INTO `inventory` (`inv_id`, `inv_name`, `inv_qty`, `inv_min`, `inv_max`, `inv_size`, `inv_color`, `cate_id`) VALUES
-('P0001', 'พรมรถยนต์', 0, 0, 0, 3, 1, 35),
-('P0003', 'ไหมพรมรถยนต์', 0, 0, 0, 2, 2, 34);
 
 -- --------------------------------------------------------
 
@@ -123,11 +106,12 @@ CREATE TABLE `supplier` (
 --
 
 INSERT INTO `supplier` (`sup_id`, `sup_company`, `sup_address`, `sup_email`, `sup_phone`) VALUES
-(1, 'แสนสิริไก่ย่าง', 'กรุงเทพมหานคร', 'sansiri@email.com', '123122222'),
-(2, 'งบประมาณ จำกัด', 'กรุงเทพมหานคร\naw', 'pamaan@jumgus.com', '1231222222'),
-(4, 'ซันนี่วันนี้วันหยุด', 'Work from hone', 'itsun@email.com', '1231231324'),
-(7, 'testworked!', 'work', 'work@email.com', '1234'),
-(9, 'sssawd', 'sssawd', 'sssawd', 'sssawd');
+(1, 'บริษัท อี.ไอ. โปรดักส์ จำกัด', '99/18 หมู่ 6 ถ.บางบัวทอง-สุพรรณบุรี ต.ราษฎร์นิยม อ.ไทรน้อย จ.นนทบุรี 11150', 'info@eiproducts.com', '026880808'),
+(2, 'บริษัท คลีน เท็กซ์ (ไทยแลนด์) จำกัด', '789/76 นิคมอุตสาหกรรมปิ่นทอง ตำบลหนองขาม อำเภอศรีราชา จังหวัดชลบุรี 20110', '', '0382968913'),
+(3, 'บริษัท ฮายาชิเทเลมปุ (ประเทศไทย) จำกัด', '700/360 หมู่ 6 นิคมอุตสาหกรรมอมตะนคร ถนนบางนา-ตราด ตำบลดอนหัวฬ่อ อำเภอเมืองชลบุรี จังหวัดชลบุรี 20000', '', '0382144914'),
+(4, 'บริษัท ยูนิเวอร์ซัล ไทย ไฟเบอร์ จำกัด', '700/117 หมู่ 1 นิคมอุตสาหกรรมอมตะนคร ตำบลบ้านเก่า อำเภอพานทอง จังหวัดชลบุรี 20160', '', '0387440502'),
+(5, 'บริษัท อินเตอร์เฟซฟลอร์ (ประเทศไทย) จำกัด', '700/117 หมู่ 1 นิคมอุตสาหกรรมอมตะนคร ถนนบางนา-ตราด ตำบลบ้านเก่า อำเภอพานทอง จังหวัดชลบุรี 20160', '', '0382143025'),
+(17, 'Wanchai Saelim', '124 M.2\nTumbon Nongkhatum', 'seayprem@hotmail.com', '0979645941');
 
 -- --------------------------------------------------------
 
@@ -144,25 +128,6 @@ CREATE TABLE `transfer` (
   `inv_id` varchar(11) NOT NULL,
   `sup_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `transfer`
---
-
-INSERT INTO `transfer` (`t_id`, `t_datetime`, `t_status`, `t_qty`, `emp_id`, `inv_id`, `sup_id`) VALUES
-(9, '2022-07-16 10:13:12', 1, 5, NULL, 'P0001', 4),
-(10, '2022-07-16 10:13:58', 1, 5, NULL, 'P0001', 4),
-(11, '2022-07-16 10:16:50', 1, 5, 1, 'P0001', 1),
-(16, '2022-07-16 10:20:03', 1, 4, NULL, 'P0003', 2),
-(17, '2022-07-16 10:21:34', 1, 3, NULL, 'P0003', 2),
-(18, '2022-07-16 10:24:10', 1, 4, NULL, 'P0001', 7),
-(19, '2022-07-16 10:24:23', 1, 4, NULL, 'P0003', 2),
-(20, '2022-07-16 10:24:32', 1, 7, NULL, 'P0003', 2),
-(21, '2022-07-16 10:24:39', 1, 7, NULL, 'P0001', 2),
-(22, '2022-07-16 10:28:27', 1, 1, NULL, 'P0003', 4),
-(23, '2022-07-16 10:29:22', 2, 4, 1, 'P0003', NULL),
-(24, '2022-07-16 10:30:26', 2, 3, 2, 'P0001', NULL),
-(25, '2022-07-16 10:30:37', 2, 8, 2, 'P0001', NULL);
 
 --
 -- Indexes for dumped tables
@@ -209,25 +174,25 @@ ALTER TABLE `transfer`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `cate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `cate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `sup_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `sup_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `transfer`
 --
 ALTER TABLE `transfer`
-  MODIFY `t_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `t_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
