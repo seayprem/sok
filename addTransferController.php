@@ -87,9 +87,10 @@ if(isset($_POST['add'])) {
                 $idl = $sizeL_row['inv_id'];
 
                 if($select_inventory_row['inv_size'] == "XL" && $select_inventory_row['inv_color'] == $color) {
+
                   $update_size_l_sql = "UPDATE inventory SET inventory.inv_qty = (SELECT t_qty FROM transfer ORDER BY t_id DESC LIMIT 1) + inventory.inv_qty WHERE inventory.inv_id = '$idl'";
                   $update_size_l_query = mysqli_query($conn, $update_size_l_sql);
-  
+
                   if($update_size_l_query) {
                     echo "success";
                   }
