@@ -161,50 +161,51 @@ if(empty($_SESSION['emp_level'])) {
                         <div class="form-group">
                           <label class="control-label">รหัสพนักงาน</label>
                           <div>
-                              <input type="text" class="form-control input-lg" id="code" name="" value="" required>
+                              <input type="text" class="form-control input-lg" id="code" name="" value="">
                           </div>
                         </div>
                         <div class="form-group">
                           <label class="control-label">Username</label>
                           <div>
-                              <input type="text" class="form-control input-lg" id="username" name="" value="" required>
+                              <input type="text" class="form-control input-lg" id="username" name="" value="">
                           </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label">Password</label>
                             <div>
-                                <input type="password" class="form-control input-lg" id="password" name="" value="" required>
+                                <input type="text" class="form-control input-lg" id="password" name="" value="">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label">ชื่อจริง</label>
                             <div>
-                                <input type="text" class="form-control input-lg" id="fname" name="" required>
+                                <input type="text" class="form-control input-lg" id="fname" name="">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label">นามสกุล</label>
                             <div>
-                                <input type="text" class="form-control input-lg" id="lname" name="" required>
+                                <input type="text" class="form-control input-lg" id="lname" name="">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label">ที่อยู่</label>
                             <div>
-                                <input type="text" class="form-control input-lg" id="address" name="" required>
+                                <input type="text" class="form-control input-lg" id="address" name="">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label">เบอร์โทร</label>
                             <div>
-                                <input type="text" class="form-control input-lg" id="phone" name="" minlength="10" maxlength="10" required>
+                                <input type="text" class="form-control input-lg" id="phone" name="" maxlength="10"
+                                oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label">ตำแหน่ง</label>
                             <div>
                                 <select class="form-select" id="level">
-                                  <option disabled selected>เลือกตำแหน่งงาน</option>
+                                  <option disabled>เลือกตำแหน่งงาน</option>
                                   <option value="1">พนักงานคลังสินค้า</option>
                                   <option value="2">ผู้จัดการ</option>
                                   <option value="3">แอดมิน</option>
@@ -213,7 +214,7 @@ if(empty($_SESSION['emp_level'])) {
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                          <button type="submit" class="btn btn-primary" id="add_emp">บันทึก</button>
+                          <button type="button" class="btn btn-primary" id="add_emp">บันทึก</button>
                         </div>
                       </form>
                     </div>

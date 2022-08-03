@@ -33,7 +33,7 @@ $(document).ready(function() {
   
     })
   
-    $('#add_emp').submit(function(e) {
+    $('#add_emp').click(function(e) {
       var code = $('#code').val();
       var username = $('#username').val();
       var password = $('#password').val();
@@ -53,41 +53,50 @@ $(document).ready(function() {
       // console.log("min " + min);
       // console.log("max " + max);
   
-  
-      $.ajax({
-        url: 'employeeController.php',
-        method: 'POST',
-        data: {
-            code: code,
-            username: username, 
-            password: password, 
-            fname: fname, 
-            lname: lname, 
-            address: address, 
-            phone: phone, 
-            level: level, 
-            add_emp: 'add_emp'
-        },
-        success: function(response) {
-          if(response === 'success') {
-            Swal.fire({
-              icon: 'success',
-              title: 'บันทึกสำเร็จ',
-              showConfirmButton: false,
-              timer: 1500
-            }).then((result) => {
-              window.location.href = "employee.php";
-            })
-          } else {
-            Swal.fire({
-              icon: 'error',
-              title: 'บันทึกล้มเหลว',
-              timer: 1500
-            })
+      if(code == "" || username == "" || password == "" || fname == "" || lname == "" || address == "" || phone.length < 10 || level == "" ){
+        Swal.fire({
+          icon: 'error',
+          title: 'กรุณากรอกข้อมูลให้ครบถ้วน',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        
+      }else{
+
+        $.ajax({
+          url: 'employeeController.php',
+          method: 'POST',
+          data: {
+              code: code,
+              username: username, 
+              password: password, 
+              fname: fname, 
+              lname: lname, 
+              address: address, 
+              phone: phone, 
+              level: level, 
+              add_emp: 'add_emp'
+          },
+          success: function(response) {
+            if(response === 'success') {
+              Swal.fire({
+                icon: 'success',
+                title: 'บันทึกสำเร็จ',
+                showConfirmButton: false,
+                timer: 1500
+              }).then((result) => {
+                window.location.href = "employee.php";
+              })
+            } else {
+              Swal.fire({
+                icon: 'error',
+                title: 'บันทึกล้มเหลว',
+                timer: 1500
+              })
+            }
           }
-        }
-      })
-  
+        })
+      }
     })
   
     // EDIT & UPDATE DATA
