@@ -10,9 +10,9 @@ if(isset($_POST['addproduct'])) {
   $color = $_POST['color'];
   $qty = $_POST['qty'];
   $min = $_POST['min'];
-  $max = $_POST['max'];
+  // $max = $_POST['max'];
 
-  $sql = "INSERT INTO `inventory` (inv_id, inv_name, inv_qty, inv_min, inv_max, inv_size, inv_color, cate_id) VALUES ('".$code."', '".$name."', $qty, $min, $max, '$size', '$color', $type)";
+  $sql = "INSERT INTO `inventory` (inv_id, inv_name, inv_qty, inv_min, inv_size, inv_color, cate_id) VALUES ('".$code."', '".$name."', $qty, $min, '$size', '$color', $type)";
   $query = mysqli_query($conn, $sql);
   if($query) {
     echo "success";
@@ -30,9 +30,8 @@ if(isset($_POST['update'])) {
   $color = $_POST['color'];
   $qty = $_POST['qty'];
   $min = $_POST['min'];
-  $max = $_POST['max'];
 
-  $sql = "UPDATE `inventory` SET inv_name = '".$name."', inv_qty = $qty, inv_min = $min, inv_max = $max, inv_size = '$size', inv_color = '$color', cate_id = $type WHERE inv_id = '".$code."' ";
+  $sql = "UPDATE `inventory` SET inv_name = '".$name."', inv_qty = $qty, inv_min = $min, inv_size = '$size', inv_color = '$color', cate_id = $type WHERE inv_id = '".$code."' ";
   $query = mysqli_query($conn, $sql);
   
   if($query) {

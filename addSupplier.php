@@ -85,7 +85,6 @@ if(empty($_SESSION['emp_level'])) {
         <div class="col-md-12">
           <div class="row">
             <div class="col-md-12">
-
               <div class="table-responsive">
                 <table class="table align-middle table-hover" id="myTable">
                   <thead class="table-dark">

@@ -93,7 +93,6 @@ if(empty($_SESSION['emp_level'])) {
         <div class="col-md-12">
           <div class="row">
             <div class="col-md-12">
-
               <div class="table-responsive">
                 <table class="table align-middle table-hover" id="myTable">
                   <thead class="table-dark">
@@ -106,7 +105,6 @@ if(empty($_SESSION['emp_level'])) {
                       <th class="text-center">สีสินค้า</th>
                       <th class="text-center">จำนวนสินค้า</th>
                       <th class="text-center">จำนวนที่ต้องสั่งซื้อ</th>
-                      <th class="text-center">จำนวนที่ไม่ต้องสั่งซื้อ</th>
                       <th class="text-center">จัดการ</th>
                     </tr>
                   </thead>
@@ -136,7 +134,6 @@ if(empty($_SESSION['emp_level'])) {
                       <td data-target="color"><?= $row['inv_color']; ?></td>
                       <td data-target="qty"><?= $row['inv_qty']; ?></td>
                       <td data-target="min"><?= $row['inv_min']; ?></td>
-                      <td data-target="max"><?= $row['inv_max']; ?></td>
                       <td>
                         <a href="#" data-role="edit" data-id="<?= $row['inv_id']; ?>"; class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
                         <a href="#" data-role="delete" data-id="<?= $row['inv_id']; ?>"; class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
@@ -153,13 +150,11 @@ if(empty($_SESSION['emp_level'])) {
                       <th class="text-center">สีสินค้า</th>
                       <th class="text-center">จำนวนสินค้า</th>
                       <th class="text-center">จำนวนที่ต้องสั่งซื้อ</th>
-                      <th class="text-center">จำนวนที่ไม่ต้องสั่งซื้อ</th>
                       <th class="text-center">จัดการ</th>
                     </tr>
                   </thead>
                 </table>
               </div>
-
             </div>
           </div>
         </div>
@@ -242,11 +237,11 @@ if(empty($_SESSION['emp_level'])) {
                 <input type="number" class="form-control" id="min" min="0" value="0" aria-label="Username" aria-describedby="mins">
               </div> 
 
-              <label class="form-label">จำนวนสินค้าที่ไม่จำเป็นต้องสั่งเพิ่ม</label>
+              <!-- <label class="form-label">จำนวนสินค้าที่ไม่จำเป็นต้องสั่งเพิ่ม</label>
               <div class="input-group mb-3">
                 <span class="input-group-text" id="maxs"><i class="fa-solid fa-basket-shopping"></i></span>
                 <input type="number" class="form-control" id="max" min="0" value="0" aria-label="Username" aria-describedby="maxs">
-              </div> 
+              </div>  -->
 
             </div>
             <div class="modal-footer">
@@ -334,11 +329,11 @@ if(empty($_SESSION['emp_level'])) {
                 <input type="number" class="form-control" id="min2" min="0" value="0" aria-label="Username" aria-describedby="mins">
               </div> 
 
-              <label class="form-label">จำนวนสินค้าที่ไม่จำเป็นต้องสั่งเพิ่ม</label>
+              <!-- <label class="form-label">จำนวนสินค้าที่ไม่จำเป็นต้องสั่งเพิ่ม</label>
               <div class="input-group mb-3">
                 <span class="input-group-text" id="maxs"><i class="fa-solid fa-basket-shopping"></i></span>
                 <input type="number" class="form-control" id="max2" min="0" value="0" aria-label="Username" aria-describedby="maxs">
-              </div> 
+              </div>  -->
 
             </div>
             <div class="modal-footer">

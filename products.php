@@ -92,7 +92,6 @@ if(empty($_SESSION['emp_level'])) {
         <div class="col-md-12">
           <div class="row">
             <div class="col-md-12">
-
               <div class="table-responsive">
                 <table class="table align-middle table-hover" id="myTable">
                   <thead class="table-dark">
@@ -105,7 +104,6 @@ if(empty($_SESSION['emp_level'])) {
                       <th class="text-center">สีสินค้า</th>
                       <th class="text-center">จำนวนสินค้า</th>
                       <th class="text-center">จำนวนที่ต้องสั่งซื้อ</th>
-                      <th class="text-center">จำนวนที่ไม่ต้องสั่งซื้อ</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -132,7 +130,6 @@ if(empty($_SESSION['emp_level'])) {
                       <td data-target="color"><?= $row['inv_color']; ?></td>
                       <td data-target="qty"><?= $row['inv_qty']; ?></td>
                       <td data-target="min"><?= $row['inv_min']; ?></td>
-                      <td data-target="max"><?= $row['inv_max']; ?></td>
                     </tr>
                     <?php } ?>
                   </tbody>
@@ -145,12 +142,10 @@ if(empty($_SESSION['emp_level'])) {
                       <th class="text-center">สีสินค้า</th>
                       <th class="text-center">จำนวนสินค้า</th>
                       <th class="text-center">จำนวนที่ต้องสั่งซื้อ</th>
-                      <th class="text-center">จำนวนที่ไม่ต้องสั่งซื้อ</th>
                     </tr>
                   </thead>
                 </table>
               </div>
-
             </div>
           </div>
         </div>

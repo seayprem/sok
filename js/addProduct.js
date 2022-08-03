@@ -19,7 +19,7 @@ $(document).ready(function() {
             "previous":   "ก่อนหน้า"
           },
           "info": "หน้าแสดงผล _PAGE_ of _PAGES_ ของทั้งหมด _TOTAL_ รายการ",
-          "emptyTable": "ไม่พบข้อมูลอยู่ในระบบ"
+          "emptyTable": "ไม่พบข้อมูลอยู่ในระบบ",
         }
       });
     });
@@ -65,7 +65,7 @@ $(document).ready(function() {
         color: color,
         qty: qty,
         min: min,
-        max: max,
+        // max: max,
         addproduct: 'addproduct'
       },
       success: function(response) {
