@@ -159,39 +159,45 @@ if(empty($_SESSION['emp_level'])) {
                     <div class="modal-body">
                       <form>
                         <div class="form-group">
+                          <label class="control-label">รหัสพนักงาน</label>
+                          <div>
+                              <input type="text" class="form-control input-lg" id="code" name="" value="" required>
+                          </div>
+                        </div>
+                        <div class="form-group">
                           <label class="control-label">Username</label>
                           <div>
-                              <input type="text" class="form-control input-lg" id="username" name="" value="">
+                              <input type="text" class="form-control input-lg" id="username" name="" value="" required>
                           </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label">Password</label>
                             <div>
-                                <input type="password" class="form-control input-lg" id="password" name="" value="">
+                                <input type="password" class="form-control input-lg" id="password" name="" value="" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label">ชื่อจริง</label>
                             <div>
-                                <input type="text" class="form-control input-lg" id="fname" name="">
+                                <input type="text" class="form-control input-lg" id="fname" name="" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label">นามสกุล</label>
                             <div>
-                                <input type="text" class="form-control input-lg" id="lname" name="">
+                                <input type="text" class="form-control input-lg" id="lname" name="" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label">ที่อยู่</label>
                             <div>
-                                <input type="text" class="form-control input-lg" id="address" name="">
+                                <input type="text" class="form-control input-lg" id="address" name="" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label">เบอร์โทร</label>
                             <div>
-                                <input type="text" class="form-control input-lg" id="phone" name="">
+                                <input type="text" class="form-control input-lg" id="phone" name="" minlength="10" maxlength="10" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -205,12 +211,13 @@ if(empty($_SESSION['emp_level'])) {
                                 </select>
                             </div>
                         </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                          <button type="submit" class="btn btn-primary" id="add_emp">บันทึก</button>
+                        </div>
                       </form>
                     </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                      <button type="button" class="btn btn-primary" id="add_emp">บันทึก</button>
-                    </div>
+                    
                   </div>
                 </div>
               </div>

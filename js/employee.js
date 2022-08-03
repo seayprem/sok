@@ -33,7 +33,8 @@ $(document).ready(function() {
   
     })
   
-    $('#add_emp').click(function(e) {
+    $('#add_emp').submit(function(e) {
+      var code = $('#code').val();
       var username = $('#username').val();
       var password = $('#password').val();
       var fname = $('#fname').val();
@@ -57,6 +58,7 @@ $(document).ready(function() {
         url: 'employeeController.php',
         method: 'POST',
         data: {
+            code: code,
             username: username, 
             password: password, 
             fname: fname, 

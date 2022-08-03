@@ -1,6 +1,7 @@
 <?php 
 include_once('config/db.php');
 if(isset($_POST['add_emp'])) {
+  $code = $_POST['code'];
   $username = $_POST['username'];
   $password = $_POST['password'];
   $fname = $_POST['fname'];
@@ -9,7 +10,7 @@ if(isset($_POST['add_emp'])) {
   $phone = $_POST['phone'];
   $level = $_POST['level'];
 
-  $sql = "INSERT INTO `employee` (emp_user, emp_pass, emp_fname, emp_lname, emp_address, emp_phone, emp_level) VALUES ('".$username."', '".$password."', '".$fname."', '".$lname."', '".$address."', '".$phone."', '".$level."')";
+  $sql = "INSERT INTO `employee` (emp_id, emp_user, emp_pass, emp_fname, emp_lname, emp_address, emp_phone, emp_level) VALUES ('".$code."', '".$username."', '".$password."', '".$fname."', '".$lname."', '".$address."', '".$phone."', '".$level."')";
   $query = mysqli_query($conn, $sql);
 
   if($query) {
