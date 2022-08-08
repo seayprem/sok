@@ -18,6 +18,7 @@ if(empty($_SESSION['emp_level'])) {
   </script>";
   // echo '<script>alert("คุณไม่ได้รับอนุญาตในการเข้าถึงหน้าต่างนี้");window.location.href = "login.php"</script>';
 }
+include_once('config/db.php');
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +36,13 @@ if(empty($_SESSION['emp_level'])) {
   <link rel="stylesheet" href="css/bootstrap.min.css">
 
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/jquery.dataTables.min.css">
 
+  <style>
+    .dataTables_filter input {
+      margin-bottom: 5px;
+    }
+  </style>
 
 </head>
 
@@ -173,57 +180,102 @@ if(empty($_SESSION['emp_level'])) {
 
 
         <hr>
+        <div class="dashboard-content px-3 pt-4">
+        <h2 class="fs-5"> รายการเดินสินค้าทั้งหมด</h2>
+        <a href="transfer.php" class="btn btn-warning" id="normal">แสดงรายการทั้งหมด</a>
+        <hr>
         <h2 class="fs-5">รายการเดินสินค้า <i class="fa-solid fa-arrow-right-arrow-left"></i></h2>
         <!-- Table Transfer  -->
-        <div class="table-responsive">
-          <table class="table align-middle text-center">
-            <thead>
-              <tr>
-                <th>ลำดับ</th>
-                <th>รหัสสินค้า</th>
-                <th>ชื่อสินค้า</th>
-                <th>จำนวนสินค้า</th>
-                <th>ประเภททำรายการ</th>
-                <th>วันที่เวลาทำรายการ</th>
-                <th>รายละเอียด</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>P0001</td>
-                <td>พรมรถยนต์</td>
-                <td>3</td>
-                <td><h5><span class="badge bg-success"><i class="fa-solid fa-plus"></i> นำเข้า</span></h5></td>
-                <td>7-12-2565 : 15:00</td>
-                <td>
-                  <a href="#" class="btn btn-secondary"><i class="fa-solid fa-eye"></i> รายละเอียด</a>
-                </td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>P0001</td>
-                <td>พรมรถยนต์</td>
-                <td>3</td>
-                <td><h5><span class="badge bg-danger"><i class="fa-solid fa-minus"></i> เบิกจ่าย</span></h5></td>
-                <td>7-12-2565 : 15:00</td>
-                <td>
-                  <a href="#" class="btn btn-secondary"><i class="fa-solid fa-eye"></i> รายละเอียด</a>
-                </td>
-              </tr>
-            </tbody>
-            <thead>
-              <tr>
-                <th>ลำดับ</th>
-                <th>รหัสสินค้า</th>
-                <th>ชื่อสินค้า</th>
-                <th>จำนวนสินค้า</th>
-                <th>ประเภททำรายการ</th>
-                <th>วันที่เวลาทำรายการ</th>
-                <th>รายละเอียด</th>
-              </tr>
-            </thead>
-          </table>
+          <div class="table-responsive">
+          <!-- Table  -->
+
+          <table class="table align-middle table-hover" id="myTable">
+                  <thead class="table-dark">
+                    <tr>
+                      <th class="text-center">ลำดับเลขทำรายการ</th>
+                      <th class="text-center">ชื่อสินค้า</th>
+                      <th style="display: none;"></th>
+                      <th style="display: none;"></th>
+                      <th style="display: none;"></th>
+                      <th style="display: none;"></th>
+                      <th class="text-center">ประเภทสินค้า</th>
+                      <th class="text-center">จำนวนสินค้า</th>
+                      <th class="text-center">ประเภทการทำรายการ</th>
+                      <th class="text-center">เบิกโดย พนัก/บริษัท</th>
+                      <th class="text-center">เวลาทำรายการ</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php 
+                    if($_GET['status'] == 1) {
+                      $sql = "SELECT * FROM `transfer` LEFT JOIN `employee` ON employee.emp_id = transfer.emp_id LEFT JOIN supplier ON transfer.sup_id = supplier.sup_id LEFT JOIN inventory ON transfer.inv_id = inventory.inv_id LEFT JOIN category ON inventory.cate_id = category.cate_id WHERE transfer.t_status = 1";
+                    } else if($_GET['status'] == 2) {
+                      $sql = "SELECT * FROM `transfer` LEFT JOIN `employee` ON employee.emp_id = transfer.emp_id LEFT JOIN supplier ON transfer.sup_id = supplier.sup_id LEFT JOIN inventory ON transfer.inv_id = inventory.inv_id LEFT JOIN category ON inventory.cate_id = category.cate_id WHERE transfer.t_status = 2";
+                    } else if(isset($_POST['time_select'])) {
+                      $date_start = $_POST['date_start'];
+                      $time_start = $_POST['time_start'];
+                      $date_end = $_POST['date_end'];
+                      $time_end = $_POST['time_end'];
+
+                      if(empty($date_start) && empty($time_start) && empty($date_end) && empty($time_end)) {
+                        $sql = "SELECT * FROM `transfer` LEFT JOIN `employee` ON employee.emp_id = transfer.emp_id LEFT JOIN supplier ON transfer.sup_id = supplier.sup_id LEFT JOIN inventory ON transfer.inv_id = inventory.inv_id LEFT JOIN category ON inventory.cate_id = category.cate_id";
+                      } else if(empty($time_start) && empty($time_end)) {
+                        $sql = "SELECT * FROM `transfer` LEFT JOIN `employee` ON employee.emp_id = transfer.emp_id LEFT JOIN supplier ON transfer.sup_id = supplier.sup_id LEFT JOIN inventory ON transfer.inv_id = inventory.inv_id LEFT JOIN category ON inventory.cate_id = category.cate_id WHERE DATE(t_datetime) BETWEEN '$date_start' AND '$date_end'";
+                      } else {
+                        $sql = "SELECT * FROM `transfer` LEFT JOIN `employee` ON employee.emp_id = transfer.emp_id LEFT JOIN supplier ON transfer.sup_id = supplier.sup_id LEFT JOIN inventory ON transfer.inv_id = inventory.inv_id LEFT JOIN category ON inventory.cate_id = category.cate_id WHERE t_datetime BETWEEN '$date_start $time_start' AND '$date_end $time_end'";
+                      }
+                      // $sql = "SELECT * FROM `transfer` WHERE DATE(t_datetime) >= '$date_start $time_start' AND DATE(t_datetime) <= '$date_end $time_end'";
+                    } else {
+                      $sql = "SELECT * FROM `transfer` LEFT JOIN `employee` ON employee.emp_id = transfer.emp_id LEFT JOIN supplier ON transfer.sup_id = supplier.sup_id LEFT JOIN inventory ON transfer.inv_id = inventory.inv_id LEFT JOIN category ON inventory.cate_id = category.cate_id WHERE (transfer.emp_id IS NULL or transfer.emp_id = '') OR (transfer.emp_id IS NOT NULL or transfer.emp_id != '') OR (transfer.sup_id IS NULL or transfer.sup_id = '') OR (transfer.sup_id IS NOT NULL or transfer.sup_id != '') OR (transfer.inv_id IS NULL or transfer.inv_id = '') OR (transfer.inv_id IS NOT NULL or transfer.inv_id != '')";
+                    }
+                    
+                    
+                    $query = mysqli_query($conn, $sql);
+                    while($row = mysqli_fetch_array($query)) {
+
+                    
+                    ?>
+                    <tr id="<?= $row['t_id']; ?>" class="text-center">
+                      <td><?= $row['t_id']; ?></td>
+                      <td data-target="product"><?= $row['inv_name']; ?></td>
+                      <td data-target="category"><?= $row['cate_name']; ?></td>
+                      <td data-target="amount"><?= $row['t_qty']; ?></td>
+                      <td data-target="status2" style="display: none;"><?= $row['t_status']; ?></td>
+                      <td data-target="empid" style="display: none;"><?= $row['emp_id']; ?></td>
+                      <td data-target="supid" style="display: none;"><?= $row['sup_id']; ?></td>
+                      <td data-target="productId" style="display: none;"><?= $row['inv_id']; ?></td>
+                      <td data-target="statut">
+                        <?php 
+                        if($row['t_status'] == 1) {
+                          ?>
+                          <h5><span class="badge rounded-pill bg-success">นำเข้า</span></h5>
+                        <?php } ?>
+                        <?php 
+                        if($row['t_status'] == 2) {
+                          ?>
+                          <h5><span class="badge rounded-pill bg-danger">เบิกจ่าย</span></h5>
+                        <?php } ?>
+                      </td>
+                      <td data-target="empname"><?= $row['emp_fname'] ?><?= $row['sup_company']; ?></td>
+                      <td data-target="timedate"><?php echo DateThai($row['t_datetime']); ?></td>
+                     
+                    </tr>
+                    <?php } ?>
+                  </tbody>
+                  <thead class="table-dark">
+                    <tr>
+                      <th class="text-center">ลำดับเลขทำรายการ</th>
+                      <th class="text-center">ชื่อสินค้า</th>
+                      <th class="text-center">ประเภทสินค้า</th>
+                      <th class="text-center">จำนวนสินค้า</th>
+                      <th class="text-center">ประเภทการทำรายการ</th>
+                      <th class="text-center">เบิกโดย พนัก/บริษัท</th>
+                      <th class="text-center">เวลาทำรายการ</th>
+                    </tr>
+                  </thead>
+                </table>
+
+                <!-- End Table  -->
         </div>
 
       </div>
@@ -251,6 +303,9 @@ if(empty($_SESSION['emp_level'])) {
     <script src="js/logout.js"></script>
     <script src="js/responsive.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+    <script src="js/jquery.dataTables.min.js"></script>
+    <script src="js/addTransfer.js"></script>
+
 
 
     <script>
