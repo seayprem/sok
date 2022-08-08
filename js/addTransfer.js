@@ -345,9 +345,4 @@ $(document).ready(function() {
 
   })
 
-  // Date Picker
-  
-
- 
-
 })

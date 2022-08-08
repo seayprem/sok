@@ -89,6 +89,43 @@ include_once('config/db.php');
         <a href="Transfer.php" class="btn btn-warning" id="normal">แสดงรายการทั้งหมด</a>
         <a href="Transfer.php?status=1" class="btn btn-warning" id="import">แสดงรายการนำเข้า</a>
         <a href="Transfer.php?status=2" class="btn btn-warning" id="export">แสดงรายการเบิกจ่าย</a>
+        <?php 
+        if(!$_GET['status']) {
+
+        
+        ?>
+        <form action="addTransfer.php" method="POST">
+        <div class="row">
+          <div class="col-md-3">
+                <div class="mb-3 mt-3">
+                  <label class="form-label">เลือกวันที่เริ่มต้น</label>
+                  <input type="date" name="date_start" class="form-control">
+                  <label class="form-label">เวลา</label>
+                  <input type="time" name="time_start" class="form-control">
+
+                </div>
+                <button class="btn btn-primary" id="time_select" name="time_select">ตกลง</button>
+          </div>
+          <div class="col-md-3">
+            <div class="mb-3 mt-3">
+              <label class="form-label">เลือกวันที่สิ้นสุด</label>
+              <input type="date" name="date_end" class="form-control">
+              <label class="form-label">เวลา</label>
+              <input type="time" name="time_end" class="form-control">
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <div class="d-grid 2-gap">
+                
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        </form>
+        <?php } ?>
         <hr>
 
         <div class="col-md-12">
@@ -121,6 +158,20 @@ include_once('config/db.php');
                       $sql = "SELECT * FROM `transfer` LEFT JOIN `employee` ON employee.emp_id = transfer.emp_id LEFT JOIN supplier ON transfer.sup_id = supplier.sup_id LEFT JOIN inventory ON transfer.inv_id = inventory.inv_id LEFT JOIN category ON inventory.cate_id = category.cate_id WHERE transfer.t_status = 1";
                     } else if($_GET['status'] == 2) {
                       $sql = "SELECT * FROM `transfer` LEFT JOIN `employee` ON employee.emp_id = transfer.emp_id LEFT JOIN supplier ON transfer.sup_id = supplier.sup_id LEFT JOIN inventory ON transfer.inv_id = inventory.inv_id LEFT JOIN category ON inventory.cate_id = category.cate_id WHERE transfer.t_status = 2";
+                    } else if(isset($_POST['time_select'])) {
+                      $date_start = $_POST['date_start'];
+                      $time_start = $_POST['time_start'];
+                      $date_end = $_POST['date_end'];
+                      $time_end = $_POST['time_end'];
+
+                      if(empty($date_start) && empty($time_start) && empty($date_end) && empty($time_end)) {
+                        $sql = "SELECT * FROM `transfer` LEFT JOIN `employee` ON employee.emp_id = transfer.emp_id LEFT JOIN supplier ON transfer.sup_id = supplier.sup_id LEFT JOIN inventory ON transfer.inv_id = inventory.inv_id LEFT JOIN category ON inventory.cate_id = category.cate_id";
+                      } else if(empty($time_start) && empty($time_end)) {
+                        $sql = "SELECT * FROM `transfer` LEFT JOIN `employee` ON employee.emp_id = transfer.emp_id LEFT JOIN supplier ON transfer.sup_id = supplier.sup_id LEFT JOIN inventory ON transfer.inv_id = inventory.inv_id LEFT JOIN category ON inventory.cate_id = category.cate_id WHERE DATE(t_datetime) BETWEEN '$date_start' AND '$date_end'";
+                      } else {
+                        $sql = "SELECT * FROM `transfer` LEFT JOIN `employee` ON employee.emp_id = transfer.emp_id LEFT JOIN supplier ON transfer.sup_id = supplier.sup_id LEFT JOIN inventory ON transfer.inv_id = inventory.inv_id LEFT JOIN category ON inventory.cate_id = category.cate_id WHERE t_datetime BETWEEN '$date_start $time_start' AND '$date_end $time_end'";
+                      }
+                      // $sql = "SELECT * FROM `transfer` WHERE DATE(t_datetime) >= '$date_start $time_start' AND DATE(t_datetime) <= '$date_end $time_end'";
                     } else {
                       $sql = "SELECT * FROM `transfer` LEFT JOIN `employee` ON employee.emp_id = transfer.emp_id LEFT JOIN supplier ON transfer.sup_id = supplier.sup_id LEFT JOIN inventory ON transfer.inv_id = inventory.inv_id LEFT JOIN category ON inventory.cate_id = category.cate_id WHERE (transfer.emp_id IS NULL or transfer.emp_id = '') OR (transfer.emp_id IS NOT NULL or transfer.emp_id != '') OR (transfer.sup_id IS NULL or transfer.sup_id = '') OR (transfer.sup_id IS NOT NULL or transfer.sup_id != '') OR (transfer.inv_id IS NULL or transfer.inv_id = '') OR (transfer.inv_id IS NOT NULL or transfer.inv_id != '')";
                     }
