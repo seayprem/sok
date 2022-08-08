@@ -86,15 +86,15 @@ include_once('config/db.php');
 
       <div class="dashboard-content px-3 pt-4">
         <h2 class="fs-5"> รายการเดินสินค้าทั้งหมด</h2>
-        <a href="Transfer.php" class="btn btn-warning" id="normal">แสดงรายการทั้งหมด</a>
-        <a href="Transfer.php?status=1" class="btn btn-warning" id="import">แสดงรายการนำเข้า</a>
-        <a href="Transfer.php?status=2" class="btn btn-warning" id="export">แสดงรายการเบิกจ่าย</a>
+        <a href="transfer.php" class="btn btn-warning" id="normal">แสดงรายการทั้งหมด</a>
+        <a href="transfer.php?status=1" class="btn btn-warning" id="import">แสดงรายการนำเข้า</a>
+        <a href="transfer.php?status=2" class="btn btn-warning" id="export">แสดงรายการเบิกจ่าย</a>
         <?php 
         if(!$_GET['status']) {
 
         
         ?>
-        <form action="addTransfer.php" method="POST">
+        <form action="transfer.php" method="POST">
         <div class="row">
           <div class="col-md-3">
                 <div class="mb-3 mt-3">
