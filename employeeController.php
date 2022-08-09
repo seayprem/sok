@@ -10,13 +10,27 @@ if(isset($_POST['add_emp'])) {
   $phone = $_POST['phone'];
   $level = $_POST['level'];
 
-  $sql = "INSERT INTO `employee` (emp_id, emp_user, emp_pass, emp_fname, emp_lname, emp_address, emp_phone, emp_level) VALUES ('".$code."', '".$username."', '".$password."', '".$fname."', '".$lname."', '".$address."', '".$phone."', '".$level."')";
+  $sql = "SELECT COUNT(*) AS num_rows FROM `employee` WHERE emp_id = '".$code."'";
   $query = mysqli_query($conn, $sql);
-
-  if($query) {
-    echo "success";
+  $row = mysqli_fetch_array($query);
+  if($row["num_rows"] > 0) {
+    echo "error_emp_id";
   } else {
-    echo "failed";
+    $sql = "SELECT COUNT(*) AS num_rows FROM `employee` WHERE emp_user = '".$username."'";
+    $query = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($query);
+    if($row["num_rows"] > 0) {
+      echo "error_emp_user";
+    } else {
+      $sql = "INSERT INTO `employee` (emp_id, emp_user, emp_pass, emp_fname, emp_lname, emp_address, emp_phone, emp_level) VALUES ('".$code."', '".$username."', '".$password."', '".$fname."', '".$lname."', '".$address."', '".$phone."', '".$level."')";
+      $query = mysqli_query($conn, $sql);
+
+      if($query) {
+        echo "success";
+      } else {
+        echo "failed";
+      }
+    }
   }
 }
 
