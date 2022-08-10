@@ -87,6 +87,18 @@ $(document).ready(function() {
               }).then((result) => {
                 window.location.href = "employee.php";
               })
+            } else if(response === 'error_emp_id') {
+              Swal.fire({
+                icon: 'error',
+                title: 'รหัสพนักงานซ้ำ',
+                timer: 1500
+              })
+            } else if(response === 'error_emp_user') {
+              Swal.fire({
+                icon: 'error',
+                title: 'username ซ้ำ',
+                timer: 1500
+              })
             } else {
               Swal.fire({
                 icon: 'error',

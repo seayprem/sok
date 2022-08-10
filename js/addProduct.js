@@ -78,6 +78,12 @@ $(document).ready(function() {
           }).then((result) => {
             window.location.href = "addProduct.php";
           })
+        } else if(response === 'error_inv_id') {
+          Swal.fire({
+            icon: 'error',
+            title: 'รหัสสินค้าซ้ำ',
+            timer: 1500
+          })
         } else {
           Swal.fire({
             icon: 'error',

@@ -15,7 +15,12 @@ if(isset($_POST['addproduct'])) {
   $code_sub = $_POST['code'].'L';
   $name_sub = $_POST['name'].' เหลือ';
 
-  if($size == 'XL') {
+  $sql = "SELECT COUNT(*) AS num_rows FROM `inventory` WHERE inv_id = '".$code."'";
+  $query = mysqli_query($conn, $sql);
+  $row = mysqli_fetch_array($query);
+  if($row["num_rows"] > 0) {
+    echo "error_inv_id";
+  } else if ($size == 'XL') {
     $sql = "INSERT INTO `inventory` (inv_id, inv_name, inv_qty, inv_min, inv_size, inv_color, cate_id, inv_sub_id) VALUES ('".$code."', '".$name."', $qty, $min, '$size', '$color', $type, '".$code_sub."'), ('".$code_sub."', '".$name_sub."', 0, 0, 'L', '$color', $type, null)";
     $query = mysqli_query($conn, $sql);
     if($query) {
@@ -23,8 +28,7 @@ if(isset($_POST['addproduct'])) {
     } else {
       echo "failed";
     }
-  }
-  else {
+  } else {
     $sql = "INSERT INTO `inventory` (inv_id, inv_name, inv_qty, inv_min, inv_size, inv_color, cate_id) VALUES ('".$code."', '".$name."', $qty, $min, '$size', '$color', $type)";
     $query = mysqli_query($conn, $sql);
     if($query) {
