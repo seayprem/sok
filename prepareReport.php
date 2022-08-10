@@ -88,7 +88,7 @@ $math_random = "sok".$datesss.".pdf";
 
 $filename = "report/".$math_random."";
 
-$reported_sql = "INSERT INTO `reported` (`path`) VALUES ('$math_random')";
+$reported_sql = "INSERT INTO `reported` (`path`, `report_datetime`) VALUES ('$math_random', current_timestamp())";
 mysqli_query($conn, $reported_sql);
 
 $pdf->OutPut('F', $filename, true);

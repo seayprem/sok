@@ -49,7 +49,7 @@ if(empty($_SESSION['emp_level'])) {
     
 
     <?php 
-    if($_SESSION['emp_level'] == 1) {
+    if($_SESSION['emp_level'] == 1 || $_SESSION['emp_level'] == 2) {
     ?>
     <!-- navbar Body  -->
     <div class="content">
@@ -83,7 +83,11 @@ if(empty($_SESSION['emp_level'])) {
 
       <div class="dashboard-content px-3 pt-4">
         <h2 class="fs-5"> ประวัติการทำรายงานสรุป</h2>
+        <?php 
+        if($_SESSION['level'] == 1) {
+        ?>
         <a href="report.php" class="btn btn-primary"> จัดทำรายงาน</a>
+        <?php } ?>
         
 
         <hr>
@@ -98,6 +102,7 @@ if(empty($_SESSION['emp_level'])) {
                     <tr>
                       <th class="text-center">เลขทำรายการ</th>
                       <th class="text-center">ชื่อไฟล์ PDF</th>
+                      <th class="text-center">เวลาจัดทำ</th>
                       <th class="text-center">จัดการ</th>
                     </tr>
                   </thead>
@@ -113,6 +118,7 @@ if(empty($_SESSION['emp_level'])) {
                     <tr class="text-center">
                       <td><?= $row['id']; ?></td>
                       <td><?= $row['path']; ?></td>
+                      <td><?= DateThai($row['report_datetime']); ?></td>
                       <td>
                         <a href="report/<?= $row['path']; ?>" target="_blank" class="btn btn-secondary">รายละเอียด</a>
                       </td>
@@ -123,6 +129,7 @@ if(empty($_SESSION['emp_level'])) {
                     <tr>
                       <th class="text-center">เลขทำรายการ</th>
                       <th class="text-center">ชื่อไฟล์ PDF</th>
+                      <th class="text-center">เวลาจัดทำ</th>
                       <th class="text-center">จัดการ</th>
                     </tr>
                   </thead>
