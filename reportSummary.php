@@ -84,7 +84,9 @@ if(empty($_SESSION['emp_level'])) {
       <div class="dashboard-content px-3 pt-4">
         <h2 class="fs-5"> ประวัติการทำรายงานสรุป</h2>
         <?php 
-        if($_SESSION['level'] == 1) {
+        if($_SESSION['emp_level'] == 1) {
+
+        
         ?>
         <a href="report.php" class="btn btn-primary"> จัดทำรายงาน</a>
         <?php } ?>
