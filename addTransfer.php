@@ -290,7 +290,7 @@ include_once('config/db.php');
                   </select>
                 </div> -->
                 <div class="mb-3" id="emp">
-                  <label class="form-label">พนักงาน</label>
+                  <label class="form-label">พนักงานเบิกจ่าย</label>
                   <select class="form-select" id="empId">
                     <option selected disabled>----- กรุณาเลือกพนักงาน ----</option>
                     <?php 
@@ -400,7 +400,7 @@ include_once('config/db.php');
                   </select>
                 </div> -->
                 <div class="mb-3" id="emp2">
-                  <label class="form-label">พนักงาน</label>
+                  <label class="form-label">พนักงานเบิกจ่าย</label>
                   <select class="form-select" id="empId2">
                     <option id="selempid2" value="" selected></option>
                     <option disabled>----- กรุณาเลือกพนักงาน ----</option>

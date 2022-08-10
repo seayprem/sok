@@ -135,10 +135,13 @@ if(empty($_SESSION['emp_level'])) {
           $date_end = $_POST['date_end'];
           $time_end = $_POST['time_end'];
 
+          $status_show_btn_report = 1;
          
 
           if(empty($date_start) && empty($time_start) && empty($date_end) && empty($time_end)) {
             // $sql = "SELECT * FROM `transfer` LEFT JOIN `employee` ON employee.emp_id = transfer.emp_id LEFT JOIN supplier ON transfer.sup_id = supplier.sup_id LEFT JOIN inventory ON transfer.inv_id = inventory.inv_id LEFT JOIN category ON inventory.cate_id = category.cate_id";
+            $status_show_btn_report = 2;
+
           } else if(empty($time_start) && empty($time_end)) {
             $sql = "SELECT * FROM `transfer` LEFT JOIN `employee` ON employee.emp_id = transfer.emp_id LEFT JOIN supplier ON transfer.sup_id = supplier.sup_id LEFT JOIN inventory ON transfer.inv_id = inventory.inv_id LEFT JOIN category ON inventory.cate_id = category.cate_id WHERE DATE(t_datetime) BETWEEN '$date_start' AND '$date_end'";
           } else {
@@ -153,6 +156,11 @@ if(empty($_SESSION['emp_level'])) {
 
         <!-- ออกรายงาน -->
         
+        <?php 
+        if($status_show_btn_report == 1) {
+
+        
+        ?>
         <br>
         <div class="justify-content-end">
           <form action="prepareReport.php" method="POST" target="_blank">
@@ -163,6 +171,7 @@ if(empty($_SESSION['emp_level'])) {
             <input type="submit" name="report" class="btn btn-success" value="ออกรายงาน">
           </form>
         </div>
+        <?php } ?>
         <!-- ออกรายงาน -->
 
         <hr>

@@ -1,4 +1,5 @@
 <?php 
+error_reporting(0);
 require_once('fpdf/fpdf.php');
 
 $conn = mysqli_connect("localhost", "root", "", "sok");
@@ -27,6 +28,8 @@ if(isset($_POST['report'])) {
   $time_start = $_POST['time_start'];
   $date_end = $_POST['date_end'];
   $time_end = $_POST['time_end'];
+} else {
+  header("Location: report.php");
 }
 
 if(empty($date_start) && empty($time_start) && empty($date_end) && empty($time_end)) {
