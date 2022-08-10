@@ -82,88 +82,9 @@ if(empty($_SESSION['emp_level'])) {
       <!-- content body  -->
 
       <div class="dashboard-content px-3 pt-4">
-        <h2 class="fs-5"> ออกรายงานสรุป</h2>
-        <a href="reportSummary.php" class="btn btn-primary">ประวัติการทำรายงานสรุป</a>
-        <!-- Date Picker  -->
-        <form action="report.php" method="POST">
-        <div class="row">
-          <div class="col-md-3">
-                <div class="mb-3 mt-3">
-                  <label class="form-label">เลือกวันที่เริ่มต้น</label>
-                  <input type="date" name="date_start" class="form-control">
-                  <label class="form-label">เวลา</label>
-                  <input type="time" name="time_start" class="form-control">
-
-                </div>
-                <button class="btn btn-primary" id="time_select" name="time_select">ตกลง</button>
-          </div>
-          <div class="col-md-3">
-            <div class="mb-3 mt-3">
-              <label class="form-label">เลือกวันที่สิ้นสุด</label>
-              <input type="date" name="date_end" class="form-control">
-              <label class="form-label">เวลา</label>
-              <input type="time" name="time_end" class="form-control">
-            </div>
-            
-          </div>
-          <div class="row">
-            <div class="col-md-8">
-              <div class="d-grid 2-gap">
-                
-              </div>
-            </div>
-          </div>
-          
-        </div>
-        </form>
-        <!-- Date Picker  -->
-
-
-
-
-        <?php 
-        if($_GET['status'] == 1) {
-          $sql = "SELECT * FROM `transfer` LEFT JOIN `employee` ON employee.emp_id = transfer.emp_id LEFT JOIN supplier ON transfer.sup_id = supplier.sup_id LEFT JOIN inventory ON transfer.inv_id = inventory.inv_id LEFT JOIN category ON inventory.cate_id = category.cate_id WHERE transfer.t_status = 1";
-        } else if($_GET['status'] == 2) {
-          $sql = "SELECT * FROM `transfer` LEFT JOIN `employee` ON employee.emp_id = transfer.emp_id LEFT JOIN supplier ON transfer.sup_id = supplier.sup_id LEFT JOIN inventory ON transfer.inv_id = inventory.inv_id LEFT JOIN category ON inventory.cate_id = category.cate_id WHERE transfer.t_status = 2";
-          // เลือกวันที่เวลา 
-        } else if(isset($_POST['time_select'])) {
-
-
-          $date_start = $_POST['date_start'];
-          $time_start = $_POST['time_start'];
-          $date_end = $_POST['date_end'];
-          $time_end = $_POST['time_end'];
-
-         
-
-          if(empty($date_start) && empty($time_start) && empty($date_end) && empty($time_end)) {
-            // $sql = "SELECT * FROM `transfer` LEFT JOIN `employee` ON employee.emp_id = transfer.emp_id LEFT JOIN supplier ON transfer.sup_id = supplier.sup_id LEFT JOIN inventory ON transfer.inv_id = inventory.inv_id LEFT JOIN category ON inventory.cate_id = category.cate_id";
-          } else if(empty($time_start) && empty($time_end)) {
-            $sql = "SELECT * FROM `transfer` LEFT JOIN `employee` ON employee.emp_id = transfer.emp_id LEFT JOIN supplier ON transfer.sup_id = supplier.sup_id LEFT JOIN inventory ON transfer.inv_id = inventory.inv_id LEFT JOIN category ON inventory.cate_id = category.cate_id WHERE DATE(t_datetime) BETWEEN '$date_start' AND '$date_end'";
-          } else {
-            $sql = "SELECT * FROM `transfer` LEFT JOIN `employee` ON employee.emp_id = transfer.emp_id LEFT JOIN supplier ON transfer.sup_id = supplier.sup_id LEFT JOIN inventory ON transfer.inv_id = inventory.inv_id LEFT JOIN category ON inventory.cate_id = category.cate_id WHERE t_datetime BETWEEN '$date_start $time_start' AND '$date_end $time_end'";
-          }
-          // $sql = "SELECT * FROM `transfer` WHERE DATE(t_datetime) >= '$date_start $time_start' AND DATE(t_datetime) <= '$date_end $time_end'";
-
-        } else {
-          // $sql = "SELECT * FROM `transfer` LEFT JOIN `employee` ON employee.emp_id = transfer.emp_id LEFT JOIN supplier ON transfer.sup_id = supplier.sup_id LEFT JOIN inventory ON transfer.inv_id = inventory.inv_id LEFT JOIN category ON inventory.cate_id = category.cate_id WHERE (transfer.emp_id IS NULL or transfer.emp_id = '') OR (transfer.emp_id IS NOT NULL or transfer.emp_id != '') OR (transfer.sup_id IS NULL or transfer.sup_id = '') OR (transfer.sup_id IS NOT NULL or transfer.sup_id != '') OR (transfer.inv_id IS NULL or transfer.inv_id = '') OR (transfer.inv_id IS NOT NULL or transfer.inv_id != '')";
-        }
-        ?>
-
-        <!-- ออกรายงาน -->
+        <h2 class="fs-5"> ประวัติการทำรายงานสรุป</h2>
+        <a href="report.php" class="btn btn-primary"> จัดทำรายงาน</a>
         
-        <br>
-        <div class="justify-content-end">
-          <form action="prepareReport.php" method="POST" target="_blank">
-            <input type="hidden" name="date_start" value="<?= $date_start; ?>">
-            <input type="hidden" name="time_start" value="<?= $time_start; ?>">
-            <input type="hidden" name="date_end" value="<?= $date_end; ?>">
-            <input type="hidden" name="time_end" value="<?= $time_end; ?>">
-            <input type="submit" name="report" class="btn btn-success" value="ออกรายงาน">
-          </form>
-        </div>
-        <!-- ออกรายงาน -->
 
         <hr>
         
@@ -175,17 +96,14 @@ if(empty($_SESSION['emp_level'])) {
                 <table class="table align-middle table-hover" id="myTable">
                   <thead class="table-dark">
                     <tr>
-                      <th class="text-center">รหัสสินค้า</th>
-                      <th class="text-center">ชื่อสินค้า</th>
-                      <th class="text-center">จำนวนสินค้า</th>
-                      <th class="text-center">สีของสินค้า</th>
-                      <th class="text-center">สถานะ</th>
-                      <th class="text-center">วันเวลา</th>
+                      <th class="text-center">เลขทำรายการ</th>
+                      <th class="text-center">ชื่อไฟล์ PDF</th>
+                      <th class="text-center">จัดการ</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php 
-                    
+                    $sql = "SELECT * FROM `reported`";
                     $query = mysqli_query($conn, $sql);
 
                     while($row = mysqli_fetch_array($query)) {
@@ -193,32 +111,19 @@ if(empty($_SESSION['emp_level'])) {
                     
                     ?>
                     <tr class="text-center">
-                      <td><?= $row['inv_id']; ?></td>
-                      <td><?= $row['inv_name']; ?></td>
-                      <td><?= $row['t_qty']; ?></td>
-                      <td><?= $row['inv_color']; ?></td>
-                      <td><?php 
-                        if($row['t_status'] == 1) {
-                          ?>
-                          <h5><span class="badge rounded-pill bg-success">นำเข้า</span></h5>
-                        <?php } ?>
-                        <?php 
-                        if($row['t_status'] == 2) {
-                          ?>
-                          <h5><span class="badge rounded-pill bg-danger">เบิกจ่าย</span></h5>
-                        <?php } ?></td>
-                      <td><?php echo DateThai($row['t_datetime']); ?></td>
+                      <td><?= $row['id']; ?></td>
+                      <td><?= $row['path']; ?></td>
+                      <td>
+                        <a href="report/<?= $row['path']; ?>" target="_blank" class="btn btn-secondary">รายละเอียด</a>
+                      </td>
                     </tr>
                     <?php } ?>
                   </tbody>
                   <thead class="table-dark">
                     <tr>
-                      <th class="text-center">รหัสสินค้า</th>
-                      <th class="text-center">ชื่อสินค้า</th>
-                      <th class="text-center">จำนวนสินค้า</th>
-                      <th class="text-center">สีของสินค้า</th>
-                      <th class="text-center">สถานะ</th>
-                      <th class="text-center">วันเวลา</th>
+                      <th class="text-center">เลขทำรายการ</th>
+                      <th class="text-center">ชื่อไฟล์ PDF</th>
+                      <th class="text-center">จัดการ</th>
                     </tr>
                   </thead>
                 </table>

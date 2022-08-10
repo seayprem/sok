@@ -82,12 +82,15 @@ $pdf->Cell(0, 10, iconv('UTF-8', 'TIS-620', 'จำรายการเดิ�
 // $pdf->Cell(0, 10, iconv('UTF-8', 'TIS-620', 'จำนวนรายเบิกจ่ายทั้งหมด : '), 0, 1, 'L');
 $pdf->Cell(0, 10, iconv('UTF-8', 'TIS-620', 'จำนวนสินค้าคงคลัง ณ ปัจจุบัน : '.$product_count_total.' '), 0, 1, 'L');
 
-// $date_export = date("Y-m-d_h:i:sa");
-// $math_random = rand(0, 100);
+$datesss = date("Y-m-d_h-i-s-a");
 
+$math_random = "sok".$datesss.".pdf";
 
-// $filename = "report/sok".$math_random.".pdf";
+$filename = "report/".$math_random."";
 
-// $pdf->OutPut('F', $filename, true);
+$reported_sql = "INSERT INTO `reported` (`path`) VALUES ('$math_random')";
+mysqli_query($conn, $reported_sql);
+
+$pdf->OutPut('F', $filename, true);
 
 $pdf->OutPut();
