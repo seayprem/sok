@@ -272,7 +272,8 @@ if(empty($_SESSION['emp_level'])) {
                           <div class="form-group">
                               <label class="control-label">เบอร์โทร</label>
                               <div>
-                                  <input type="text" class="form-control input-lg" id="phone2" name="">
+                                  <input type="text" class="form-control input-lg" id="phone2" name="" maxlength="10"
+                                  oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                               </div>
                           </div>
                           <div class="form-group">

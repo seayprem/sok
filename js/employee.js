@@ -90,14 +90,12 @@ $(document).ready(function() {
             } else if(response === 'error_emp_id') {
               Swal.fire({
                 icon: 'error',
-                title: 'รหัสพนักงานซ้ำ',
-                timer: 1500
+                title: 'รหัสพนักงานซ้ำ'
               })
             } else if(response === 'error_emp_user') {
               Swal.fire({
                 icon: 'error',
-                title: 'username ซ้ำ',
-                timer: 1500
+                title: 'username ซ้ำ'
               })
             } else {
               Swal.fire({
@@ -180,41 +178,53 @@ $(document).ready(function() {
       e.preventDefault();
       // console.log("worked!" + id);
   
-      $.ajax({
-        url: 'employeeController.php',
-        method: 'POST',
-        data: {
-          code: code,
-          user: user,
-          pass: pass,
-          fname: fname,
-          lname: lname,
-          address: address,
-          phone: phone,
-          level: level,
-          update: 'update'
-        },
-        success: function(response) {
-          if(response === 'success') {
-            Swal.fire({
-              icon: 'success',
-              title: 'อัปเดทข้อมูลพนักงานสำเร็จ',
-              showConfirmButton: false,
-              timer: 1500
-            }).then((result) => {
-              window.location.href = "employee.php";
-              // Not working not use it
-              // $('#' + id).children('td[data-target=name]').text(name);
-              // $('#editModal').modal('toggle');
-            })
-          } else {
-            Swal.fire({
-              icon: 'error',
-              title: 'อัปเดทพนักงานล้มเหลว โปรดลองอีกครั้งค่ะ!'
-            })
+      if(code == "" || username == "" || password == "" || fname == "" || lname == "" || address == "" || phone.length < 10 || level == "" ){
+        Swal.fire({
+          icon: 'error',
+          title: 'กรุณากรอกข้อมูลให้ครบถ้วน',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        
+      }else{
+        $.ajax({
+          url: 'employeeController.php',
+          method: 'POST',
+          data: {
+            code: code,
+            user: user,
+            pass: pass,
+            fname: fname,
+            lname: lname,
+            address: address,
+            phone: phone,
+            level: level,
+            update: 'update'
+          },
+          success: function(response) {
+            if(response === 'success') {
+              Swal.fire({
+                icon: 'success',
+                title: 'อัปเดทข้อมูลพนักงานสำเร็จ',
+                showConfirmButton: false,
+                timer: 1500
+              }).then((result) => {
+                window.location.href = "employee.php";
+                // Not working not use it
+                // $('#' + id).children('td[data-target=name]').text(name);
+                // $('#editModal').modal('toggle');
+              })
+            } else {
+              Swal.fire({
+                icon: 'error',
+                title: 'อัปเดทพนักงานล้มเหลว โปรดลองอีกครั้งค่ะ!'
+              })
+            }
           }
-        }
-      })
+        })
+  
+      }
+
   
   
     })
