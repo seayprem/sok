@@ -69,7 +69,7 @@ if(isset($_POST['add'])) {
           if($qty > $qtyInventory || $qty == 0) {
             echo "unsuccess";
           } else {
-            $sql = "INSERT INTO `transfer` (`t_id`, `t_datetime`, `t_status`, `t_qty`, `emp_id`, `inv_id`, `sup_id`) VALUES (NULL, current_timestamp(), $status, $qty, $employee, '$product_id', NULL)";
+            $sql = "INSERT INTO `transfer` (`t_id`, `t_datetime`, `t_status`, `t_qty`, `emp_id`, `inv_id`, `sup_id`) VALUES (NULL, current_timestamp(), $status, $qty, '$employee', '$product_id', NULL)";
             $query = mysqli_query($conn, $sql);
             if($query) {
 
