@@ -142,6 +142,7 @@ include_once('config/db.php');
                   <thead class="table-dark">
                     <tr>
                       <th class="text-center">ลำดับเลขทำรายการ</th>
+                      <th class="text-center">รหัสสินค้า</th>
                       <th class="text-center">ชื่อสินค้า</th>
                       <th style="display: none;"></th>
                       <th style="display: none;"></th>
@@ -191,6 +192,7 @@ include_once('config/db.php');
                     ?>
                     <tr id="<?= $row['t_id']; ?>" class="text-center">
                       <td><?= $row['t_id']; ?></td>
+                      <td><?= $row['inv_id']; ?></td>
                       <td data-target="product"><?= $row['inv_name']; ?></td>
                       <td data-target="category"><?= $row['cate_name']; ?></td>
                       <td data-target="amount"><?= $row['t_qty']; ?></td>
@@ -223,6 +225,7 @@ include_once('config/db.php');
                   <thead class="table-dark">
                     <tr>
                       <th class="text-center">ลำดับเลขทำรายการ</th>
+                      <th class="text-center">รหัสสินค้า</th>
                       <th class="text-center">ชื่อสินค้า</th>
                       <th class="text-center">ประเภทสินค้า</th>
                       <th class="text-center">จำนวนสินค้า</th>
@@ -293,13 +296,7 @@ include_once('config/db.php');
                   <label class="form-label">พนักงานเบิกจ่าย</label>
                   <select class="form-select" id="empId">
                     <option selected disabled>----- กรุณาเลือกพนักงาน ----</option>
-                    <?php 
-                    $employee_sql = "SELECT * FROM employee WHERE emp_level = 1 ORDER BY emp_id DESC";
-                    $employee_query = mysqli_query($conn, $employee_sql);
-                    while($employee_row = mysqli_fetch_array($employee_query)) {
-                    ?>
-                    <option value="<?= $employee_row['emp_id']; ?>"><?= $employee_row['emp_fname']; ?>&nbsp;&nbsp;<?= $employee_row['emp_lname']; ?></option>
-                    <?php } ?>
+                    <option value="<?= $_SESSION['emp_id']; ?>" selected><?= $_SESSION['emp_fname']; ?> <?= $_SESSION['emp_lname']; ?></option>
                   </select>
                 </div>
                 <div class="mb-3" id="company">
