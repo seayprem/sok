@@ -190,13 +190,13 @@ if(empty($_SESSION['emp_level'])) {
               <div class="input-group mb-3">
                 <label class="input-group-text" for="type"><i class="fa-solid fa-tag"></i></label>
                 <select class="form-select" id="type">
-                  <option disabled selected>กรุณาเลือกประเภทสินค้า</option>
+                  <option disabled>กรุณาเลือกประเภทสินค้า</option>
                   <?php 
-                    $category_sql = "SELECT * FROM `category` ORDER BY cate_id DESC";
+                    $category_sql = "SELECT * FROM `category` ORDER BY cate_id ASC";
                     $category_query = mysqli_query($conn, $category_sql);
                     while($category_row = mysqli_fetch_array($category_query)) {
                     ?>
-                  <option value="<?= $category_row['cate_id']; ?>"><?= $category_row['cate_name']; ?></option>
+                  <option value="<?= $category_row['cate_id']; ?>" selected><?= $category_row['cate_name']; ?></option>
                   <?php } ?>
                 </select>
               </div>
@@ -205,11 +205,9 @@ if(empty($_SESSION['emp_level'])) {
               <div class="input-group mb-3">
                 <label class="input-group-text" for="size"><i class="fa-solid fa-arrow-up-big-small"></i></label>
                 <select class="form-select" id="size">
-                  <option disabled selected>กรุณาเลือกขนาดของสินค้า</option>
+                  <option disabled>กรุณาเลือกขนาดของสินค้า</option>
                  
-                  <option value="XL">XL</option>
-                  <option value="L">L</option>
-                  <option value="ม้วน">ม้วน</option>
+                  <option value="XL" selected>XL</option>
                 </select>
               </div>
 
