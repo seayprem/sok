@@ -117,7 +117,7 @@ if(empty($_SESSION['emp_level'])) {
                       <td data-target="sale_position" style="display: none;"><?= $row['sale_position']; ?></td>
                       <td data-target="sale_phone" style="display: none;"><?= $row['sale_phone']; ?></td>
                       <td>
-                        <a href="#" class="btn btn-secondary"><i class="fa-solid fa-eye"></i></a>
+                        <a data-id="<?= $row['sup_id']; ?>" data-role="view" class="btn btn-secondary"><i class="fa-solid fa-eye"></i></a>
                         <a data-id="<?= $row['sup_id']; ?>" data-role="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
                         <a data-id="<?= $row['sup_id']; ?>" data-role="delete" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
                       </td>
@@ -256,6 +256,29 @@ if(empty($_SESSION['emp_level'])) {
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
               <button type="button" class="btn btn-primary" id="update">บันทึก</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- View Details ทำไปหาวไป -->
+    
+      <!-- Modal -->
+      <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="viewModalLabel">ข้อมูลผู้ค้า</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <h5><b>ชื่อ-นามสกุล: </b> <a id="info_salename"></a></h5>
+              <h5><b>ตำแหน่ง: </b> <a id="info_position"></a></h5>
+              <h5><b>เบอร์โทรติดต่อ: </b> <a id="info_phone"></a></h5>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
             </div>
           </div>
         </div>

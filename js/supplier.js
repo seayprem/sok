@@ -235,4 +235,26 @@ $(document).ready(function() {
 
   })
 
+
+  $(document).on('click', 'a[data-role=view]', function(e) {
+    var id = $(this).data('id');
+    e.preventDefault();
+
+    $('#viewModal').modal('toggle')
+
+    var name = $('#' + id).children('td[data-target=name]').text();
+    var address = $('#' + id).children('td[data-target=address]').text();
+    var email = $('#' + id).children('td[data-target=email]').text();
+    var phone = $('#' + id).children('td[data-target=phone]').text();
+    var sale_name = $('#' + id).children('td[data-target=sale_name]').text();
+    var sale_position = $('#' + id).children('td[data-target=sale_position]').text();
+    var sale_phone = $('#' + id).children('td[data-target=sale_phone]').text();
+
+    $('#viewModalLabel').text('ข้อมูลผู้ค้า: ' + name);
+    $('#info_salename').text(sale_name);
+    $('#info_position').text(sale_position);
+    $('#info_phone').text(sale_phone);
+
+  })
+
 })
