@@ -36,12 +36,28 @@ if(empty($date_start) && empty($time_start) && empty($date_end) && empty($time_e
   // $sql = "SELECT * FROM `transfer` LEFT JOIN `employee` ON employee.emp_id = transfer.emp_id LEFT JOIN supplier ON transfer.sup_id = supplier.sup_id LEFT JOIN inventory ON transfer.inv_id = inventory.inv_id LEFT JOIN category ON inventory.cate_id = category.cate_id";
 } else if(empty($time_start) && empty($time_end)) {
   $sql = "SELECT * FROM `transfer` LEFT JOIN `employee` ON employee.emp_id = transfer.emp_id LEFT JOIN supplier ON transfer.sup_id = supplier.sup_id LEFT JOIN inventory ON transfer.inv_id = inventory.inv_id LEFT JOIN category ON inventory.cate_id = category.cate_id WHERE DATE(t_datetime) BETWEEN '$date_start' AND '$date_end'";
+
+  $sql2 = "SELECT * FROM `transfer` LEFT JOIN `employee` ON employee.emp_id = transfer.emp_id LEFT JOIN supplier ON transfer.sup_id = supplier.sup_id LEFT JOIN inventory ON transfer.inv_id = inventory.inv_id LEFT JOIN category ON inventory.cate_id = category.cate_id WHERE DATE(t_datetime) BETWEEN '$date_start' AND '$date_end' AND transfer.t_status = 1";
+
+  $sql3 = "SELECT * FROM `transfer` LEFT JOIN `employee` ON employee.emp_id = transfer.emp_id LEFT JOIN supplier ON transfer.sup_id = supplier.sup_id LEFT JOIN inventory ON transfer.inv_id = inventory.inv_id LEFT JOIN category ON inventory.cate_id = category.cate_id WHERE DATE(t_datetime) BETWEEN '$date_start' AND '$date_end' AND transfer.t_status = 2";
+
+  
 } else {
   $sql = "SELECT * FROM `transfer` LEFT JOIN `employee` ON employee.emp_id = transfer.emp_id LEFT JOIN supplier ON transfer.sup_id = supplier.sup_id LEFT JOIN inventory ON transfer.inv_id = inventory.inv_id LEFT JOIN category ON inventory.cate_id = category.cate_id WHERE t_datetime BETWEEN '$date_start $time_start' AND '$date_end $time_end'";
+
+  $sql2 = "SELECT * FROM `transfer` LEFT JOIN `employee` ON employee.emp_id = transfer.emp_id LEFT JOIN supplier ON transfer.sup_id = supplier.sup_id LEFT JOIN inventory ON transfer.inv_id = inventory.inv_id LEFT JOIN category ON inventory.cate_id = category.cate_id WHERE DATE(t_datetime) BETWEEN '$date_start' AND '$date_end' AND transfer.t_status = 1";
+
+  $sql3 = "SELECT * FROM `transfer` LEFT JOIN `employee` ON employee.emp_id = transfer.emp_id LEFT JOIN supplier ON transfer.sup_id = supplier.sup_id LEFT JOIN inventory ON transfer.inv_id = inventory.inv_id LEFT JOIN category ON inventory.cate_id = category.cate_id WHERE DATE(t_datetime) BETWEEN '$date_start' AND '$date_end' AND transfer.t_status = 2";
 }
 
 $query = mysqli_query($conn, $sql);
 $query_count = mysqli_num_rows($query);
+
+$query2 = mysqli_query($conn, $sql2);
+$query_count_status_1 = mysqli_num_rows($query2);
+
+$query3 = mysqli_query($conn, $sql3);
+$query_count_status_2 = mysqli_num_rows($query3);
 
 $pdf = new FPDF('L', 'mm', 'A4'); // Change แนวตั้ง L = นอน P = ตั้งละมั้ง ลืมหมดละ ไม่ได้เขียนมา 21 วัน
 
@@ -61,10 +77,11 @@ $pdf->Cell(78,10, iconv('UTF-8', 'TIS-620', 'ชื่อสินค้า'), 1
 $pdf->Cell(20,10, iconv('UTF-8', 'TIS-620', 'จำนวนสินค้า'), 1, 0, 'C');
 $pdf->Cell(30,10, iconv('UTF-8', 'TIS-620', 'สีของสินค้า'), 1, 0, 'C');
 $pdf->Cell(30,10, iconv('UTF-8', 'TIS-620', 'สถานะ'), 1, 0, 'C');
-$pdf->Cell(40,10, iconv('UTF-8', 'TIS-620', 'ผู้ทำรายการ'), 1, 0, 'C');
+$pdf->Cell(40,10, iconv('UTF-8', 'TIS-620', 'ผู้รับผิดชอบ'), 1, 0, 'C');
 $pdf->Cell(40,10, iconv('UTF-8', 'TIS-620', 'วันเวลา'), 1, 1, 'C');
 
 $msg = "";
+
 
 $count_order = 1;
 
@@ -81,14 +98,15 @@ while($row = mysqli_fetch_array($query)) {
   $pdf->Cell(20,10, iconv('UTF-8', 'TIS-620', $row['t_qty']), 1, 0, 'C');
   $pdf->Cell(30,10, iconv('UTF-8', 'TIS-620', $row['inv_color']), 1, 0, 'C');
   $pdf->Cell(30,10, iconv('UTF-8', 'TIS-620', $msg), 1, 0, 'C');
-  $pdf->Cell(40,10, iconv('UTF-8', 'TIS-620', $row['emp_fname']), 1, 0, 'C');
+  $pdf->Cell(40,10, iconv('UTF-8', 'TIS-620', $row['emp_fname'] . " " . $row['emp_lname']), 1, 0, 'C');
   $pdf->Cell(40,10, iconv('UTF-8', 'TIS-620', DateThai($row['t_datetime'])), 1, 1, 'C');
 }
 
-$pdf->Cell(0, 10, iconv('UTF-8', 'TIS-620', 'จำรายการเดินสินค้าทั้งหมด : '.$query_count.' '), 0, 1, 'L');
+$pdf->Cell(0, 10, iconv('UTF-8', 'TIS-620', 'จำนวนรายการเดินสินค้าทั้งหมด : '.$query_count.' '), 0, 1, 'L');
 // $pdf->Cell(0, 10, iconv('UTF-8', 'TIS-620', 'จำนวนรายการนำเข้าทั้งหมด : '), 0, 1, 'L');
 // $pdf->Cell(0, 10, iconv('UTF-8', 'TIS-620', 'จำนวนรายเบิกจ่ายทั้งหมด : '), 0, 1, 'L');
-$pdf->Cell(0, 10, iconv('UTF-8', 'TIS-620', 'จำนวนสินค้าคงคลัง ณ ปัจจุบัน : '.$product_count_total.' '), 0, 1, 'L');
+$pdf->Cell(0, 10, iconv('UTF-8', 'TIS-620', 'จำนวนรายการนำเข้าสินค้า : '.$query_count_status_1.' '), 0, 1, 'L');
+$pdf->Cell(0, 10, iconv('UTF-8', 'TIS-620', 'จำนวนรายการเบิกจ่ายสินค้า : '.$query_count_status_2.' '), 0, 1, 'L');
 
 $datesss = date("Y-m-d_h-i-s-a");
 
