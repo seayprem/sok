@@ -85,8 +85,8 @@ include_once('config/db.php');
       <!-- content body  -->
 
       <div class="dashboard-content px-3 pt-4">
-        <h2 class="fs-5"> เพิ่มรายการเดินสินค้า</h2>
-        <button class="btn btn-success" id="add">เพิ่มข้อมูลรายการเดินสินค้า</button>
+        <h2 class="fs-5"> เพิ่มรายการเบิกจ่ายสินค้า</h2>
+        <button class="btn btn-success" id="add">เพิ่มรายการเบิกจ่ายสินค้า</button>
         <a href="addTransfer.php" class="btn btn-warning" id="normal">แสดงรายการทั้งหมด</a>
         <a href="addTransfer.php?status=1" class="btn btn-warning" id="import">แสดงรายการนำเข้า</a>
         <a href="addTransfer.php?status=2" class="btn btn-warning" id="export">แสดงรายการเบิกจ่าย</a>
@@ -252,7 +252,7 @@ include_once('config/db.php');
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="addModalLabel">เพิ่มรายการเดินสินค้า</h5>
+              <h5 class="modal-title" id="addModalLabel">เพิ่มรายการเบิกจ่ายสินค้า</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
