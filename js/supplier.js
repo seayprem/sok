@@ -40,6 +40,9 @@ $(document).ready(function() {
     var address = $('#address').val();
     var email = $('#email').val();
     var phone = $('#phone').val();
+    var sale_name = $('#sale_name').val();
+    var sale_position = $('#sale_position').val();
+    var sale_phone = $('#sale_phone').val();
 
     // DEBUG
 
@@ -56,6 +59,9 @@ $(document).ready(function() {
         address: address,
         email: email,
         phone: phone,
+        sale_name: sale_name,
+        sale_position: sale_position,
+        sale_phone: sale_phone,
         add: 'add' 
       },
       success: function(response) {
@@ -100,6 +106,9 @@ $(document).ready(function() {
     var address = $('#' + id).children('td[data-target=address]').text();
     var email = $('#' + id).children('td[data-target=email]').text();
     var phone = $('#' + id).children('td[data-target=phone]').text();
+    var sale_name = $('#' + id).children('td[data-target=sale_name]').text();
+    var sale_position = $('#' + id).children('td[data-target=sale_position]').text();
+    var sale_phone = $('#' + id).children('td[data-target=sale_phone]').text();
 
     $('#id2').val(id);
 
@@ -107,6 +116,9 @@ $(document).ready(function() {
     $('#address2').val(address);
     $('#email2').val(email);
     $('#phone2').val(phone);
+    $('#sale_name2').val(sale_name);
+    $('#sale_position2').val(sale_position);
+    $('#sale_phone2').val(sale_phone);
 
     // DEBUG 
     // console.log(id);
@@ -122,6 +134,9 @@ $(document).ready(function() {
     var address = $('#address2').val()
     var email = $('#email2').val()
     var phone = $('#phone2').val()
+    var sale_name = $('#sale_name2').val()
+    var sale_position = $('#sale_position2').val()
+    var sale_phone = $('#sale_phone2').val()
 
     // DEBUG 
     // console.log("name: " + name);
@@ -139,6 +154,9 @@ $(document).ready(function() {
         address: address,
         email: email,
         phone: phone,
+        sale_name: sale_name,
+        sale_position: sale_position,
+        sale_phone: sale_phone,
         update: 'update' 
       },
       success: function(response) {

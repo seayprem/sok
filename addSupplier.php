@@ -93,13 +93,16 @@ if(empty($_SESSION['emp_level'])) {
                       <th class="text-center">ที่อยู่</th>
                       <th class="text-center">อีเมล์</th>
                       <th class="text-center">เบอร์โทรติดต่อ</th>
+                      <th class="text-center" style="display: none;">เบอร์โทรติดต่อ</th>
+                      <th class="text-center" style="display: none;">เบอร์โทรติดต่อ</th>
+                      <th class="text-center" style="display: none;">เบอร์โทรติดต่อ</th>
                       <th class="text-center">จัดการ</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php 
                     include_once('config/db.php');
-                    $sql = "SELECT * FROM supplier";
+                    $sql = "SELECT * FROM supplier ORDER BY sup_id DESC";
                     $query = mysqli_query($conn, $sql);
                     while($row = mysqli_fetch_array($query)) {
 
@@ -110,7 +113,11 @@ if(empty($_SESSION['emp_level'])) {
                       <td data-target="address"><?= $row['sup_address']; ?></td>
                       <td data-target="email"><?= $row['sup_email']; ?></td>
                       <td data-target="phone"><?= $row['sup_phone']; ?></td>
+                      <td data-target="sale_name" style="display: none;"><?= $row['sale_name']; ?></td>
+                      <td data-target="sale_position" style="display: none;"><?= $row['sale_position']; ?></td>
+                      <td data-target="sale_phone" style="display: none;"><?= $row['sale_phone']; ?></td>
                       <td>
+                        <a href="#" class="btn btn-secondary"><i class="fa-solid fa-eye"></i></a>
                         <a data-id="<?= $row['sup_id']; ?>" data-role="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
                         <a data-id="<?= $row['sup_id']; ?>" data-role="delete" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
                       </td>
@@ -162,6 +169,27 @@ if(empty($_SESSION['emp_level'])) {
                   <label class="col-form-label">เบอร์โทรติดต่อ:</label>
                   <input type="text" class="form-control" id="phone">
                 </div>
+
+                <h5 class="modal-title">ข้อมูลผู้ค้า</h5>
+                <div class="mb-3">
+                  <label class="col-form-label">ชื่อ-นามสกุล:</label>
+                  <input type="text" class="form-control" id="sale_name">
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <div class="mb-3">
+                      <label class="col-form-label">ตำแหน่ง:</label>
+                      <input type="text" class="form-control" id="sale_position">
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="mb-3">
+                      <label class="col-form-label">เบอร์โทรติดต่อ:</label>
+                      <input type="text" class="form-control" id="sale_phone">
+                    </div>
+                  </div>
+                </div>
+
               </form>
             </div>
             <div class="modal-footer">
@@ -201,6 +229,27 @@ if(empty($_SESSION['emp_level'])) {
                   <label class="col-form-label">เบอร์โทรติดต่อ:</label>
                   <input type="text" class="form-control" id="phone2">
                 </div>
+
+                <h5 class="modal-title">ข้อมูลผู้ค้า</h5>
+                <div class="mb-3">
+                  <label class="col-form-label">ชื่อ-นามสกุล:</label>
+                  <input type="text" class="form-control" id="sale_name2">
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <div class="mb-3">
+                      <label class="col-form-label">ตำแหน่ง:</label>
+                      <input type="text" class="form-control" id="sale_position2">
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="mb-3">
+                      <label class="col-form-label">เบอร์โทรติดต่อ:</label>
+                      <input type="text" class="form-control" id="sale_phone2">
+                    </div>
+                  </div>
+                </div>
+
                 <input type="hidden" id="id2">
               </form>
             </div>

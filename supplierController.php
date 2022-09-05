@@ -6,6 +6,9 @@ if(isset($_POST['add'])) {
   $address = $_POST['address'];
   $email = $_POST['email'];
   $phone = $_POST['phone'];
+  $sale_name = $_POST['sale_name'];
+  $sale_position = $_POST['sale_position'];
+  $sale_phone = $_POST['sale_phone'];
 
   // DEBUG Check
 
@@ -24,7 +27,7 @@ if(isset($_POST['add'])) {
   } else if(strlen($phone) != 10) {
     echo "phone";
   } else {
-    $sql = "INSERT INTO `supplier` (sup_company, sup_address, sup_email, sup_phone) VALUES ('".$name."', '".$address."','".$email."','".$phone."')";
+    $sql = "INSERT INTO `supplier` (sup_company, sup_address, sup_email, sup_phone, sale_name, sale_position, sale_phone) VALUES ('".$name."', '".$address."','".$email."','".$phone."', '".$sale_name."', '".$sale_position."', '".$sale_phone."')";
     $query = mysqli_query($conn, $sql);
     if($query) {
       echo "success";
@@ -49,8 +52,11 @@ if(isset($_POST['update'])) {
   $address = $_POST['address'];
   $email = $_POST['email'];
   $phone = $_POST['phone'];
+  $sale_name = $_POST['sale_name'];
+  $sale_position = $_POST['sale_position'];
+  $sale_phone = $_POST['sale_phone'];
 
-  $sql = "UPDATE `supplier` SET sup_company = '".$name."', sup_address = '".$address."', sup_email = '".$email."', sup_phone = '".$phone."' WHERE sup_id = $id ";
+  $sql = "UPDATE `supplier` SET sup_company = '".$name."', sup_address = '".$address."', sup_email = '".$email."', sup_phone = '".$phone."', sale_name = '".$sale_name."', sale_position = '".$sale_position."', sale_phone = '".$sale_phone."' WHERE sup_id = $id ";
   $query = mysqli_query($conn, $sql);
   if($query) {
     echo "success";
