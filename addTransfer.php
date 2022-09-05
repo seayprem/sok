@@ -148,6 +148,7 @@ include_once('config/db.php');
                       <th style="display: none;"></th>
                       <th style="display: none;"></th>
                       <th style="display: none;"></th>
+                      <th style="display: none;"></th>
                       <th class="text-center">ประเภทสินค้า</th>
                       <th class="text-center">จำนวนสินค้า</th>
                       <th class="text-center">ประเภทการทำรายการ</th>
@@ -212,7 +213,17 @@ include_once('config/db.php');
                           <h5><span class="badge rounded-pill bg-danger">เบิกจ่าย</span></h5>
                         <?php } ?>
                       </td>
-                      <td data-target="empname"><?= $row['emp_fname'] ?><?= $row['sup_company']; ?></td>
+                      <?php 
+                      if($row['t_status'] == 1) {
+                      ?>
+                      <td data-target="empname"><?= $row['sup_company']; ?></td>
+                      <?php } ?>
+                      <?php 
+                      if($row['t_status'] == 2) {
+                      ?>
+                      <td data-target="empname"><?= $row['emp_fname']; ?>  <?= $row['emp_lname']; ?></td>
+                      <?php } ?>
+                      <td data-target="fault" style="display: none;"><?= $row['emp_fname']; ?> <?= $row['emp_lname']; ?></td>
                       <td data-target="timedate"><?php echo DateThai($row['t_datetime']); ?></td>
                       <td>
                         <a data-id="<?= $row['t_id']; ?>" data-role="info" href="#" class="btn btn-secondary"><i class="fa-solid fa-circle-info"></i></a>
@@ -311,6 +322,7 @@ include_once('config/db.php');
                     <option value="<?= $company_row['sup_id']; ?>"><?= $company_row['sup_company']; ?></option>
                     <?php } ?>
                   </select>
+                  <input type="hidden" id="empId2" value="<?= $_SESSION['emp_id']; ?>">
                 </div>
               </form>
             </div>
@@ -340,6 +352,7 @@ include_once('config/db.php');
                 <p id="infoStatus" class="badge rounded-pill bg-secondary" data-status="import"></p>
               </h5>
               <h5><b>พนักงาน / บริษัท: </b><a id="infoEmpname"></a></h5>
+              <h5><b>คนรับผิดชอบ: </b><a id="infoFault"></a></h5>
               <h5><b>วันที่เวลาทำรายการ: </b><a id="infoDatetime"></a></h5>
             </div>
             <div class="modal-footer">

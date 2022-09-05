@@ -5,6 +5,7 @@ if(isset($_POST['add'])) {
   $qty = $_POST['qty'];
   $status = $_POST['status'];
   $employee = $_POST['employee'];
+  $employee2 = $_POST['employee2'];
   $company = $_POST['company'];
 
 
@@ -29,7 +30,7 @@ if(isset($_POST['add'])) {
       if($qty <= 0) {
         echo "notzeroadd";
       } else {
-        $sql = "INSERT INTO `transfer` (`t_id`, `t_datetime`, `t_status`, `t_qty`, `emp_id`, `inv_id`, `sup_id`) VALUES (NULL, current_timestamp(), $status, $qty, NULL, '".$product_id."', $company)";
+        $sql = "INSERT INTO `transfer` (`t_id`, `t_datetime`, `t_status`, `t_qty`, `emp_id`, `inv_id`, `sup_id`) VALUES (NULL, current_timestamp(), $status, $qty, '$employee2', '".$product_id."', $company)";
         $query = mysqli_query($conn, $sql);
         if($query) {
           $update_sql = "UPDATE inventory SET inventory.inv_qty = (SELECT t_qty FROM transfer ORDER BY t_id DESC LIMIT 1) + inventory.inv_qty WHERE inventory.inv_id = '$product_id'";

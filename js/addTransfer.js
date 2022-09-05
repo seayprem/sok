@@ -82,6 +82,7 @@ $(document).ready(function() {
     var productQty = $("#qty").val();
     var status = $("#status").val();
     var empId = $("#empId").val();
+    var empId2 = $("#empId2").val();
     var supId = $("#supId").val();
 
     // DEBUG 
@@ -110,6 +111,7 @@ $(document).ready(function() {
             qty: productQty,
             status: status,
             employee: empId,
+            employee2: empId2,
             company: supId,
             add: 'add'
           },
@@ -225,6 +227,7 @@ $(document).ready(function() {
     var status = $('#' + id).children('td[data-target=statut]').text();
     var empname = $('#' + id).children('td[data-target=empname]').text();
     var timedate = $('#' + id).children('td[data-target=timedate]').text();
+    var fault = $('#' + id).children('td[data-target=fault]').text();
 
     // Swal.fire({
     //   icon: 'success',
@@ -241,6 +244,7 @@ $(document).ready(function() {
     $('#infoStatus').text(status);
     $('#infoEmpname').text(empname);
     $('#infoDatetime').text(timedate);
+    $('#infoFault').text(fault);
 
   })
 
