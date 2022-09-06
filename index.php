@@ -77,6 +77,25 @@ include_once('config/db.php');
         </div>
       </nav>
 
+      <!-- Dashboard System -->
+      <?php
+      $total_count = "SELECT COUNT(*) as total FROM `transfer` WHERE CONVERT(`t_datetime`, DATE) = CURRENT_DATE";
+      $total_query = mysqli_query($conn, $total_count);
+      $total_result = mysqli_fetch_assoc($total_query);
+
+      $input_count = "SELECT COUNT(*) as input FROM `transfer` WHERE CONVERT(`t_datetime`, DATE) = CURRENT_DATE AND `t_status` = 1";
+      $input_query = mysqli_query($conn, $input_count);
+      $input_result = mysqli_fetch_assoc($input_query);
+
+      $output_count = "SELECT COUNT(*) as output FROM `transfer` WHERE CONVERT(`t_datetime`, DATE) = CURRENT_DATE AND `t_status` = 2";
+      $output_query = mysqli_query($conn, $output_count);
+      $output_result = mysqli_fetch_assoc($output_query);
+
+      $inv_sum = "SELECT SUM(`inv_qty`) as inv FROM `inventory`";
+      $inv_query = mysqli_query($conn, $inv_sum);
+      $inv_result = mysqli_fetch_assoc($inv_query);
+      ?>
+
       <div class="dashboard-content px-3 pt-4">
         <h2 class="fs-5"> Dashboard</h2>
         <hr>
@@ -92,7 +111,7 @@ include_once('config/db.php');
                       <i class="fa-solid fa-arrow-right-arrow-left" style="font-size: 5rem;"></i>
                     </div>
                     <div class="col">
-                      <h3 class="display-3">10</h3>
+                      <h3 class="display-3"><?php echo $total_result['total']; ?></h3>
                       <h6>รายการเดินสินค้าวันนี้</h6>
                     </div>
                   </div>
@@ -111,7 +130,7 @@ include_once('config/db.php');
                       <i class="fa-solid fa-truck" style="font-size: 5rem;"></i>
                     </div>
                     <div class="col">
-                      <h3 class="display-3">10</h3>
+                      <h3 class="display-3"><?php echo $input_result['input']; ?></h3>
                       <h6>สินค้าที่นำเข้าวันนี้</h6>
                     </div>
                   </div>
@@ -130,7 +149,7 @@ include_once('config/db.php');
                       <i class="fa-solid fa-dolly" style="font-size: 5rem;"></i>
                     </div>
                     <div class="col">
-                      <h3 class="display-3">10</h3>
+                      <h3 class="display-3"><?php echo $output_result['output']; ?></h3>
                       <h6>สินค้าที่เบิกจ่ายวันนี้</h6>
                     </div>
                   </div>
@@ -149,7 +168,7 @@ include_once('config/db.php');
                       <i class="fa-solid fa-dolly" style="font-size: 5rem;"></i>
                     </div>
                     <div class="col">
-                      <h3 class="display-3">50</h3>
+                      <h3 class="display-3"><?php echo $inv_result['inv']; ?></h3>
                       <h6>สินค้าคงเหลือทั้งหมด</h6>
                     </div>
                   </div>
