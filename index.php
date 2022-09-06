@@ -326,6 +326,20 @@ include_once('config/db.php');
     <script src="js/addTransfer.js"></script>
 
 
+    <!-- Chart System -->
+    <?php
+    $chart_sql = "SELECT `inv_color`, SUM(`inv_qty`) as inv_qty FROM `inventory` GROUP BY `inv_color`";
+    $chart_query = mysqli_query($conn, $chart_sql);
+    // $chart_result = mysqli_fetch_assoc($chart_query);
+    $chart_data = "";
+
+    while ($row = mysqli_fetch_array($chart_query)){
+      $inv_color[] = $row['inv_color'];
+      $inv_qty[] = $row['inv_qty'];
+    }
+
+    // print (json_encode($chart_array));
+    ?>
 
     <script>
 
@@ -333,13 +347,14 @@ include_once('config/db.php');
       const myChartSize = new Chart(chartSize, {
         type: 'bar',
         data: {
-          labels: ['XXL', 'XL', 'L'],
+          // labels: ['ดำ', 'แดง', 'เหลือง'],
+          labels: <?php echo json_encode($inv_color); ?>,
           datasets: [{
             label: 'ยอดสินค้าคงเหลือ (ขนาดของพรมรถยนต์)',
-            data: [12, 19, 3],
+            data: <?php echo json_encode($inv_qty); ?>,
             backgroundColor: [
+              'rgb(0, 0, 0)',
               'rgb(255, 99, 132)',
-              'rgb(54, 162, 235)',
               'rgb(255, 205, 86)'
             ],
           }]
