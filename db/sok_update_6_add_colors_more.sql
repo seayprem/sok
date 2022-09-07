@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 07, 2022 at 04:03 PM
+-- Generation Time: Sep 07, 2022 at 04:20 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -89,9 +89,9 @@ CREATE TABLE `inventory` (
 --
 
 INSERT INTO `inventory` (`inv_id`, `inv_name`, `inv_qty`, `inv_min`, `inv_size`, `inv_color`, `cate_id`, `inv_sub_id`) VALUES
-('P001', 'พรมรถยนต์', 0, 0, 'XL', 'ดำด้ายแดง', 1, 'P001L'),
+('P001', 'พรมรถยนต์', 2, 0, 'XL', 'ดำด้ายแดง', 1, 'P001L'),
 ('P001L', 'พรมรถยนต์', 0, 0, 'L', 'ดำด้ายแดง', 1, NULL),
-('P002', 'พรมรถยนต์', 0, 0, 'XL', 'ดำด้ายดำ', 1, 'P002L'),
+('P002', 'พรมรถยนต์', 7, 0, 'XL', 'ดำด้ายดำ', 1, 'P002L'),
 ('P002L', 'พรมรถยนต์', 0, 0, 'L', 'ดำด้ายดำ', 1, NULL),
 ('P003', 'พรมรถยนต์', 17, 0, 'XL', 'ดำด้ายทอง', 1, 'P003L'),
 ('P003L', 'พรมรถยนต์', 3, 0, 'L', 'ดำด้ายทอง', 1, NULL),
@@ -170,7 +170,9 @@ INSERT INTO `transfer` (`t_id`, `t_datetime`, `t_status`, `t_qty`, `emp_id`, `in
 (1, '2022-09-07 13:54:23', 1, 30, 'wanchai101', 'P005', 2),
 (2, '2022-09-07 13:55:07', 2, 5, 'wanchai101', 'P005', NULL),
 (3, '2022-09-07 13:58:18', 1, 20, 'sunny01', 'P003', 3),
-(4, '2022-09-07 13:58:47', 2, 3, 'sunny01', 'P003', NULL);
+(4, '2022-09-07 13:58:47', 2, 3, 'sunny01', 'P003', NULL),
+(5, '2022-09-07 14:19:06', 1, 2, 'wanchai101', 'P001', 4),
+(6, '2022-09-07 14:19:23', 1, 7, 'wanchai101', 'P002', 1);
 
 --
 -- Indexes for dumped tables
@@ -241,7 +243,7 @@ ALTER TABLE `supplier`
 -- AUTO_INCREMENT for table `transfer`
 --
 ALTER TABLE `transfer`
-  MODIFY `t_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `t_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
