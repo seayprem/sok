@@ -30,7 +30,7 @@ if($_SESSION['emp_level'] == 1) {
           </a>
         </li> -->
         <li class=""><a href="transfer.php" class="text-decoration-none px-3 py-2 d-block"><i
-              class="fa-solid fa-arrow-right-arrow-left"></i> รายการเดินสินค้า</a>
+              class="fa-solid fa-arrow-right-arrow-left"></i> รายการเบิกจ่ายสินค้า</a>
         </li>
         <li class=""><a href="supplier.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-building"></i>
             บริษัทคู่ค้าการผลิต</a></li>
@@ -42,7 +42,7 @@ if($_SESSION['emp_level'] == 1) {
         </li>
         <li class=""><a href="addProduct.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-cart-plus"></i> เพิ่มรายการสินค้า</a>
         </li>
-        <li class=""><a href="addTransfer.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-arrow-right-arrow-left"></i> เพิ่มรายการเดินสินค้า</a>
+        <li class=""><a href="addTransfer.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-arrow-right-arrow-left"></i> เพิ่มรายการเบิกจ่ายสินค้า</a>
         </li>
         <li class=""><a href="addSupplier.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-building"></i> เพิ่มบริษัทคู่ค้าการผลิต</a>
         </li>
