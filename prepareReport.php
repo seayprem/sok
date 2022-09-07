@@ -67,7 +67,7 @@ $pdf->AddFont('angsa','','angsa.php');
 
 $pdf->SetFont('angsa', '', 20);
 $pdf->Cell(0, 10, iconv('UTF-8', 'TIS-620', 'บริษัท เอส.โอ.เค.โปรดักชั่น จำกัด'), 0, 1, 'C');
-$pdf->Cell(0, 10, iconv('UTF-8', 'TIS-620', 'รายงานสรุปรายการเดินสินค้า'), 0, 1, 'C');
+$pdf->Cell(0, 10, iconv('UTF-8', 'TIS-620', 'รายงานสรุปรายการเบิกจ่ายสินค้า'), 0, 1, 'C');
 $pdf->SetFont('angsa', '', 16);
 $pdf->Cell(0, 10, iconv('UTF-8', 'TIS-620', 'จากวันที่ '.$date_start.' '.$time_start.' ถึง '.$date_end.' '.$time_end.''), 0, 1, 'R');
 
