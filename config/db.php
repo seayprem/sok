@@ -6,6 +6,8 @@ $DB_NAME = "sok";
 
 $conn = mysqli_connect($DB_SERVER, $DB_USER, $DB_PASS, $DB_NAME);
 
+mysqli_query($conn,"set character set utf8");
+
 function DateThai($strDate) {
   $strYear = date("Y",strtotime($strDate))+543;
   $strMonth= date("n",strtotime($strDate));
