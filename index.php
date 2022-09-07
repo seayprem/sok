@@ -395,15 +395,24 @@ include_once('config/db.php');
       const myChartSize = new Chart(chartSize, {
         type: 'bar',
         data: {
-          labels: ['ดำ', 'แดง', 'เหลือง'],
-          // labels: <?php echo json_encode($inv_color); ?>,
+          // labels: ['ดำ', 'แดง', 'เหลือง'],
+          labels: <?php echo json_encode($inv_color); ?>,
           datasets: [{
             label: 'สินค้าคงคลัง (สีของพรม)',
             data: <?php echo json_encode($inv_qty); ?>,
             backgroundColor: [
               'rgb(0, 0, 0)',
-              'rgb(255, 99, 132)',
-              'rgb(255, 205, 86)'
+              'rgb(0, 0, 0)',
+              'rgb(0, 0, 0)',
+              'rgb(0, 0, 0)',
+              'rgb(0, 0, 0)',
+              'rgb(0, 0, 0)',
+              'rgb(0, 0, 0)',
+              'rgb(0, 0, 0)',
+              'rgb(0, 0, 0)',
+              'rgb(0, 0, 0)',
+              'rgb(0, 0, 0)',
+              'rgb(0, 0, 0)'
             ],
           }]
         },
