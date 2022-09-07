@@ -13,7 +13,7 @@ if(isset($_POST['addproduct'])) {
   // $max = $_POST['max'];
 
   $code_sub = $_POST['code'].'L';
-  $name_sub = $_POST['name'].' เหลือ';
+  $name_sub = $_POST['name'].'';
 
   $sql = "SELECT COUNT(*) AS num_rows FROM `inventory` WHERE inv_id = '".$code."'";
   $query = mysqli_query($conn, $sql);

@@ -217,9 +217,17 @@ if(empty($_SESSION['emp_level'])) {
                 <select class="form-select" id="color">
                   <option disabled selected>กรุณาเลือกสีของสินค้า</option>
                  
-                  <option value="แดง">แดง</option>
-                  <option value="ดำ">ดำ</option>
-                  <option value="เหลือง">เหลือง</option>
+                  <option value="ดำด้ายแดง">ดำด้ายแดง</option>
+                  <option value="ดำด้ายดำ">ดำด้ายดำ</option>
+                  <option value="ดำด้ายทอง">ดำด้ายทอง</option>
+                  <option value="ดำด้ายน้ำเงิน">ดำด้ายน้ำเงิน</option>
+                  <option value="ดำด้ายฟ้า">ดำด้ายฟ้า</option>
+                  <option value="น้ำตาลอ่อน">น้ำตาลอ่อน</option>
+                  <option value="แดงไวน์">แดงไวน์</option>
+                  <option value="แดงสด">แดงสด</option>
+                  <option value="แดงด้ายแดง">แดงด้ายแดง</option>
+                  <option value="แดงด้ายดำ">แดงด้ายดำ</option>
+                  <option value="ครีมด้ายทอง">ครีมด้ายทอง</option>
                 </select>
               </div>
 
@@ -299,7 +307,6 @@ if(empty($_SESSION['emp_level'])) {
                  
                   <option value="XL">XL</option>
                   <option value="L">L</option>
-                  <option value="ม้วน">ม้วน</option>
                 </select>
               </div>
 
@@ -309,9 +316,17 @@ if(empty($_SESSION['emp_level'])) {
                 <select class="form-select" id="color2">
                   <option disabled selected>กรุณาเลือกสีของสินค้า</option>
                  
-                  <option value="แดง">แดง</option>
-                  <option value="ดำ">ดำ</option>
-                  <option value="เหลือง">เหลือง</option>
+                  <option value="ดำด้ายแดง">ดำด้ายแดง</option>
+                  <option value="ดำด้ายดำ">ดำด้ายดำ</option>
+                  <option value="ดำด้ายทอง">ดำด้ายทอง</option>
+                  <option value="ดำด้ายน้ำเงิน">ดำด้ายน้ำเงิน</option>
+                  <option value="ดำด้ายฟ้า">ดำด้ายฟ้า</option>
+                  <option value="น้ำตาลอ่อน">น้ำตาลอ่อน</option>
+                  <option value="แดงไวน์">แดงไวน์</option>
+                  <option value="แดงสด">แดงสด</option>
+                  <option value="แดงด้ายแดง">แดงด้ายแดง</option>
+                  <option value="แดงด้ายดำ">แดงด้ายดำ</option>
+                  <option value="ครีมด้ายทอง">ครีมด้ายทอง</option>
                 </select>
               </div>
 

@@ -265,7 +265,7 @@ include_once('config/db.php');
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="addModalLabel">เพิ่มรายการเบิกจ่ายสินค้า</h5>
+              <h5 class="modal-title" id="addModalLabel">เพิ่มรายการ</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -274,14 +274,25 @@ include_once('config/db.php');
                   <label class="form-label">รายการสินค้า</label>
                   <select class="form-select" id="inv_id">
                     <option selected disabled>----- กรุณาเลือกสินค้า -----</option>
+                    <option disabled>-------------------------- ไซต์ XL --------------------------</option>
                     <?php 
-                    $inventory_sql = "SELECT * FROM inventory INNER JOIN category ON inventory.cate_id = category.cate_id ORDER BY inv_id DESC";
+                    $inventory_sql = "SELECT * FROM inventory INNER JOIN category ON inventory.cate_id = category.cate_id WHERE inv_size = 'XL' ORDER BY inv_id DESC";
                     $inventory_query = mysqli_query($conn, $inventory_sql);
                     while($inventory_row = mysqli_fetch_array($inventory_query)) {
 
                     
                     ?>
-                    <option value="<?= $inventory_row['inv_id']; ?>"><?= $inventory_row['inv_id']; ?> - <?= $inventory_row['inv_name']; ?> - <?= $inventory_row['cate_name']; ?> - <?= $inventory_row['inv_color']; ?></option>
+                    <option value="<?= $inventory_row['inv_id']; ?>"><?= $inventory_row['inv_name']; ?>สี<?= $inventory_row['inv_color']; ?></option>
+                    <?php } ?>
+                    <option disabled>-------------------------- ไซต์ L --------------------------</option>
+                    <?php 
+                    $inventory_sql = "SELECT * FROM inventory INNER JOIN category ON inventory.cate_id = category.cate_id WHERE inv_size = 'L' ORDER BY inv_id DESC";
+                    $inventory_query = mysqli_query($conn, $inventory_sql);
+                    while($inventory_row = mysqli_fetch_array($inventory_query)) {
+
+                    
+                    ?>
+                    <option value="<?= $inventory_row['inv_id']; ?>"><?= $inventory_row['inv_name']; ?>สี<?= $inventory_row['inv_color']; ?></option>
                     <?php } ?>
                   </select>
                 </div>
