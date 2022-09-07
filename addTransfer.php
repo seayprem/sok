@@ -213,6 +213,7 @@ include_once('config/db.php');
                           <h5><span class="badge rounded-pill bg-danger">เบิกจ่าย</span></h5>
                         <?php } ?>
                       </td>
+                      <!-- Code สำหรับดูว่า ใครนำเข้านำออก จะได้ track ถูก -->
                       <?php 
                       if($row['t_status'] == 1) {
                       ?>
@@ -224,9 +225,10 @@ include_once('config/db.php');
                       <td data-target="empname" style="display: none;"><?= $row['emp_fname']; ?>  <?= $row['emp_lname']; ?></td>
                       <?php } ?>
                       <td data-target="fault" style="display: none;"><?= $row['emp_fname']; ?> <?= $row['emp_lname']; ?></td>
+                      <!-- Code สำหรับดูว่า ใครนำเข้านำออก จะได้ track ถูก -->
                       <td data-target="timedate"><?php echo DateThai($row['t_datetime']); ?></td>
                       <td>
-                        <a data-id="<?= $row['t_id']; ?>" data-role="info" href="#" class="btn btn-secondary"><i class="fa-solid fa-circle-info"></i></a>
+                        <a data-id="<?= $row['t_id']; ?>" data-role="info" href="#" class="btn btn-secondary"><i class="fa-solid fa-eye"></i></a>
                         <a data-id="<?= $row['t_id']; ?>" data-role="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
                         <a data-id="<?= $row['t_id']; ?>" data-role="delete" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
                       </td>

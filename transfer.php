@@ -145,11 +145,13 @@ include_once('config/db.php');
                       <th style="display: none;"></th>
                       <th style="display: none;"></th>
                       <th style="display: none;"></th>
+                      <th style="display: none;"></th>
                       <th class="text-center">ประเภทสินค้า</th>
                       <th class="text-center">จำนวนสินค้า</th>
                       <th class="text-center">ประเภทการทำรายการ</th>
                       <th class="text-center" style="display: none;">เบิกโดย พนัก/บริษัท</th>
                       <th class="text-center">เวลาทำรายการ</th>
+                      <th class="text-center">จัดการ</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -203,9 +205,23 @@ include_once('config/db.php');
                           <h5><span class="badge rounded-pill bg-danger">เบิกจ่าย</span></h5>
                         <?php } ?>
                       </td>
-                      <td data-target="empname" style="display: none;"><?= $row['emp_fname'] ?><?= $row['sup_company']; ?></td>
+                      <!-- Code สำหรับดูว่า ใครนำเข้านำออก จะได้ track ถูก -->
+                      <?php 
+                      if($row['t_status'] == 1) {
+                      ?>
+                      <td data-target="empname" style="display: none;"><?= $row['sup_company']; ?></td>
+                      <?php } ?>
+                      <?php 
+                      if($row['t_status'] == 2) {
+                      ?>
+                      <td data-target="empname" style="display: none;"><?= $row['emp_fname']; ?>  <?= $row['emp_lname']; ?></td>
+                      <?php } ?>
+                      <td data-target="fault" style="display: none;"><?= $row['emp_fname']; ?> <?= $row['emp_lname']; ?></td>
+                      <!-- Code สำหรับดูว่า ใครนำเข้านำออก จะได้ track ถูก -->
                       <td data-target="timedate"><?php echo DateThai($row['t_datetime']); ?></td>
-                     
+                      <td>
+                        <a data-id="<?= $row['t_id']; ?>" data-role="info" href="#" class="btn btn-secondary"><i class="fa-solid fa-eye"></i></a>
+                      </td>
                     </tr>
                     <?php } ?>
                   </tbody>
@@ -218,6 +234,7 @@ include_once('config/db.php');
                       <th class="text-center">ประเภทการทำรายการ</th>
                       <th class="text-center" style="display: none;">เบิกโดย พนัก/บริษัท</th>
                       <th class="text-center">เวลาทำรายการ</th>
+                      <th class="text-center">จัดการ</th>
                     </tr>
                   </thead>
                 </table>
@@ -331,6 +348,7 @@ include_once('config/db.php');
                 <p id="infoStatus" class="badge rounded-pill bg-secondary" data-status="import"></p>
               </h5>
               <h5><b>พนักงาน / บริษัท: </b><a id="infoEmpname"></a></h5>
+              <h5><b>คนรับผิดชอบ: </b><a id="infoFault"></a></h5>
               <h5><b>วันที่เวลาทำรายการ: </b><a id="infoDatetime"></a></h5>
             </div>
             <div class="modal-footer">
