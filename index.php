@@ -188,11 +188,14 @@ include_once('config/db.php');
 
         <div class="col-md-12">
           <div class="row">
+            <div class="col-md-3">
+              
+            </div>
             <div class="col-md-6">
               <canvas id="myChartSize" height="500"></canvas>
             </div>
-            <div class="col-md-6">
-              <canvas id="myChartColor" height="500"></canvas>
+            <div class="col-md-3">
+              
             </div>
           </div>
         </div>
@@ -347,10 +350,10 @@ include_once('config/db.php');
       const myChartSize = new Chart(chartSize, {
         type: 'bar',
         data: {
-          // labels: ['ดำ', 'แดง', 'เหลือง'],
-          labels: <?php echo json_encode($inv_color); ?>,
+          labels: ['ดำ', 'แดง', 'เหลือง'],
+          // labels: <?php echo json_encode($inv_color); ?>,
           datasets: [{
-            label: 'ยอดสินค้าคงเหลือ (ขนาดของพรมรถยนต์)',
+            label: 'สินค้าคงคลัง (สีของพรม)',
             data: <?php echo json_encode($inv_qty); ?>,
             backgroundColor: [
               'rgb(0, 0, 0)',
@@ -370,25 +373,7 @@ include_once('config/db.php');
       });
 
 
-      const chartColors = document.getElementById('myChartColor');
-      const myChartColors = new Chart(chartColors, {
-        type: 'doughnut',
-        data: {
-          labels: ['แดง', 'น้ำเงิน', 'เหลือง'],
-          datasets: [{
-            label: 'ยอดสินค้าคงเหลือ (ขนาดของพรมรถยนต์)',
-            data: [32, 19, 3],
-            backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)'
-            ],
-          }]
-        },
-        options: {
-          maintainAspectRatio: false,
-        }
-      });
+
 
       function popups() {
         // Swal.fire('Any fool can use a computer')
