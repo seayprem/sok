@@ -170,7 +170,7 @@ if(empty($_SESSION['emp_level'])) {
                   <input type="text" class="form-control" id="phone">
                 </div>
 
-                <h5 class="modal-title">ข้อมูลผู้ค้า</h5>
+                <h5 class="modal-title">ข้อมูลผู้ค้า (ถ้ามี)</h5>
                 <div class="mb-3">
                   <label class="col-form-label">ชื่อ-นามสกุล:</label>
                   <input type="text" class="form-control" id="sale_name">
