@@ -223,7 +223,7 @@ include_once('config/db.php');
                       <th class="text-center">ประเภทสินค้า</th>
                       <th class="text-center">จำนวนสินค้า</th>
                       <th class="text-center">ประเภทการทำรายการ</th>
-                      <th class="text-center">เบิกโดย พนัก/บริษัท</th>
+                      <th class="text-center" style="display: none;">เบิกโดย พนัก/บริษัท</th>
                       <th class="text-center">เวลาทำรายการ</th>
                     </tr>
                   </thead>
@@ -278,7 +278,7 @@ include_once('config/db.php');
                           <h5><span class="badge rounded-pill bg-danger">เบิกจ่าย</span></h5>
                         <?php } ?>
                       </td>
-                      <td data-target="empname"><?= $row['emp_fname'] ?><?= $row['sup_company']; ?></td>
+                      <td data-target="empname" style="display: none;"><?= $row['emp_fname'] ?><?= $row['sup_company']; ?></td>
                       <td data-target="timedate"><?php echo DateThai($row['t_datetime']); ?></td>
                      
                     </tr>
@@ -291,7 +291,7 @@ include_once('config/db.php');
                       <th class="text-center">ประเภทสินค้า</th>
                       <th class="text-center">จำนวนสินค้า</th>
                       <th class="text-center">ประเภทการทำรายการ</th>
-                      <th class="text-center">เบิกโดย พนัก/บริษัท</th>
+                      <th class="text-center" style="display: none;">เบิกโดย พนัก/บริษัท</th>
                       <th class="text-center">เวลาทำรายการ</th>
                     </tr>
                   </thead>

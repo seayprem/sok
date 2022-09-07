@@ -152,7 +152,7 @@ include_once('config/db.php');
                       <th class="text-center">ประเภทสินค้า</th>
                       <th class="text-center">จำนวนสินค้า</th>
                       <th class="text-center">ประเภทการทำรายการ</th>
-                      <th class="text-center">เบิกโดย พนัก/บริษัท</th>
+                      <th class="text-center" style="display: none;">เบิกโดย พนัก/บริษัท</th>
                       <th class="text-center">เวลาทำรายการ</th>
                       <th class="text-center">จัดการ</th>
                     </tr>
@@ -216,12 +216,12 @@ include_once('config/db.php');
                       <?php 
                       if($row['t_status'] == 1) {
                       ?>
-                      <td data-target="empname"><?= $row['sup_company']; ?></td>
+                      <td data-target="empname" style="display: none;"><?= $row['sup_company']; ?></td>
                       <?php } ?>
                       <?php 
                       if($row['t_status'] == 2) {
                       ?>
-                      <td data-target="empname"><?= $row['emp_fname']; ?>  <?= $row['emp_lname']; ?></td>
+                      <td data-target="empname" style="display: none;"><?= $row['emp_fname']; ?>  <?= $row['emp_lname']; ?></td>
                       <?php } ?>
                       <td data-target="fault" style="display: none;"><?= $row['emp_fname']; ?> <?= $row['emp_lname']; ?></td>
                       <td data-target="timedate"><?php echo DateThai($row['t_datetime']); ?></td>
@@ -241,7 +241,7 @@ include_once('config/db.php');
                       <th class="text-center">ประเภทสินค้า</th>
                       <th class="text-center">จำนวนสินค้า</th>
                       <th class="text-center">ประเภทการทำรายการ</th>
-                      <th class="text-center">เบิกโดย พนัก/บริษัท</th>
+                      <th class="text-center" style="display: none;">เบิกโดย พนัก/บริษัท</th>
                       <th class="text-center">เวลาทำรายการ</th>
                       <th class="text-center">จัดการ</th>
                     </tr>
