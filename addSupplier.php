@@ -277,8 +277,7 @@ if(empty($_SESSION['emp_level'])) {
               <h5><b>เบอร์โทรติดต่อ: </b> <a id="info_phone"></a></h5>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
             </div>
           </div>
         </div>

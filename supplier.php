@@ -93,6 +93,10 @@ if(empty($_SESSION['emp_level'])) {
                       <th class="text-center">ที่อยู่</th>
                       <th class="text-center">อีเมล์</th>
                       <th class="text-center">เบอร์โทรติดต่อ</th>
+                      <th class="text-center" style="display: none;">เบอร์โทรติดต่อ</th>
+                      <th class="text-center" style="display: none;">เบอร์โทรติดต่อ</th>
+                      <th class="text-center" style="display: none;">เบอร์โทรติดต่อ</th>
+                      <th class="text-center">จัดการ</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -109,6 +113,12 @@ if(empty($_SESSION['emp_level'])) {
                       <td data-target="address"><?= $row['sup_address']; ?></td>
                       <td data-target="email"><?= $row['sup_email']; ?></td>
                       <td data-target="phone"><?= $row['sup_phone']; ?></td>
+                      <td data-target="sale_name" style="display: none;"><?= $row['sale_name']; ?></td>
+                      <td data-target="sale_position" style="display: none;"><?= $row['sale_position']; ?></td>
+                      <td data-target="sale_phone" style="display: none;"><?= $row['sale_phone']; ?></td>
+                      <td>
+                        <a data-id="<?= $row['sup_id']; ?>" data-role="view" class="btn btn-secondary"><i class="fa-solid fa-eye"></i></a>
+                      </td>
                     </tr>
                     <?php } ?>
                   </tbody>
@@ -118,6 +128,7 @@ if(empty($_SESSION['emp_level'])) {
                       <th class="text-center">ที่อยู่</th>
                       <th class="text-center">อีเมล์</th>
                       <th class="text-center">เบอร์โทรติดต่อ</th>
+                      <th class="text-center">จัดการ</th>
                     </tr>
                   </thead>
                 </table>
@@ -201,6 +212,29 @@ if(empty($_SESSION['emp_level'])) {
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
               <button type="button" class="btn btn-primary" id="update">บันทึก</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- View Details ทำไปหาวไป -->
+    
+      <!-- Modal -->
+      <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="viewModalLabel">ข้อมูลผู้ค้า</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <h5><b>ชื่อ-นามสกุล: </b> <a id="info_salename"></a></h5>
+              <h5><b>ตำแหน่ง: </b> <a id="info_position"></a></h5>
+              <h5><b>เบอร์โทรติดต่อ: </b> <a id="info_phone"></a></h5>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
             </div>
           </div>
         </div>
