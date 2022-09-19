@@ -376,13 +376,14 @@ include_once('config/db.php');
 
     <!-- Chart System -->
     <?php
-    $chart_sql = "SELECT `inv_color`, SUM(`inv_qty`) as inv_qty FROM `inventory` GROUP BY `inv_color`";
+    // $chart_sql = "SELECT `inv_name`, SUM(`inv_qty`) as inv_qty FROM `inventory` GROUP BY `inv_color`";
+    $chart_sql = "SELECT `inv_name`, SUM(`inv_qty`) AS inv_qty FROM `inventory` GROUP BY `inv_name`";
     $chart_query = mysqli_query($conn, $chart_sql);
     // $chart_result = mysqli_fetch_assoc($chart_query);
     $chart_data = "";
 
     while ($row = mysqli_fetch_array($chart_query)){
-      $inv_color[] = $row['inv_color'];
+      $inv_name[] = $row['inv_name'];
       $inv_qty[] = $row['inv_qty'];
     }
 
@@ -396,22 +397,22 @@ include_once('config/db.php');
         type: 'bar',
         data: {
           // labels: ['ดำ', 'แดง', 'เหลือง'],
-          labels: <?php echo json_encode($inv_color); ?>,
+          labels: <?php echo json_encode($inv_name); ?>,
           datasets: [{
             label: 'สินค้าคงคลัง (สีของพรม)',
             data: <?php echo json_encode($inv_qty); ?>,
             backgroundColor: [
-              'rgb(0, 0, 0)',
-              'rgb(0, 0, 0)',
-              'rgb(0, 0, 0)',
-              'rgb(0, 0, 0)',
-              'rgb(0, 0, 0)',
-              'rgb(0, 0, 0)',
-              'rgb(0, 0, 0)',
-              'rgb(0, 0, 0)',
-              'rgb(0, 0, 0)',
-              'rgb(0, 0, 0)',
-              'rgb(0, 0, 0)',
+              'rgb(0, 102, 204)',
+              'rgb(0, 102, 204)',
+              'rgb(0, 102, 204)',
+              'rgb(0, 102, 204)',
+              'rgb(0, 102, 204)',
+              'rgb(0, 102, 204)',
+              'rgb(0, 102, 204)',
+              'rgb(0, 102, 204)',
+              'rgb(0, 102, 204)',
+              'rgb(0, 102, 204)',
+              'rgb(0, 102, 204)',
               'rgb(0, 0, 0)'
             ],
           }]
