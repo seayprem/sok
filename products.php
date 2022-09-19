@@ -101,7 +101,6 @@ if(empty($_SESSION['emp_level'])) {
                       <th class="text-center">ชื่อสินค้า</th>
                       <th class="text-center">ประเภทสินค้า</th>
                       <th class="text-center">ขนาดของสินค้า</th>
-                      <th class="text-center">สีสินค้า</th>
                       <th class="text-center">จำนวนสินค้า</th>
                       <th class="text-center">จำนวนที่ต้องสั่งซื้อ</th>
                     </tr>
@@ -127,7 +126,6 @@ if(empty($_SESSION['emp_level'])) {
                       <td data-target="name"><?= $row['inv_name']; ?></td>
                       <td><?= $row['cate_name']; ?></td>
                       <td data-target="size"><?= $row['inv_size']; ?></td>
-                      <td data-target="color"><?= $row['inv_color']; ?></td>
                       <td data-target="qty"><?= $row['inv_qty']; ?></td>
                       <td data-target="min"><?= $row['inv_min']; ?></td>
                     </tr>
@@ -139,7 +137,6 @@ if(empty($_SESSION['emp_level'])) {
                       <th class="text-center">ชื่อสินค้า</th>
                       <th class="text-center">ประเภทสินค้า</th>
                       <th class="text-center">ขนาดของสินค้า</th>
-                      <th class="text-center">สีสินค้า</th>
                       <th class="text-center">จำนวนสินค้า</th>
                       <th class="text-center">จำนวนที่ต้องสั่งซื้อ</th>
                     </tr>

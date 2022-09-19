@@ -7,7 +7,6 @@ if(isset($_POST['addproduct'])) {
   $name = $_POST['name'];
   $type = $_POST['type'];
   $size = $_POST['size'];
-  $color = $_POST['color'];
   $qty = $_POST['qty'];
   $min = $_POST['min'];
   // $max = $_POST['max'];
@@ -21,7 +20,7 @@ if(isset($_POST['addproduct'])) {
   if($row["num_rows"] > 0) {
     echo "error_inv_id";
   } else if ($size == 'XL') {
-    $sql = "INSERT INTO `inventory` (inv_id, inv_name, inv_qty, inv_min, inv_size, inv_color, cate_id, inv_sub_id) VALUES ('".$code."', '".$name."', $qty, $min, '$size', '$color', $type, '".$code_sub."'), ('".$code_sub."', '".$name_sub."', 0, 0, 'L', '$color', $type, null)";
+    $sql = "INSERT INTO `inventory` (inv_id, inv_name, inv_qty, inv_min, inv_size, cate_id, inv_sub_id) VALUES ('".$code."', '".$name."', $qty, $min, '$size', $type, '".$code_sub."'), ('".$code_sub."', '".$name_sub."', 0, 0, 'L', $type, null)";
     $query = mysqli_query($conn, $sql);
     if($query) {
       echo "success";
@@ -29,7 +28,7 @@ if(isset($_POST['addproduct'])) {
       echo "failed";
     }
   } else {
-    $sql = "INSERT INTO `inventory` (inv_id, inv_name, inv_qty, inv_min, inv_size, inv_color, cate_id) VALUES ('".$code."', '".$name."', $qty, $min, '$size', '$color', $type)";
+    $sql = "INSERT INTO `inventory` (inv_id, inv_name, inv_qty, inv_min, inv_size, cate_id) VALUES ('".$code."', '".$name."', $qty, $min, '$size', $type)";
     $query = mysqli_query($conn, $sql);
     if($query) {
       echo "success";
@@ -45,11 +44,10 @@ if(isset($_POST['update'])) {
   $name = $_POST['name'];
   $type = $_POST['type'];
   $size = $_POST['size'];
-  $color = $_POST['color'];
   $qty = $_POST['qty'];
   $min = $_POST['min'];
 
-  $sql = "UPDATE `inventory` SET inv_name = '".$name."', inv_qty = $qty, inv_min = $min, inv_size = '$size', inv_color = '$color', cate_id = $type WHERE inv_id = '".$code."' ";
+  $sql = "UPDATE `inventory` SET inv_name = '".$name."', inv_qty = $qty, inv_min = $min, inv_size = '$size', cate_id = $type WHERE inv_id = '".$code."' ";
   $query = mysqli_query($conn, $sql);
   
   if($query) {

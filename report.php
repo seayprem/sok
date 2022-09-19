@@ -187,7 +187,6 @@ if(empty($_SESSION['emp_level'])) {
                       <th class="text-center">รหัสสินค้า</th>
                       <th class="text-center">ชื่อสินค้า</th>
                       <th class="text-center">จำนวนสินค้า</th>
-                      <th class="text-center">สีของสินค้า</th>
                       <th class="text-center">สถานะ</th>
                       <th class="text-center">วันเวลา</th>
                     </tr>
@@ -205,7 +204,6 @@ if(empty($_SESSION['emp_level'])) {
                       <td><?= $row['inv_id']; ?></td>
                       <td><?= $row['inv_name']; ?></td>
                       <td><?= $row['t_qty']; ?></td>
-                      <td><?= $row['inv_color']; ?></td>
                       <td><?php 
                         if($row['t_status'] == 1) {
                           ?>
@@ -225,7 +223,6 @@ if(empty($_SESSION['emp_level'])) {
                       <th class="text-center">รหัสสินค้า</th>
                       <th class="text-center">ชื่อสินค้า</th>
                       <th class="text-center">จำนวนสินค้า</th>
-                      <th class="text-center">สีของสินค้า</th>
                       <th class="text-center">สถานะ</th>
                       <th class="text-center">วันเวลา</th>
                     </tr>

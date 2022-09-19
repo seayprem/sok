@@ -73,9 +73,8 @@ $pdf->Cell(0, 10, iconv('UTF-8', 'TIS-620', 'จากวันที่ '.$date
 
 $pdf->Cell(12,10, iconv('UTF-8', 'TIS-620', 'ลำดับ'), 1, 0, 'C');
 $pdf->Cell(30,10, iconv('UTF-8', 'TIS-620', 'รหัสสินค้า'), 1, 0, 'C');
-$pdf->Cell(78,10, iconv('UTF-8', 'TIS-620', 'ชื่อสินค้า'), 1, 0, 'C');
+$pdf->Cell(108,10, iconv('UTF-8', 'TIS-620', 'ชื่อสินค้า'), 1, 0, 'C');
 $pdf->Cell(20,10, iconv('UTF-8', 'TIS-620', 'จำนวนสินค้า'), 1, 0, 'C');
-$pdf->Cell(30,10, iconv('UTF-8', 'TIS-620', 'สีของสินค้า'), 1, 0, 'C');
 $pdf->Cell(30,10, iconv('UTF-8', 'TIS-620', 'สถานะ'), 1, 0, 'C');
 $pdf->Cell(40,10, iconv('UTF-8', 'TIS-620', 'ผู้รับผิดชอบ'), 1, 0, 'C');
 $pdf->Cell(40,10, iconv('UTF-8', 'TIS-620', 'วันเวลา'), 1, 1, 'C');
@@ -94,9 +93,8 @@ while($row = mysqli_fetch_array($query)) {
   }
   $pdf->Cell(12,10, iconv('UTF-8', 'TIS-620', $count_order++), 1, 0, 'C');
   $pdf->Cell(30,10, iconv('UTF-8', 'TIS-620', $row['inv_id']), 1, 0, 'C');
-  $pdf->Cell(78,10, iconv('UTF-8', 'TIS-620', $row['inv_name']), 1, 0, 'C');
+  $pdf->Cell(108,10, iconv('UTF-8', 'TIS-620', $row['inv_name']), 1, 0, 'C');
   $pdf->Cell(20,10, iconv('UTF-8', 'TIS-620', $row['t_qty']), 1, 0, 'C');
-  $pdf->Cell(30,10, iconv('UTF-8', 'TIS-620', $row['inv_color']), 1, 0, 'C');
   $pdf->Cell(30,10, iconv('UTF-8', 'TIS-620', $msg), 1, 0, 'C');
   $pdf->Cell(40,10, iconv('UTF-8', 'TIS-620', $row['emp_fname'] . " " . $row['emp_lname']), 1, 0, 'C');
   $pdf->Cell(40,10, iconv('UTF-8', 'TIS-620', DateThai($row['t_datetime'])), 1, 1, 'C');

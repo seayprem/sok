@@ -282,7 +282,7 @@ include_once('config/db.php');
 
                     
                     ?>
-                    <option value="<?= $inventory_row['inv_id']; ?>"><?= $inventory_row['inv_name']; ?>สี<?= $inventory_row['inv_color']; ?></option>
+                    <option value="<?= $inventory_row['inv_id']; ?>"><?= $inventory_row['inv_name']; ?></option>
                     <?php } ?>
                     <option disabled>-------------------------- ไซต์ L --------------------------</option>
                     <?php 
@@ -292,7 +292,7 @@ include_once('config/db.php');
 
                     
                     ?>
-                    <option value="<?= $inventory_row['inv_id']; ?>"><?= $inventory_row['inv_name']; ?>สี<?= $inventory_row['inv_color']; ?></option>
+                    <option value="<?= $inventory_row['inv_id']; ?>"><?= $inventory_row['inv_name']; ?></option>
                     <?php } ?>
                   </select>
                 </div>
