@@ -11,3 +11,6 @@
 - กราฟเปลี่ยนสีให้สดใส
 - เพิ่มใส่รูปภาพสินค้า
 - เปลี่ยนจากชื่อสินค้าเป็นรูปสินค้าหรือใส่ปุ่มคลิกดูรูปภาพของสินค้า
+
+# Remove
+- <a data-id="<?= $row['t_id']; ?>" data-role="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>

@@ -62,6 +62,13 @@ if(isset($_POST['add'])) {
         $select_inventory_query = mysqli_query($conn, $selete_inventory_sql);
         $select_inventory_row = mysqli_fetch_array($select_inventory_query);
 
+        // $select_tijai_sql = "SELECT * FROM `transfer` WHERE t_fifo != 0 ORDER BY t_id DESC LIMIT 1";
+        $select_tijai_sql = "SELECT * FROM `transfer` ORDER BY t_id DESC LIMIT 1";
+        $select_tijai_query = mysqli_query($conn, $select_tijai_sql);
+        $select_tijai_row = mysqli_fetch_array($select_tijai_query);
+
+        $tijai_sup = $select_tijai_row['sup_id'];
+
         $qtyInventory = $select_inventory_row['inv_qty'];
 
         if($qty <= 0) {
@@ -70,7 +77,7 @@ if(isset($_POST['add'])) {
           if($qty > $qtyInventory || $qty == 0) {
             echo "unsuccess";
           } else {
-            $sql = "INSERT INTO `transfer` (`t_id`, `t_datetime`, `t_status`, `t_qty`, `emp_id`, `inv_id`, `sup_id`) VALUES (NULL, current_timestamp(), $status, $qty, '$employee', '$product_id', NULL)";
+            $sql = "INSERT INTO `transfer` (`t_id`, `t_datetime`, `t_status`, `t_qty`, `emp_id`, `inv_id`, `sup_id`) VALUES (NULL, current_timestamp(), $status, $qty, '$employee', '$product_id', '$tijai_sup')";
             $query = mysqli_query($conn, $sql);
             if($query) {
 

@@ -222,14 +222,14 @@ include_once('config/db.php');
                       <?php 
                       if($row['t_status'] == 2) {
                       ?>
-                      <td data-target="empname" style="display: none;"><?= $row['emp_fname']; ?>  <?= $row['emp_lname']; ?></td>
+                      <td data-target="empname" style="display: none;"><?= $row['sup_company']; ?></td>
                       <?php } ?>
                       <td data-target="fault" style="display: none;"><?= $row['emp_fname']; ?> <?= $row['emp_lname']; ?></td>
                       <!-- Code สำหรับดูว่า ใครนำเข้านำออก จะได้ track ถูก -->
                       <td data-target="timedate"><?php echo DateThai($row['t_datetime']); ?></td>
                       <td>
                         <a data-id="<?= $row['t_id']; ?>" data-role="info" href="#" class="btn btn-secondary"><i class="fa-solid fa-eye"></i></a>
-                        <a data-id="<?= $row['t_id']; ?>" data-role="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                        
                         <a data-id="<?= $row['t_id']; ?>" data-role="delete" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
                       </td>
                     </tr>
@@ -364,7 +364,7 @@ include_once('config/db.php');
               <h5><b>สถานะทำรายการ: </b>
                 <p id="infoStatus" class="badge rounded-pill bg-secondary" data-status="import"></p>
               </h5>
-              <h5><b>พนักงาน / บริษัท: </b><a id="infoEmpname"></a></h5>
+              <h5><b>บริษัท: </b><a id="infoEmpname"></a></h5>
               <h5><b>คนรับผิดชอบ: </b><a id="infoFault"></a></h5>
               <h5><b>วันที่เวลาทำรายการ: </b><a id="infoDatetime"></a></h5>
             </div>
@@ -427,13 +427,7 @@ include_once('config/db.php');
                   <select class="form-select" id="empId2">
                     <option id="selempid2" value="" selected></option>
                     <option disabled>----- กรุณาเลือกพนักงาน ----</option>
-                    <?php 
-                    $employee_sql = "SELECT * FROM employee ORDER BY emp_id DESC";
-                    $employee_query = mysqli_query($conn, $employee_sql);
-                    while($employee_row = mysqli_fetch_array($employee_query)) {
-                    ?>
-                    <option value="<?= $employee_row['emp_id']; ?>"><?= $employee_row['emp_fname']; ?>&nbsp;&nbsp;<?= $employee_row['emp_lname']; ?></option>
-                    <?php } ?>
+                    <option selected value="<?= $_SESSION['emp_id']; ?>"><?= $_SESSION['emp_fname']; ?>&nbsp;&nbsp;<?= $_SESSION['emp_lname']; ?></option>
                   </select>
                 </div>
                 <div class="mb-3" id="company2">
