@@ -222,6 +222,11 @@ if(empty($_SESSION['emp_level'])) {
                 <input type="number" class="form-control" id="min" min="0" value="0" aria-label="Username" aria-describedby="mins">
               </div> 
 
+              <label class="form-label">รูปภาพสินค้า</label>
+              <div class="input-group mb-3">
+                <input type="file" class="form-control" id="fileupload" min="0" value="0" aria-label="Username" aria-describedby="fileupload">
+              </div> 
+
               <!-- <label class="form-label">จำนวนสินค้าที่ไม่จำเป็นต้องสั่งเพิ่ม</label>
               <div class="input-group mb-3">
                 <span class="input-group-text" id="maxs"><i class="fa-solid fa-basket-shopping"></i></span>

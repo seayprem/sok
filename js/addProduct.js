@@ -34,6 +34,10 @@ $(document).ready(function() {
   })
 
   $('#save').click(function(e) {
+
+    var filesname = $("#fileupload").prop('files')[0];
+    var formData = new FormData();
+
     var code = $('#code').val();
     var name = $('#name').val();
     var type = $('#type').val();
@@ -42,6 +46,18 @@ $(document).ready(function() {
     var qty = $('#qty').val();
     var min = $('#min').val();
     var max = $('#max').val();
+
+    formData.append("file", filesname);
+    formData.append("code", code);
+    formData.append("name", name);
+    formData.append("type", type);
+    formData.append("size", size);
+    formData.append("color", color);
+    formData.append("qty", qty);
+    formData.append("min", min);
+    formData.append("max", max);
+    formData.append("addproduct", 'addproduct')
+
 
     // DEBUG 
     // console.log("code " + code);
@@ -57,17 +73,9 @@ $(document).ready(function() {
     $.ajax({
       url: 'addProductController.php',
       method: 'POST',
-      data: {
-        code: code,
-        name: name,
-        type: type,
-        size: size,
-        color: color,
-        qty: qty,
-        min: min,
-        // max: max,
-        addproduct: 'addproduct'
-      },
+      data: formData,
+      contentType: false, // กูแม่งไม่เข้าใจทำไมต้องมีโค้ดนี้ ถ้าไม่ใส่แม่งก็ error อัพไฟล์ภาพไม่ได้
+      processData: false,  // กูแม่งไม่เข้าใจทำไมต้องมีโค้ดนี้ ถ้าไม่ใส่แม่งก็ error อัพไฟล์ภาพไม่ได้
       success: function(response) {
         if(response === 'success') {
           Swal.fire({

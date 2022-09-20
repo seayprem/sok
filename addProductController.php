@@ -10,6 +10,12 @@ if(isset($_POST['addproduct'])) {
   $qty = $_POST['qty'];
   $min = $_POST['min'];
   // $max = $_POST['max'];
+  $filename = $_FILES['file']['name'];
+  $extension = pathinfo($filename, PATHINFO_EXTENSION);
+
+  $random = rand(0, 999999999);
+  $rename = 'product'.date('ymdhis').$random;
+  $newname = $rename . '.' . $extension;
 
   $code_sub = $_POST['code'].'L';
   $name_sub = $_POST['name'].'';
@@ -20,15 +26,23 @@ if(isset($_POST['addproduct'])) {
   if($row["num_rows"] > 0) {
     echo "error_inv_id";
   } else if ($size == 'XL') {
-    $sql = "INSERT INTO `inventory` (inv_id, inv_name, inv_qty, inv_min, inv_size, cate_id, inv_sub_id) VALUES ('".$code."', '".$name."', $qty, $min, '$size', $type, '".$code_sub."'), ('".$code_sub."', '".$name_sub."', 0, 0, 'L', $type, null)";
-    $query = mysqli_query($conn, $sql);
-    if($query) {
-      echo "success";
-    } else {
+
+    if(empty($filename)) {
       echo "failed";
+    } else {
+      move_uploaded_file($_FILES['file']['tmp_name'], "images/" . $newname);
+    
+      $sql = "INSERT INTO `inventory` (inv_id, inv_name, inv_image, inv_qty, inv_min, inv_size, cate_id, inv_sub_id) VALUES ('".$code."', '".$name."', '".$newname."', $qty, $min, '$size', $type, '".$code_sub."'), ('".$code_sub."', '".$name_sub."', '".$newname."', 0, 0, 'L', $type, null)";
+      $query = mysqli_query($conn, $sql);
+      if($query) {
+        echo "success";
+      } else {
+        echo "failed";
+      }
     }
+    
   } else {
-    $sql = "INSERT INTO `inventory` (inv_id, inv_name, inv_qty, inv_min, inv_size, cate_id) VALUES ('".$code."', '".$name."', $qty, $min, '$size', $type)";
+    $sql = "INSERT INTO `inventory` (inv_id, inv_name, inv_image, inv_qty, inv_min, inv_size, cate_id) VALUES ('".$code."', '".$newname."', '".$name."', $qty, $min, '$size', $type)";
     $query = mysqli_query($conn, $sql);
     if($query) {
       echo "success";
