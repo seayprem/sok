@@ -38,8 +38,8 @@ if($_SESSION['emp_level'] == 1) {
       <hr class="h-color mx-2">
       <a class="text-decoration-none px-3 py-2 d-block text-secondary"><small>เพิ่มข้อมูลสินค้า</small></a>
       <ul class="list-unstyled px-2">
-        <li class=""><a href="addCategory.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-layer-group"></i> เพิ่มประเภทสินค้า</a>
-        </li>
+        <!-- <li class=""><a href="addCategory.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-layer-group"></i> เพิ่มประเภทสินค้า</a>
+        </li> -->
         <li class=""><a href="addProduct.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-cart-plus"></i> เพิ่มรายการสินค้า</a>
         </li>
         <li class=""><a href="addTransfer.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-arrow-right-arrow-left"></i> เพิ่มรายการเบิกจ่ายสินค้า</a>

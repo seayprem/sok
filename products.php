@@ -100,7 +100,7 @@ if(empty($_SESSION['emp_level'])) {
                       <th class="text-center">รหัสสินค้า</th>
                       <th class="text-center">ภาพสินค้า</th>
                       <th class="text-center">ชื่อสินค้า</th>
-                      <th class="text-center">ประเภทสินค้า</th>
+                      <th class="text-center" style="display: none">ประเภทสินค้า</th>
                       <th class="text-center">ขนาดของสินค้า</th>
                       <th class="text-center">จำนวนสินค้า</th>
                       <th class="text-center">จำนวนที่ต้องสั่งซื้อ</th>
@@ -126,7 +126,7 @@ if(empty($_SESSION['emp_level'])) {
                       <td><?= $row['inv_id']; ?></td>
                       <td><img src="images/<?= $row['inv_image']; ?>" alt="" width="150" height="150"></td>
                       <td data-target="name"><?= $row['inv_name']; ?></td>
-                      <td><?= $row['cate_name']; ?></td>
+                      <td style="display: none"><?= $row['cate_name']; ?></td>
                       <td data-target="size"><?= $row['inv_size']; ?></td>
                       <td data-target="qty"><?= $row['inv_qty']; ?></td>
                       <td data-target="min"><?= $row['inv_min']; ?></td>
@@ -138,7 +138,7 @@ if(empty($_SESSION['emp_level'])) {
                       <th class="text-center">รหัสสินค้า</th>
                       <th class="text-center">ภาพสินค้า</th>
                       <th class="text-center">ชื่อสินค้า</th>
-                      <th class="text-center">ประเภทสินค้า</th>
+                      <th class="text-center" style="display: none">ประเภทสินค้า</th>
                       <th class="text-center">ขนาดของสินค้า</th>
                       <th class="text-center">จำนวนสินค้า</th>
                       <th class="text-center">จำนวนที่ต้องสั่งซื้อ</th>
@@ -177,8 +177,8 @@ if(empty($_SESSION['emp_level'])) {
                 <input type="text" class="form-control" id="name" placeholder="กรุณาป้อนชื่อสินค้า" aria-label="Username" aria-describedby="names">
               </div>
 
-              <label class="form-label">ประเภทสินค้า</label>
-              <div class="input-group mb-3">
+              <!-- <label class="form-label">ประเภทสินค้า</label> -->
+              <div class="input-group mb-3" style="display: none">
                 <label class="input-group-text" for="type"><i class="fa-solid fa-tag"></i></label>
                 <select class="form-select" id="type">
                   <option disabled selected>กรุณาเลือกประเภทสินค้า</option>
@@ -269,8 +269,8 @@ if(empty($_SESSION['emp_level'])) {
                 <input type="text" class="form-control" id="name2" placeholder="กรุณาป้อนชื่อสินค้า" aria-label="Username" aria-describedby="names">
               </div>
 
-              <label class="form-label">ประเภทสินค้า</label>
-              <div class="input-group mb-3">
+              <!-- <label class="form-label">ประเภทสินค้า</label> -->
+              <div class="input-group mb-3" style="display: none">
                 <label class="input-group-text" for="type"><i class="fa-solid fa-tag"></i></label>
                 <select class="form-select" id="type2">
                   <option disabled selected>กรุณาเลือกประเภทสินค้า</option>

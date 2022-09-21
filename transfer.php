@@ -148,7 +148,7 @@ include_once('config/db.php');
                       <th style="display: none;"></th>
                       <th style="display: none;"></th>
                       <th style="display: none;"></th>
-                      <th class="text-center">ประเภทสินค้า</th>
+                      <th class="text-center" style="display: none">ประเภทสินค้า</th>
                       <th class="text-center">จำนวนสินค้า</th>
                       <th class="text-center">ประเภทการทำรายการ</th>
                       <th class="text-center" style="display: none;">เบิกโดย พนัก/บริษัท</th>
@@ -191,7 +191,7 @@ include_once('config/db.php');
                       <td><img src="images/<?= $row['inv_image']; ?>" alt="" width="150" height="150"></td>
                       <td data-target="product"><?= $row['inv_id']; ?></td>
                       <td data-target="product"><?= $row['inv_name']; ?></td>
-                      <td data-target="category"><?= $row['cate_name']; ?></td>
+                      <td data-target="category" style="display: none"><?= $row['cate_name']; ?></td>
                       <td data-target="amount"><?= $row['t_qty']; ?></td>
                       <td data-target="status2" style="display: none;"><?= $row['t_status']; ?></td>
                       <td data-target="empid" style="display: none;"><?= $row['emp_id']; ?></td>
@@ -235,7 +235,7 @@ include_once('config/db.php');
                       <th class="text-center">ภาพสินค้า</th>
                       <th class="text-center">รหัสสินค้า</th>
                       <th class="text-center">ชื่อสินค้า</th>
-                      <th class="text-center">ประเภทสินค้า</th>
+                      <th class="text-center" style="display: none">ประเภทสินค้า</th>
                       <th class="text-center">จำนวนสินค้า</th>
                       <th class="text-center">ประเภทการทำรายการ</th>
                       <th class="text-center" style="display: none;">เบิกโดย พนัก/บริษัท</th>
@@ -348,7 +348,7 @@ include_once('config/db.php');
             <div class="modal-body">
               <h5><b>ลำดับเลขทำรายการ: </b><a id="infoId"></a></h5>
               <h5><b>ชื่อสินค้า: </b><a id="infoProduct"></a></h5>
-              <h5><b>ประเภทสินค้า: </b><a id="infoType"></a></h5>
+              <h5 style="display: none"><b>ประเภทสินค้า: </b><a id="infoType"></a></h5>
               <h5><b>จำนวนสินค้า: </b><a id="infoAmount"></a></h5>
               <h5><b>สถานะทำรายการ: </b>
                 <p id="infoStatus" class="badge rounded-pill bg-secondary" data-status="import"></p>
