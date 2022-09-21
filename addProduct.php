@@ -98,6 +98,7 @@ if(empty($_SESSION['emp_level'])) {
                   <thead class="table-dark">
                     <tr>
                       <th style="display: none;" class="text-center"></th>
+                      <th class="text-center">รูปภาพสินค้า</th>
                       <th class="text-center">รหัสสินค้า</th>
                       <th class="text-center">ชื่อสินค้า</th>
                       <th class="text-center">ประเภทสินค้า</th>
@@ -127,6 +128,7 @@ if(empty($_SESSION['emp_level'])) {
                     ">
                       <td data-target="type" style="display: none;"><?= $row['cate_id']; ?></td>
                       <td><?= $row['inv_id']; ?></td>
+                      <td><img src="images/<?= $row['inv_image']; ?>" alt="" width="150" height="150"></td>
                       <td data-target="name"><?= $row['inv_name']; ?></td>
                       <td><?= $row['cate_name']; ?></td>
                       <td data-target="size"><?= $row['inv_size']; ?></td>
@@ -141,6 +143,7 @@ if(empty($_SESSION['emp_level'])) {
                   </tbody>
                   <thead class="table-dark">
                     <tr>
+                      <th class="text-center">รูปภาพสินค้า</th>
                       <th class="text-center">รหัสสินค้า</th>
                       <th class="text-center">ชื่อสินค้า</th>
                       <th class="text-center">ประเภทสินค้า</th>
@@ -306,6 +309,11 @@ if(empty($_SESSION['emp_level'])) {
               <div class="input-group mb-3">
                 <span class="input-group-text" id="mins"><i class="fa-solid fa-circle-minus"></i></span>
                 <input type="number" class="form-control" id="min2" min="0" value="0" aria-label="Username" aria-describedby="mins">
+              </div> 
+
+              <label class="form-label">รูปภาพสินค้า</label>
+              <div class="input-group mb-3">
+                <input type="file" class="form-control" id="fileupload2" min="0" value="0" aria-label="Username" aria-describedby="fileupload">
               </div> 
 
               <!-- <label class="form-label">จำนวนสินค้าที่ไม่จำเป็นต้องสั่งเพิ่ม</label>

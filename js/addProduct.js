@@ -42,7 +42,6 @@ $(document).ready(function() {
     var name = $('#name').val();
     var type = $('#type').val();
     var size = $('#size').val();
-    var color = $('#color').val();
     var qty = $('#qty').val();
     var min = $('#min').val();
     var max = $('#max').val();
@@ -52,7 +51,6 @@ $(document).ready(function() {
     formData.append("name", name);
     formData.append("type", type);
     formData.append("size", size);
-    formData.append("color", color);
     formData.append("qty", qty);
     formData.append("min", min);
     formData.append("max", max);
@@ -110,7 +108,6 @@ $(document).ready(function() {
     var name = $('#' + id).children('td[data-target=name]').text();
     var type = $('#' + id).children('td[data-target=type]').text();
     var size = $('#' + id).children('td[data-target=size]').text();
-    var color = $('#' + id).children('td[data-target=color]').text();
     var qty = $('#' + id).children('td[data-target=qty]').text();
     var min = $('#' + id).children('td[data-target=min]').text();
     var max = $('#' + id).children('td[data-target=max]').text();
@@ -118,14 +115,19 @@ $(document).ready(function() {
 
     $('#editModal').modal('toggle');
 
+    
+
     $('#code2').val(id);
     $('#name2').val(name);
     $('#type2').val(type);
     $('#size2').val(size);
-    $('#color2').val(color);
     $('#qty2').val(qty);
     $('#min2').val(min);
     $('#max2').val(max);
+
+    
+
+
 
     // DEBUG TEST 
     // console.log("code " + id);
@@ -140,6 +142,11 @@ $(document).ready(function() {
   })
 
   $(document).on('click', '#save2', function(e) {
+
+    var filesname = $("#fileupload2").prop('files')[0];
+    var formData = new FormData();
+
+
     var code = $('#code2').val();
 
     var name = $('#name2').val();
@@ -149,6 +156,17 @@ $(document).ready(function() {
     var qty = $('#qty2').val();
     var min = $('#min2').val();
     var max = $('#max2').val();
+
+    formData.append("file", filesname);
+    formData.append("code", code);
+    formData.append("name", name);
+    formData.append("type", type);
+    formData.append("size", size);
+    formData.append("qty", qty);
+    formData.append("min", min);
+    formData.append("max", max);
+    formData.append("update", 'update')
+
 
     // DEBUG TEST 
     // console.log("code " + code);
@@ -166,18 +184,11 @@ $(document).ready(function() {
     $.ajax({
       url: 'addProductController.php',
       method: 'POST',
-      data: {
-        code: code,
-        name: name,
-        type: type,
-        size: size,
-        color: color,
-        qty: qty,
-        min: min,
-        max: max,
-        update: 'update'
-      },
+      data: formData,
+      contentType: false, // กูแม่งไม่เข้าใจทำไมต้องมีโค้ดนี้ ถ้าไม่ใส่แม่งก็ error อัพไฟล์ภาพไม่ได้
+      processData: false,  // กูแม่งไม่เข้าใจทำไมต้องมีโค้ดนี้ ถ้าไม่ใส่แม่งก็ error อัพไฟล์ภาพไม่ได้
       success: function(response) {
+        console.log(response);
         if(response === 'success') {
           Swal.fire({
             icon: 'success',
@@ -193,7 +204,7 @@ $(document).ready(function() {
         } else {
           Swal.fire({
             icon: 'error',
-            title: 'ลบรายการสินค้าล้มเหลว โปรดติดต่อเจ้าหน้าที่'
+            title: 'อัพเดทรายการสินค้าล้มเหลว โปรดติดต่อเจ้าหน้าที่'
           })
         }
       }
