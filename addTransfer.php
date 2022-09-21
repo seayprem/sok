@@ -141,8 +141,8 @@ include_once('config/db.php');
                 <table class="table align-middle table-hover" id="myTable">
                   <thead class="table-dark">
                     <tr>
-                      <th class="text-center">ภาพสินค้า</th>
                       <th class="text-center">ลำดับเลขทำรายการ</th>
+                      <th class="text-center">ภาพสินค้า</th>
                       <th class="text-center">รหัสสินค้า</th>
                       <th class="text-center">ชื่อสินค้า</th>
                       <th style="display: none;"></th>
@@ -193,8 +193,8 @@ include_once('config/db.php');
                     
                     ?>
                     <tr id="<?= $row['t_id']; ?>" class="text-center">
-                      <td><img src="images/<?= $row['inv_image']; ?>" width="150" height="150"></td>
                       <td><?= $row['t_id']; ?></td>
+                      <td><img src="images/<?= $row['inv_image']; ?>" width="150" height="150"></td>
                       <td><?= $row['inv_id']; ?></td>
                       <td data-target="product"><?= $row['inv_name']; ?></td>
                       <td data-target="category"><?= $row['cate_name']; ?></td>
@@ -239,8 +239,8 @@ include_once('config/db.php');
                   </tbody>
                   <thead class="table-dark">
                     <tr>
-                      <th class="text-center">ภาพสินค้า</th>
                       <th class="text-center">ลำดับเลขทำรายการ</th>
+                      <th class="text-center">ภาพสินค้า</th>
                       <th class="text-center">รหัสสินค้า</th>
                       <th class="text-center">ชื่อสินค้า</th>
                       <th class="text-center">ประเภทสินค้า</th>

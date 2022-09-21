@@ -215,6 +215,8 @@ include_once('config/db.php');
                   <thead class="table-dark">
                     <tr>
                       <th class="text-center">ลำดับเลขทำรายการ</th>
+                      <th class="text-center">ภาพสินค้า</th>
+                      <th class="text-center">รหัสสินค้า</th>
                       <th class="text-center">ชื่อสินค้า</th>
                       <th style="display: none;"></th>
                       <th style="display: none;"></th>
@@ -261,6 +263,8 @@ include_once('config/db.php');
                     ?>
                     <tr id="<?= $row['t_id']; ?>" class="text-center">
                       <td><?= $row['t_id']; ?></td>
+                      <td><img src="images/<?= $row['inv_image']; ?>" alt="" width="150" height="150"></td>
+                      <td data-target="product"><?= $row['inv_id']; ?></td>
                       <td data-target="product"><?= $row['inv_name']; ?></td>
                       <td data-target="category"><?= $row['cate_name']; ?></td>
                       <td data-target="amount"><?= $row['t_qty']; ?></td>
@@ -303,6 +307,8 @@ include_once('config/db.php');
                   <thead class="table-dark">
                     <tr>
                       <th class="text-center">ลำดับเลขทำรายการ</th>
+                      <th class="text-center">ภาพสินค้า</th>
+                      <th class="text-center">รหัสสินค้า</th>
                       <th class="text-center">ชื่อสินค้า</th>
                       <th class="text-center">ประเภทสินค้า</th>
                       <th class="text-center">จำนวนสินค้า</th>
