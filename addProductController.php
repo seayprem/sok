@@ -61,13 +61,10 @@ if(isset($_POST['update'])) {
   $qty = $_POST['qty'];
   $min = $_POST['min'];
 
-  $extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
-
-  $random = rand(0, 999999999);
-  $rename = 'product'.date('ymdhis').$random;
-  $newname = $rename . '.' . $extension;
+  
 
   if(empty($_FILES['file']['name'])) {
+    
     $sql = "UPDATE `inventory` SET inv_name = '".$name."', inv_qty = $qty, inv_min = $min, inv_size = '$size', cate_id = $type WHERE inv_id = '".$code."' ";
     $query = mysqli_query($conn, $sql);
     if($query) {
@@ -76,6 +73,10 @@ if(isset($_POST['update'])) {
       echo "failed";
     }
   } else {
+    $extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+    $random = rand(0, 999999999);
+    $rename = 'product'.date('ymdhis').$random;
+    $newname = $rename . '.' . $extension;
     move_uploaded_file($_FILES['file']['tmp_name'], "images/" . $newname);
     $sql = "UPDATE `inventory` SET inv_name = '".$name."', inv_image = '".$newname."', inv_qty = $qty, inv_min = $min, inv_size = '$size', cate_id = $type WHERE inv_id = '".$code."' ";
     $query = mysqli_query($conn, $sql);
