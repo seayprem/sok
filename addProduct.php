@@ -111,7 +111,7 @@ if(empty($_SESSION['emp_level'])) {
                   <tbody>
                     <?php 
                     include_once('config/db.php');
-                    $sql = "SELECT * FROM inventory INNER JOIN category ON inventory.cate_id = category.cate_id";
+                    $sql = "SELECT * FROM inventory";
                     $query = mysqli_query($conn, $sql);
                     while($row = mysqli_fetch_array($query)) {
 
@@ -130,7 +130,6 @@ if(empty($_SESSION['emp_level'])) {
                       <td><?= $row['inv_id']; ?></td>
                       <td><img src="images/<?= $row['inv_image']; ?>" alt="" width="150" height="150"></td>
                       <td data-target="name"><?= $row['inv_name']; ?></td>
-                      <td style="display: none"><?= $row['cate_name']; ?></td>
                       <td data-target="size"><?= $row['inv_size']; ?></td>
                       <td data-target="qty"><?= $row['inv_qty']; ?></td>
                       <td data-target="min"><?= $row['inv_min']; ?></td>
@@ -186,21 +185,6 @@ if(empty($_SESSION['emp_level'])) {
                 <input type="text" class="form-control" id="name" placeholder="กรุณาป้อนชื่อสินค้า" aria-label="Username" aria-describedby="names">
               </div>
 
-              <!-- เตรียมลบทีหลัง -->
-              <!-- <label class="form-label">ประเภทสินค้า</label> -->
-              <div class="input-group mb-3" style="display: none">
-                <label class="input-group-text" for="type"><i class="fa-solid fa-tag"></i></label>
-                <select class="form-select" id="type">
-                  <option disabled>กรุณาเลือกประเภทสินค้า</option>
-                  <?php 
-                    $category_sql = "SELECT * FROM `category` ORDER BY cate_id ASC";
-                    $category_query = mysqli_query($conn, $category_sql);
-                    while($category_row = mysqli_fetch_array($category_query)) {
-                    ?>
-                  <option value="<?= $category_row['cate_id']; ?>" selected><?= $category_row['cate_name']; ?></option>
-                  <?php } ?>
-                </select>
-              </div>
 
               <label class="form-label">ขนาดของสินค้า</label>
               <div class="input-group mb-3">
@@ -272,21 +256,6 @@ if(empty($_SESSION['emp_level'])) {
                 <input type="text" class="form-control" id="name2" placeholder="กรุณาป้อนชื่อสินค้า" aria-label="Username" aria-describedby="names">
               </div>
 
-              <!-- เตรียมลบทีหลัง -->
-              <!-- <label class="form-label">ประเภทสินค้า</label> -->
-              <div class="input-group mb-3" style="display: none">
-                <label class="input-group-text" for="type"><i class="fa-solid fa-tag"></i></label>
-                <select class="form-select" id="type2">
-                  <option disabled selected>กรุณาเลือกประเภทสินค้า</option>
-                  <?php 
-                    $category2_sql = "SELECT * FROM `category` ORDER BY cate_id DESC";
-                    $category2_query = mysqli_query($conn, $category2_sql);
-                    while($category2_row = mysqli_fetch_array($category2_query)) {
-                    ?>
-                  <option value="<?= $category2_row['cate_id']; ?>"><?= $category2_row['cate_name']; ?></option>
-                  <?php } ?>
-                </select>
-              </div>
 
               <label class="form-label">ขนาดของสินค้า</label>
               <div class="input-group mb-3">

@@ -40,20 +40,16 @@ $(document).ready(function() {
 
     var code = $('#code').val();
     var name = $('#name').val();
-    var type = $('#type').val();
     var size = $('#size').val();
     var qty = $('#qty').val();
     var min = $('#min').val();
-    var max = $('#max').val();
 
     formData.append("file", filesname);
     formData.append("code", code);
     formData.append("name", name);
-    formData.append("type", type);
     formData.append("size", size);
     formData.append("qty", qty);
     formData.append("min", min);
-    formData.append("max", max);
     formData.append("addproduct", 'addproduct')
 
 
@@ -75,6 +71,7 @@ $(document).ready(function() {
       contentType: false, // กูแม่งไม่เข้าใจทำไมต้องมีโค้ดนี้ ถ้าไม่ใส่แม่งก็ error อัพไฟล์ภาพไม่ได้
       processData: false,  // กูแม่งไม่เข้าใจทำไมต้องมีโค้ดนี้ ถ้าไม่ใส่แม่งก็ error อัพไฟล์ภาพไม่ได้
       success: function(response) {
+        console.log(response);
         if(response === 'success') {
           Swal.fire({
             icon: 'success',
@@ -106,11 +103,9 @@ $(document).ready(function() {
   $(document).on('click', 'a[data-role=edit]', function(e) {
     var id = $(this).data('id');
     var name = $('#' + id).children('td[data-target=name]').text();
-    var type = $('#' + id).children('td[data-target=type]').text();
     var size = $('#' + id).children('td[data-target=size]').text();
     var qty = $('#' + id).children('td[data-target=qty]').text();
     var min = $('#' + id).children('td[data-target=min]').text();
-    var max = $('#' + id).children('td[data-target=max]').text();
     e.preventDefault();
 
     $('#editModal').modal('toggle');
@@ -119,11 +114,9 @@ $(document).ready(function() {
 
     $('#code2').val(id);
     $('#name2').val(name);
-    $('#type2').val(type);
     $('#size2').val(size);
     $('#qty2').val(qty);
     $('#min2').val(min);
-    $('#max2').val(max);
 
     
 
@@ -150,21 +143,16 @@ $(document).ready(function() {
     var code = $('#code2').val();
 
     var name = $('#name2').val();
-    var type = $('#type2').val();
     var size = $('#size2').val();
-    var color = $('#color2').val();
     var qty = $('#qty2').val();
     var min = $('#min2').val();
-    var max = $('#max2').val();
 
     formData.append("file", filesname);
     formData.append("code", code);
     formData.append("name", name);
-    formData.append("type", type);
     formData.append("size", size);
     formData.append("qty", qty);
     formData.append("min", min);
-    formData.append("max", max);
     formData.append("update", 'update')
 
 
