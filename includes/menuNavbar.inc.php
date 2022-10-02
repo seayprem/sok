@@ -142,9 +142,9 @@ if($_SESSION['emp_level'] == 3) {
 
       <ul class="list-unstyled px-2">
 
-        <li class=""><a href="index.php" class="text-decoration-none px-3 py-2 d-block"><i
+        <!-- <li class=""><a href="index.php" class="text-decoration-none px-3 py-2 d-block"><i
               class="fa-solid fa-house-chimney"></i>
-            Dashboard</a></li>
+            Dashboard</a></li> -->
         <hr class="h-color mx-2">
 
         <a class="text-decoration-none px-3 py-2 d-block text-secondary"><small>จัดการระบบ</small></a>

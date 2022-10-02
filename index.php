@@ -17,6 +17,20 @@ if(empty($_SESSION['emp_level'])) {
   });
   </script>";
   // echo '<script>alert("คุณไม่ได้รับอนุญาตในการเข้าถึงหน้าต่างนี้");window.location.href = "login.php"</script>';
+} else if($_SESSION['emp_level'] == 3) {
+  echo '<script src="js/sweetalert2@11.js"></script>';
+  echo '<script src="js/jquery-3.6.0.min.js"></script>';
+  echo "<script>
+  $(document).ready(function() {
+    $('div').hide();
+    Swal.fire({
+      icon: 'error',
+      title: 'คุณไม่ได้รับอนุญาตในการเข้าถึงหน้าต่างนี้',
+    }).then((result) => {
+      window.location.href = 'employee.php';
+    });
+  });
+  </script>";
 }
 include_once('config/db.php');
 ?>
