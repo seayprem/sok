@@ -293,7 +293,7 @@ include_once('config/db.php');
                       <?php 
                       if($row['t_status'] == 2) {
                       ?>
-                      <td data-target="empname" style="display: none;"><?= $row['emp_fname']; ?>  <?= $row['emp_lname']; ?></td>
+                      <td data-target="empname" style="display: none;"><?= $row['sup_company']; ?></td>
                       <?php } ?>
                       <td data-target="fault" style="display: none;"><?= $row['emp_fname']; ?> <?= $row['emp_lname']; ?></td>
                       <!-- Code สำหรับดูว่า ใครนำเข้านำออก จะได้ track ถูก -->

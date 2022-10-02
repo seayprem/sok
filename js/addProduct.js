@@ -84,14 +84,12 @@ $(document).ready(function() {
         } else if(response === 'error_inv_id') {
           Swal.fire({
             icon: 'error',
-            title: 'รหัสสินค้าซ้ำ',
-            timer: 1500
+            title: 'รหัสสินค้าซ้ำ'
           })
         } else {
           Swal.fire({
             icon: 'error',
-            title: 'บันทึกล้มเหลว',
-            timer: 1500
+            title: 'บันทึกล้มเหลว'
           })
         }
       }
