@@ -157,7 +157,7 @@ if($_SESSION['emp_level'] == 3) {
             <span class="bg-dark rounded-pill text-white py-0 px-2">02</span>
           </a>
         </li> -->
-        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"><i
+        <li class=""><a href="backup.php" class="text-decoration-none px-3 py-2 d-block"><i
               class="fa-solid fa-arrow-right-arrow-left"></i> การสำรองข้อมูล</a>
         </li>
       <hr class="h-color mx-2">
