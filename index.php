@@ -2,35 +2,37 @@
 session_start();
 error_reporting(0);
 if(empty($_SESSION['emp_level'])) {
-  echo '<script src="js/sweetalert2@11.js"></script>';
-  echo '<script src="js/jquery-3.6.0.min.js"></script>';
-  echo "<script>
-  $(document).ready(function() {
-    $('div').hide();
-    Swal.fire({
-      icon: 'error',
-      title: 'คุณไม่ได้รับอนุญาตในการเข้าถึงหน้าต่างนี้',
-      text: 'กรุณาเข้าสู่ระบบ!',
-    }).then((result) => {
-      window.location.href = 'login.php';
-    });
-  });
-  </script>";
+  // echo '<script src="js/sweetalert2@11.js"></script>';
+  // echo '<script src="js/jquery-3.6.0.min.js"></script>';
+  // echo "<script>
+  // $(document).ready(function() {
+  //   $('div').hide();
+  //   Swal.fire({
+  //     icon: 'error',
+  //     title: 'คุณไม่ได้รับอนุญาตในการเข้าถึงหน้าต่างนี้',
+  //     text: 'กรุณาเข้าสู่ระบบ!',
+  //   }).then((result) => {
+  //     window.location.href = 'login.php';
+  //   });
+  // });
+  // </script>";
+  header("Location: login.php");
   // echo '<script>alert("คุณไม่ได้รับอนุญาตในการเข้าถึงหน้าต่างนี้");window.location.href = "login.php"</script>';
 } else if($_SESSION['emp_level'] == 3) {
-  echo '<script src="js/sweetalert2@11.js"></script>';
-  echo '<script src="js/jquery-3.6.0.min.js"></script>';
-  echo "<script>
-  $(document).ready(function() {
-    $('div').hide();
-    Swal.fire({
-      icon: 'error',
-      title: 'คุณไม่ได้รับอนุญาตในการเข้าถึงหน้าต่างนี้',
-    }).then((result) => {
-      window.location.href = 'employee.php';
-    });
-  });
-  </script>";
+  // echo '<script src="js/sweetalert2@11.js"></script>';
+  // echo '<script src="js/jquery-3.6.0.min.js"></script>';
+  // echo "<script>
+  // $(document).ready(function() {
+  //   $('div').hide();
+  //   Swal.fire({
+  //     icon: 'error',
+  //     title: 'คุณไม่ได้รับอนุญาตในการเข้าถึงหน้าต่างนี้',
+  //   }).then((result) => {
+  //     window.location.href = 'employee.php';
+  //   });
+  // });
+  // </script>";
+  header("Location: employee.php");
 }
 include_once('config/db.php');
 ?>
