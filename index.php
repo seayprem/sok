@@ -162,7 +162,7 @@ include_once('config/db.php');
                 <div class="card-header bg-warning text-dark">
                   <div class="row align-items-center">
                     <div class="col">
-                      <i class="fa-solid fa-dolly" style="font-size: 5rem;"></i>
+                      <i class="fa-solid fa-arrow-right-from-bracket" style="font-size: 5rem;"></i>
                     </div>
                     <div class="col">
                       <h3 class="display-3"><?php echo $output_result['output']; ?></h3>
