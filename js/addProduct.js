@@ -86,6 +86,11 @@ $(document).ready(function() {
             icon: 'error',
             title: 'รหัสสินค้าซ้ำ'
           })
+        } else if(response === 'onlyimage') {
+          Swal.fire({
+            icon: 'error',
+            title: 'เฉพาะไฟล์ที่เป็นรูปภาพนิ่งเท่านั้น!'
+          })
         } else {
           Swal.fire({
             icon: 'error',
@@ -186,6 +191,11 @@ $(document).ready(function() {
             // Not working not use it
             // $('#' + id).children('td[data-target=name]').text(name);
             // $('#editModal').modal('toggle');
+          })
+        } else if(response === 'onlyimage') {
+          Swal.fire({
+            icon: 'error',
+            title: 'เฉพาะไฟล์ที่เป็นรูปภาพนิ่งเท่านั้น!'
           })
         } else {
           Swal.fire({
