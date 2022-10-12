@@ -415,6 +415,9 @@ include_once('config/db.php');
     <script>
 
       const chartSize = document.getElementById('myChartSize');
+      // Font Size
+      Chart.defaults.font.size = 18;
+      Chart.defaults.color = "#000";
       const myChartSize = new Chart(chartSize, {
         type: 'bar',
         data: {
@@ -446,6 +449,9 @@ include_once('config/db.php');
               beginAtZero: true
             }
           }
+        },
+        plugins: {
+
         }
       });
 
