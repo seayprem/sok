@@ -156,12 +156,21 @@ $(document).ready(function() {
     
   })
 
+  // DELETE
   $(document).on('click', 'a[data-role=delete]', function(e) {
     e.preventDefault();
 
     var id = $(this).data('id');
     var product = $('#' + id).children('td[data-target=product]').text();
+    var qty = $('#' + id).children('td[data-target=amount]').text();
+    var status = $('#' + id).children('td[data-target=status2]').text();
+    var productId = $('#' + id).children('td[data-target=productId]').text();
+    // DEBUG
     console.log(id);
+    console.log(product);
+    console.log(qty);
+    console.log(status);
+    console.log(productId);
 
     Swal.fire({
       title: 'คุณแน่ใจใช่หรือไม่? ที่ต้องการลบข้อมูล : (' + product + ") รายการนี้",
@@ -180,9 +189,13 @@ $(document).ready(function() {
           method: 'POST',
           data: {
             id: id,
+            qty: qty,
+            status: status,
+            productId: productId,
             delete: 'delete'
           },
           success: function(response) {
+            console.log(response);
             if(response === "success") {
               Swal.fire({
                 icon: 'success',
