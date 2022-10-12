@@ -182,6 +182,7 @@ if(isset($_POST['delete'])) {
   $qty = $_POST['qty'];
   $status = $_POST['status'];
   $productId = $_POST['productId'];
+  $productIdL = $_POST['productId'].'L';
 
   // Increase & Decrease qty in inventory 
 
@@ -194,10 +195,10 @@ if(isset($_POST['delete'])) {
 
     $sql_update = "UPDATE `inventory` SET `inv_qty` = (SELECT `inv_qty` FROM `inventory` WHERE `inv_id` = '$productId') + $qty WHERE `inv_id` = '$productId'";
     $query_update = mysqli_query($conn, $sql_update);
-    // if($query_update) {
-    //   $sql_updateL = "UPDATE `inventory` SET `inv_qty` = (SELECT `inv_qty` FROM `inventory` WHERE `inv_id` = '$productId') - $qty WHERE `inv_id` = '$productId' + 'L'";
-    //   $query_updateL = mysqli_query($conn, $sql_updateL);
-    // }
+
+    $sql_updateL = "UPDATE `inventory` SET `inv_qty` = (SELECT `inv_qty` FROM `inventory` WHERE `inv_id` = '$productIdL') - $qty WHERE `inv_id` = '$productIdL'";
+    $query_updateL = mysqli_query($conn, $sql_updateL);
+
   }
 
   $sql = "DELETE FROM `transfer` WHERE `t_id` = $id ";
