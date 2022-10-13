@@ -16,8 +16,9 @@ body {
 
 .img-left {
   width: 45%;
-  background-image: url("../images/deknoii.png");
+  background-image: url("../images/login.jpg");
   background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .card-body {
