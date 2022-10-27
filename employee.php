@@ -207,7 +207,7 @@ if(empty($_SESSION['emp_level'])) {
                                 <select class="form-select" id="level">
                                   <option disabled>เลือกตำแหน่งงาน</option>
                                   <option value="1">พนักงานคลังสินค้า</option>
-                                  <option value="2">ผู้จัดการ</option>
+                                  <option value="2">เจ้าของบริษัท</option>
                                   <option value="3">แอดมิน</option>
                                 </select>
                             </div>

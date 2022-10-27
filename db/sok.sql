@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 03, 2022 at 03:28 PM
+-- Generation Time: Oct 27, 2022 at 05:09 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -24,29 +24,11 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category`
---
-
-CREATE TABLE `category` (
-  `cate_id` int(11) NOT NULL,
-  `cate_name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `category`
---
-
-INSERT INTO `category` (`cate_id`, `cate_name`) VALUES
-(1, '7D');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `employee`
 --
 
 CREATE TABLE `employee` (
-  `emp_id` int(11) NOT NULL,
+  `emp_id` varchar(11) NOT NULL,
   `emp_user` varchar(255) NOT NULL,
   `emp_pass` varchar(255) NOT NULL,
   `emp_fname` varchar(255) NOT NULL,
@@ -61,15 +43,15 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`emp_id`, `emp_user`, `emp_pass`, `emp_fname`, `emp_lname`, `emp_address`, `emp_phone`, `emp_level`) VALUES
-(1, 'prem', 'prem', 'วันชัย', 'แซ่ลิ้ม', '124 จังหวัด นครราชสีมา awd', '0979645941', 3),
-(2, 'sun', 'sun', 'จิรายุทธ', 'มิตรอธิพันธ์', 'บัวใหญ่มั้ง ', '1234567890', 1),
-(4, 'chakrit', '1234', 'ชาคริต', 'โชติ', 'จำไม่ได้', '123123', 1),
-(5, 'emp', 'emp', 'emp', 'emp', 'emp', '12321', 1),
-(6, 'admin', 'admin', 'admin', 'admin', 'localhost', '123', 3),
-(7, 'owner', 'owner', 'owner', 'owner', 'im your boss', '123123', 2),
-(10, 'fon', 'fon', 'ธัญกร', 'ธัญเฉลิม', 'โน้นสูงงงงง', '1231244', 1),
-(12, 'fon2', 'fon2', 'fon', 'fon', '123', '3123', 1),
-(15, 'aw', 'aw', 'aw', 'aw', 'aw', 'aw', 3);
+('admin101', 'admin', 'admin', 'ผู้แล', 'ระบบ', 'SOK Production', '0123456789', 3),
+('adminsun01', 'adminsun', 'adminsun', 'จิรายุทธ', 'มิตรอธิพันธ์', 'ตำบล บัวใหญ่ อำเภอ บัวใหญ่ นครราชสีมา 30120', '0984644447', 3),
+('charkit01', 'charkit', 'charkit', 'สมหมาย', 'มือถือ', 'เลขที่ 599 หมู่ 7 ตำบลหนองไผ่ล้อม อำเภอเมือง จังหวัดนครราชสีมา ', '0611465166', 1),
+('emp101', 'emp', 'emp', 'พนักงาน', 'คลังสินค้า', 'SOK Production', '0123456789', 1),
+('owner101', 'owner', 'owner', 'เจ้าของ', 'บริษัท', 'SOK Production', '0123456789', 2),
+('sunny01', 'jirayut', 'jirayut', 'อเนกต์', 'ประสงค์', 'ตำบล บัวใหญ่ อำเภอ บัวใหญ่ นครราชสีมา 30120', '0984644447', 1),
+('taray01', 'taray', 'taray', 'ชาคริต', 'โชติ', 'เลขที่ 599 หมู่ 7 ตำบลหนองไผ่ล้อม อำเภอเมือง จังหวัดนครราชสีมา ', '0984442919', 2),
+('w1213', 'awdaw', 'awdaw', 'dawd', 'wdawda', 'awdaw', '1231231222', 1),
+('wanchai101', 'wanchai', 'wanchai', 'วันชัย', 'แซ่ลิ้ม', '124 หนองกระทุ่ม อ.เมือง จ.นครราชสีมา', '0979645942', 1);
 
 -- --------------------------------------------------------
 
@@ -80,12 +62,41 @@ INSERT INTO `employee` (`emp_id`, `emp_user`, `emp_pass`, `emp_fname`, `emp_lnam
 CREATE TABLE `inventory` (
   `inv_id` varchar(11) NOT NULL,
   `inv_name` varchar(255) NOT NULL,
+  `inv_image` text NOT NULL,
   `inv_qty` int(11) NOT NULL DEFAULT 0,
   `inv_min` int(11) DEFAULT NULL,
   `inv_size` varchar(64) DEFAULT NULL,
-  `inv_color` varchar(64) DEFAULT NULL,
-  `cate_id` int(11) NOT NULL
+  `inv_sub_id` varchar(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `inventory`
+--
+
+INSERT INTO `inventory` (`inv_id`, `inv_name`, `inv_image`, `inv_qty`, `inv_min`, `inv_size`, `inv_sub_id`) VALUES
+('P001', 'ดำด้ายน้ำเงิน', 'product221011050228490025301.jpg', 0, 0, 'XL', 'P001L'),
+('P001L', 'ดำด้ายน้ำเงิน', 'product221011050228490025301.jpg', 0, 0, 'L', NULL),
+('P002', 'น้ำตาลอ่อนด้ายทอง', 'product221011050300816726008.jpg', 200, 0, 'XL', 'P002L'),
+('P002L', 'น้ำตาลอ่อนด้ายทอง', 'product221011050300816726008.jpg', 0, 0, 'L', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reported`
+--
+
+CREATE TABLE `reported` (
+  `id` int(11) NOT NULL,
+  `path` text NOT NULL,
+  `report_datetime` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `reported`
+--
+
+INSERT INTO `reported` (`id`, `path`, `report_datetime`) VALUES
+(1, 'sok2022-10-11_05-06-17-pm.pdf', '2022-10-11 15:06:17');
 
 -- --------------------------------------------------------
 
@@ -98,20 +109,21 @@ CREATE TABLE `supplier` (
   `sup_company` varchar(255) NOT NULL,
   `sup_address` text NOT NULL,
   `sup_email` varchar(255) DEFAULT NULL,
-  `sup_phone` varchar(10) DEFAULT NULL
+  `sup_phone` varchar(10) DEFAULT NULL,
+  `sale_name` varchar(255) NOT NULL,
+  `sale_position` varchar(255) NOT NULL,
+  `sale_phone` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `supplier`
 --
 
-INSERT INTO `supplier` (`sup_id`, `sup_company`, `sup_address`, `sup_email`, `sup_phone`) VALUES
-(1, 'บริษัท อี.ไอ. โปรดักส์ จำกัด', '99/18 หมู่ 6 ถ.บางบัวทอง-สุพรรณบุรี ต.ราษฎร์นิยม อ.ไทรน้อย จ.นนทบุรี 11150', 'info@eiproducts.com', '026880808'),
-(2, 'บริษัท คลีน เท็กซ์ (ไทยแลนด์) จำกัด', '789/76 นิคมอุตสาหกรรมปิ่นทอง ตำบลหนองขาม อำเภอศรีราชา จังหวัดชลบุรี 20110', '', '0382968913'),
-(3, 'บริษัท ฮายาชิเทเลมปุ (ประเทศไทย) จำกัด', '700/360 หมู่ 6 นิคมอุตสาหกรรมอมตะนคร ถนนบางนา-ตราด ตำบลดอนหัวฬ่อ อำเภอเมืองชลบุรี จังหวัดชลบุรี 20000', '', '0382144914'),
-(4, 'บริษัท ยูนิเวอร์ซัล ไทย ไฟเบอร์ จำกัด', '700/117 หมู่ 1 นิคมอุตสาหกรรมอมตะนคร ตำบลบ้านเก่า อำเภอพานทอง จังหวัดชลบุรี 20160', '', '0387440502'),
-(5, 'บริษัท อินเตอร์เฟซฟลอร์ (ประเทศไทย) จำกัด', '700/117 หมู่ 1 นิคมอุตสาหกรรมอมตะนคร ถนนบางนา-ตราด ตำบลบ้านเก่า อำเภอพานทอง จังหวัดชลบุรี 20160', '', '0382143025'),
-(17, 'Wanchai Saelim', '124 M.2\nTumbon Nongkhatum', 'seayprem@hotmail.com', '0979645941');
+INSERT INTO `supplier` (`sup_id`, `sup_company`, `sup_address`, `sup_email`, `sup_phone`, `sale_name`, `sale_position`, `sale_phone`) VALUES
+(1, 'บริษัท กัลฟ์ เอ็นเนอร์จี ดีเวลลอปเมนท์ จำกัด (มหาชน)', '87 อาคาร เอ็มไทย ทาวเวอร์ ออลซีซั่น เพลส ชั้น 11 ถนนวิทยุ แขวงลุมพินี เขตปทุมวัน กรุงเทพมหานคร 10330', 'sustainability@gulf.co.th', '0208044990', 'นายสมพงษ์ มะนาว', 'พนักงานขาย', '0984151963'),
+(2, 'กันกุล เอ็นจิเนียริ่ง จำกัด (มหาชน)', '1177 อาคารเพิร์ล แบงก์ค็อก ถ. พหลโยธิน แขวง พญาไท เขตพญาไท กรุงเทพมหานคร 10400', 'ir@gunkul.com', '0224258000', 'นางสาวซาร่า จอร์จ', 'พนักงาน', '0821519592'),
+(3, 'บริษัท แสนสิริ จำกัด (มหาชน)', 'เลขที่ 59 ซอยริมคลองพระโขนง​ แขวงพระโขนงเหนือ\nเขตวัฒนา​ กรุงเทพมหานคร 10110', 'cs@sansiri.com', '0202778888', 'นางสาวแม่มณี ทองสุก', 'พนักงานขาย', '0912555995'),
+(4, 'บริษัท คอมเซเว่น จำกัด (มหาชน)', '549/1 ถนนสรรพาวุธ แขวงบางนาใต้ เขตบางนา กรุงเทพมหานคร 10260', 'ir@comseven.com', '0201777777', 'นางสาวออมเงิน ถอนยาก', 'พนักงานขาย', '0983619878');
 
 -- --------------------------------------------------------
 
@@ -124,20 +136,21 @@ CREATE TABLE `transfer` (
   `t_datetime` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `t_status` int(1) NOT NULL,
   `t_qty` int(11) UNSIGNED NOT NULL,
-  `emp_id` int(11) DEFAULT NULL,
+  `emp_id` varchar(11) DEFAULT NULL,
   `inv_id` varchar(11) NOT NULL,
   `sup_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Indexes for dumped tables
+-- Dumping data for table `transfer`
 --
 
+INSERT INTO `transfer` (`t_id`, `t_datetime`, `t_status`, `t_qty`, `emp_id`, `inv_id`, `sup_id`) VALUES
+(46, '2022-10-12 05:32:31', 1, 200, 'wanchai101', 'P002', 3);
+
 --
--- Indexes for table `category`
+-- Indexes for dumped tables
 --
-ALTER TABLE `category`
-  ADD PRIMARY KEY (`cate_id`);
 
 --
 -- Indexes for table `employee`
@@ -150,6 +163,12 @@ ALTER TABLE `employee`
 --
 ALTER TABLE `inventory`
   ADD PRIMARY KEY (`inv_id`);
+
+--
+-- Indexes for table `reported`
+--
+ALTER TABLE `reported`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `supplier`
@@ -171,28 +190,22 @@ ALTER TABLE `transfer`
 --
 
 --
--- AUTO_INCREMENT for table `category`
+-- AUTO_INCREMENT for table `reported`
 --
-ALTER TABLE `category`
-  MODIFY `cate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `employee`
---
-ALTER TABLE `employee`
-  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+ALTER TABLE `reported`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `sup_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `sup_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `transfer`
 --
 ALTER TABLE `transfer`
-  MODIFY `t_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `t_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- Constraints for dumped tables
@@ -202,7 +215,7 @@ ALTER TABLE `transfer`
 -- Constraints for table `transfer`
 --
 ALTER TABLE `transfer`
-  ADD CONSTRAINT `fk_emp` FOREIGN KEY (`emp_id`) REFERENCES `employee` (`emp_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_emp_trans` FOREIGN KEY (`emp_id`) REFERENCES `employee` (`emp_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_inv_trans` FOREIGN KEY (`inv_id`) REFERENCES `inventory` (`inv_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_sup_trans` FOREIGN KEY (`sup_id`) REFERENCES `supplier` (`sup_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
