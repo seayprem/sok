@@ -236,7 +236,6 @@ $(document).ready(function() {
   
       Swal.fire({
         title: 'คุณแน่ใจใช่หรือไม่? จะลบพนักงานคนนี้',
-        text: "ข้อมูลถูกลบออกจากระบบแล้ว",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
